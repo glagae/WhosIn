@@ -12,4 +12,15 @@ class Event < ApplicationRecord
   # Picture upload
   mount_uploader :photo, PhotoUploader
 
+  def managers
+    # return array with all the invitations where the role is manager
+    manager_invitations = self.invitations.select do |invitation|
+      invitation.role == "manager"
+    end
+    # return array with the corresponding user
+    manager_invitations.map! do |invitation|
+      invitation.user
+    end
+  end
+
 end

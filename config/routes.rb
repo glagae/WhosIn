@@ -9,9 +9,9 @@ Rails.application.routes.draw do
   # CRUD for events
   resources :events, except: [:index] do
     # CRUD for invitations
-    resoures :invitations, except: [:index, :show]
+    resources :invitations, except: [:index, :show]
     # CRUD for menu items
-    resoures :menu_items, except: [:index, :show]
+    resources :menu_items, except: [:index, :show]
   end
 
 
