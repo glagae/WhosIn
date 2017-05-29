@@ -40,12 +40,12 @@
 }
 
 .event_page_menu_choices {
+  padding: 8px;
   height: calc(60vh - 70px);
   margin-left: 5px;
   margin-top: 10px;
   width: 30%;
-  background-image: url('http://www.dnakids.co.uk/uploads/images/party-images/1.jpg');
-  background-size: cover;
+  background-color: lightgrey;
 }
 
 .venue-informations {
@@ -114,4 +114,33 @@ vertical-align: middle;
   height: 100%;
   background-color: white;
   border: 1px solid grey;
+}
+
+
+.choice_buttons {
+  height: 20%;
+  margin-bottom: 8px;
+
+}
+
+.event_page_menu_choices {
+
+}
+
+.imin_btn {
+  width: 50%;
+  margin-right: 5px;
+  height: 100%
+}
+
+.imout_btn {
+  width: 50%;
+  margin-left: 5px;
+  height: 100%
+}
+
+.required_items {
+  background-color: white;
+  height: calc(80% - 8px);
+
 }
