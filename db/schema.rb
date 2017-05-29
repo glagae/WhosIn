@@ -10,10 +10,45 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170529124407) do
+ActiveRecord::Schema.define(version: 20170529133018) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "events", force: :cascade do |t|
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.integer "max_invites"
+    t.string "address"
+    t.text "description"
+    t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "invitations", force: :cascade do |t|
+    t.string "role"
+    t.boolean "accepted"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.bigint "event_id"
+    t.index ["event_id"], name: "index_invitations_on_event_id"
+    t.index ["user_id"], name: "index_invitations_on_user_id"
+  end
+
+  create_table "menu_items", force: :cascade do |t|
+    t.string "name"
+    t.string "category"
+    t.integer "quantity"
+    t.boolean "bring"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "invitation_id"
+    t.bigint "event_id"
+    t.index ["event_id"], name: "index_menu_items_on_event_id"
+    t.index ["invitation_id"], name: "index_menu_items_on_invitation_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -36,4 +71,8 @@ ActiveRecord::Schema.define(version: 20170529124407) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "invitations", "events"
+  add_foreign_key "invitations", "users"
+  add_foreign_key "menu_items", "events"
+  add_foreign_key "menu_items", "invitations"
 end
