@@ -12,4 +12,10 @@ class Event < ApplicationRecord
   # Picture upload
   mount_uploader :photo, PhotoUploader
 
+  def manager
+    self.invitations.select do |invitation|
+      invitation.role == "manager"
+    end
+  end
+
 end

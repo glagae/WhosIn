@@ -1,4 +1,6 @@
 class InvitationsController < ApplicationController
+  before_action :set_invitation, only: [:edit, :update, :destroy]
+
   def new
   end
 
@@ -12,5 +14,11 @@ class InvitationsController < ApplicationController
   end
 
   def destroy
+  end
+
+  private
+
+  def set_invitation
+    @invitation = Invitation.find(params[:id])
   end
 end
