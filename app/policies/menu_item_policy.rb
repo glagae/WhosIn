@@ -1,4 +1,4 @@
-class InvitationPolicy < ApplicationPolicy
+class MenuItemPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
       scope
@@ -11,7 +11,7 @@ class InvitationPolicy < ApplicationPolicy
   end
 
   def update?
-    # if the user is a manager then
+    # any guest that attends can update the status of the item by clicking bring
     is_manager?
   end
 
@@ -20,8 +20,7 @@ class InvitationPolicy < ApplicationPolicy
     is_manager?
   end
 
-
-private
+  private
 
   def is_manager?
     # get event, get list of managers, is the user in this list?

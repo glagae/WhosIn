@@ -21,6 +21,7 @@ class EventPolicy < ApplicationPolicy
   private
 
   def is_manager?
+    # get event, get list of managers, is the user in this list?
     record.managers.include? user
   end
 
