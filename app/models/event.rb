@@ -9,4 +9,7 @@ class Event < ApplicationRecord
   validates :address, presence: true
   validates :title, presence: true
 
+  # Picture upload
+  mount_uploader :photo, PhotoUploader
+
 end
