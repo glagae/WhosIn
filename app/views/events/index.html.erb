@@ -1,0 +1,50 @@
+<div class="container-wrapper">
+<!--  add banner -->
+  <div class="banner">
+
+<div class="tabs">
+  <a class="tab active" data-target="#my-dinners">
+    <h3>My dinners</h3>
+  </a>
+  <a class="tab" data-target="#dinner_invitations">
+    <h3>Dinner invitations</h3>
+  </a>
+</div>
+
+
+<div class="container text-center">
+  <div class="tab-content" id="my-dinners">
+  TO DO : add My dinners
+      <!-- Loop through cards -->
+
+  </div>
+  <div class="tab-content hidden" id="dinner_invitations">
+  TO DO : add Dinner invitations
+      <!-- Loop through cards -->
+  </div>
+</div>
+
+
+</div>
+
+
+
+<!-- JS for tabs -->
+<% content_for :after_js do %>
+
+<script>
+  $(function(){
+
+  $(".tab").on("click", function(e){
+    // Change active tab
+    $(".tab").removeClass('active');
+    $(this).addClass('active');
+    // Hide all tab-content (use class="hidden")
+    $(".tab-content").addClass('hidden');
+    // Show target tab-content (use class="hidden")
+    $($(this).data('target')).removeClass('hidden');
+  });
+
+});
+</script>
+<% end %>
