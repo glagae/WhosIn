@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   devise_for :users
-  root to: 'events#index'
+  root to: 'pages#home'
 
   # Edit my profile page
   resources :users, only: [:edit, :update]
