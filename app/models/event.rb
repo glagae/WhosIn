@@ -1,7 +1,7 @@
 class Event < ApplicationRecord
   # Associations
-  has_many :invitations
-  has_many :menu_items
+  has_many :invitations, dependent: :destroy
+  has_many :menu_items, dependent: :destroy
 
   # Validations
   validates :start_date, presence: true
@@ -21,6 +21,16 @@ class Event < ApplicationRecord
     manager_invitations.map! do |invitation|
       invitation.user
     end
+  end
+
+  def guests
+    self.invitations.map do |invitation|
+      invitation.user
+    end
+  end
+
+  def missing
+    menu_items.where(invitation: nil)
   end
 
 end
