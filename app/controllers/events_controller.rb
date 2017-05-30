@@ -21,6 +21,7 @@ class EventsController < ApplicationController
 
   def update
     authorize @event
+    byebug
 
   end
 
@@ -31,6 +32,7 @@ class EventsController < ApplicationController
 
   def show
     authorize @event
+    @invitation = current_user.invitations.select { |invitation| invitation.event == @event }.first
   end
 
   private
