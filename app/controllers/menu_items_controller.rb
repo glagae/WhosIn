@@ -29,4 +29,8 @@ class MenuItemsController < ApplicationController
   def set_menu_item
     @menu_item = MenuItem.find(params[:id])
   end
+
+  def menu_items_params
+    params.require(:menu_item).permit(:name, :category, :quantity)
+  end
 end

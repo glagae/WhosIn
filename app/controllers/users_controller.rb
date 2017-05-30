@@ -2,6 +2,9 @@ class UsersController < ApplicationController
   def index
   end
 
+  def create
+  end
+  
   def edit
     @user = User.find(params[:id])
     authorize @user

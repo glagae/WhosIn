@@ -14,7 +14,7 @@
   height: 40vh;
   padding: 8px 0px 0px 8px;
   width: 50%;
-  background-image: url('http://www.dnakids.co.uk/uploads/images/party-images/1.jpg');
+  background-image: url('https://www.towcestermillbrewery.co.uk/wp-content/uploads/2016/07/bbq.jpg');
   background-size: cover;
   margin-right : 5px
 
@@ -24,19 +24,14 @@
   height: 40vh;
   margin-left: 5px;
   width: 50%;
-  padding: 8px;
-  border: 1px solid grey;
-  background-color: lightgrey;
 
 }
 
 .event_page_menu {
-  padding: 8px;
   height: calc(60vh - 70px);
   margin-right: 5px;
   margin-top: 10px;
   width: 70%;
-  background-color: lightgrey;
 }
 
 .event_page_menu_choices {
@@ -67,17 +62,13 @@
 
 .menu_title {
   background-color: white;
-  border: 1px solid grey;
-  padding: 8px 0px;
   margin-bottom: 8px;
   height: 50px;
-vertical-align: middle;
+  vertical-align: middle;
 }
 
 .menu_title h3 {
   margin: 0px 0px;
-
-
 }
 
 .menu_meals {
@@ -89,12 +80,18 @@ vertical-align: middle;
   height: 100%;
   height: 45%;
 }
+
 .menu_main {
   text-align: center;
 
   background-color: white;
   border: 1px solid grey;
   height: 55%;
+}
+
+.text_hover:hover {
+  cursor: text;
+  background-color: #fcfcfc;
 }
 
 .menu_snacks {
@@ -104,7 +101,7 @@ vertical-align: middle;
   border: 1px solid grey;
   width: 50%;
   margin-left: 5px;
-  width: calc(50% - 5px)
+  width: calc(50% - 5px);
 }
 
 .menu_drinks {
@@ -128,19 +125,21 @@ vertical-align: middle;
 }
 
 .imin_btn {
+  font-size: 30px;
+  font-weight: bold;
   width: 50%;
   margin-right: 5px;
   height: 100%;
-  display: flex;
-  flex: 1 0 auto;
+
 }
 
 .imout_btn {
+  font-size: 30px;
+  font-weight: bold;
   width: 50%;
   margin-left: 5px;
   height: 100%;
-  display: flex;
-  flex: 1 0 auto;
+
 }
 
 .required_items {

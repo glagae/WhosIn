@@ -13,6 +13,8 @@
     <%= render 'shared/flashes' %>
     <%= yield %>
     <%= javascript_include_tag 'application' %>
+     <%= javascript_include_tag :cocoon %>
+
     <%= yield(:after_js)  %>
   </body>
   <%= render 'shared/footer' %>

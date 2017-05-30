@@ -9,6 +9,10 @@ class EventPolicy < ApplicationPolicy
     true
   end
 
+  def edit?
+    create?
+  end
+
   def update?
     # if the user is a manager then
     is_manager?
