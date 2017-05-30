@@ -18,6 +18,7 @@ gem 'font-awesome-sass'
 gem 'simple_form'
 gem 'autoprefixer-rails'
 gem 'omniauth-facebook'
+gem 'koala'
 gem 'social-share-button'
 
 gem 'cloudinary'
