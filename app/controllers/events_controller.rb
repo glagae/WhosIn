@@ -38,6 +38,7 @@ class EventsController < ApplicationController
     @event.menu_update(event_params)
 
     authorize @event
+
     @menu_items = @event.menu_items
 
 
@@ -50,8 +51,6 @@ class EventsController < ApplicationController
       render 'edit'
     end
 
-
-
   end
 
   def destroy
@@ -61,6 +60,7 @@ class EventsController < ApplicationController
 
   def show
     authorize @event
+    @invitation = current_user.invitations.select { |invitation| invitation.event == @event }.first
   end
 
   private

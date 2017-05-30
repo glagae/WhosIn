@@ -1,7 +1,8 @@
 class Event < ApplicationRecord
   # Associations
-  has_many :invitations
-  has_many :menu_items
+
+  has_many :invitations, dependent: :destroy
+  has_many :menu_items, dependent: :destroy
   accepts_nested_attributes_for :menu_items, reject_if: :all_blank, allow_destroy: true
 
 
@@ -23,6 +24,16 @@ class Event < ApplicationRecord
     manager_invitations.map! do |invitation|
       invitation.user
     end
+  end
+
+  def guests
+    self.invitations.map do |invitation|
+      invitation.user
+    end
+  end
+
+  def missing
+    menu_items.where(invitation: nil)
   end
 
 end
