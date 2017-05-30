@@ -23,6 +23,8 @@ class User < ApplicationRecord
     user_params[:facebook_picture_url] = auth.info.image
     user_params[:token] = auth.credentials.token
     user_params[:token_expiry] = Time.at(auth.credentials.expires_at)
+    user_params [:oauth_token] = auth.credentials.token
+    user_params [:oauth_secret] = auth.credentials.secret
     user_params = user_params.to_h
 
     user = User.find_by(provider: auth.provider, uid: auth.uid)
@@ -81,6 +83,10 @@ class User < ApplicationRecord
     guest.map do |invitation|
       invitation.event
     end
+  end
+
+  def facebook
+    @facebook = Koala::Facebook::API.new(oauth_token)
   end
 
 end
