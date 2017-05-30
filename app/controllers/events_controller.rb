@@ -35,15 +35,9 @@ class EventsController < ApplicationController
 
   def update
     @event = Event.find(params[:id])
+    authorize @event
     @event.menu_update(event_params)
 
-    authorize @event
-
-    @menu_items = @event.menu_items
-
-
-    @event = Event.find(params[:id])
-    authorize @event
 
     if @event.save
       redirect_to edit_event_path(@event)
