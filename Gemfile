@@ -19,6 +19,7 @@ gem 'simple_form'
 gem 'autoprefixer-rails'
 gem 'omniauth-facebook'
 gem 'koala'
+gem 'social-share-button'
 
 gem 'cloudinary'
 gem 'carrierwave', '~> 0.11.2'
