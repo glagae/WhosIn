@@ -1,0 +1,12 @@
+<h1>Edit <%= @user.first_name %></h1>
+ <%= simple_form_for @user do |f| %>
+      <%= f.error_notification %>
+      <%= f.input :first_name, error: 'Please enter your first name' %>
+      <%= f.input :last_name, error: 'Please enter your last name' %>
+      <%= f.input :email, error: 'Please enter your email' %>
+      <%= f.input :phone, error: 'Please enter your phone number' %>
+      <%= f.input :address, error: 'Please enter your address' %>
+      <%= f.input :photo %>
+      <%= f.input :photo_cache, as: :hidden %>
+      <%= f.submit "Submit", class: "btn btn-primary" %>
+    <% end %>

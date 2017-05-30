@@ -71,7 +71,41 @@
   <div class="banner-content">
     <h1>WhosIn</h1>
     <p>Let's invite some friends for a great dinner!</p>
-    <%= link_to "Sign Up", "#", {class: "btn btn-primary"}  %>
+          <!-- Sign-up btn text link -->
+      <p class="navbar-wagon-item navbar-wagon-link btn btn-primary" style="margin:0; color:white;" data-toggle="modal" data-target="#myModal"> Sign-up </p>
+
+      <!-- Sign-up modal -->
+      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title text-center" id="myModalLabel"> Sign-up</h4>
+            </div>
+            <div class="modal-body">
+              <div class="text-center">
+              <p style="font-size: 13px;"> connect with your favorite social network</p>
+              <div>
+                <%= link_to(user_facebook_omniauth_authorize_path) do %>
+                  <button id="fb-button" type="button" class="btn btn-block btn-social btn-facebook">
+                    <span class="fa fa-facebook"></span> <div class="text-center">Sign up with Facebook</div>
+                  </button>
+                <% end %>
+              </div>
+              <p style="font-size: 13px;"> or </p>
+
+              <div>
+                <%= link_to(new_user_registration_path) do %>
+                  <button type="button" class="btn btn-block btn-social btn-openid">
+                    <span class="fa fa-envelope"></span> <div class="text-center"> Sign up with Email</div>
+                  </button>
+                <% end %>
+              </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
   </div>
 </div>
 
