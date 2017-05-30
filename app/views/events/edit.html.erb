@@ -33,43 +33,34 @@
                   </div>
                   <div class="event_page_informations">
                     <div class="flex-between">
-                      <div class="venue-informations">
-                        VENUE INFORMATIONS
-                      </div>
-                      <div class="event-friend">
-                        DINNER DESCRIPTION
-                      </div>
+                      <input type="text" class="venue-informations text_hover text_hover form-control" id="menu_snacks" placeholder="Venu informations" >
+
+
+                      <input type="text" class="event-friend text_hover text_hover form-control" id="menu_snacks" placeholder="Event description" >
                     </div>
                   </div>
                 </div>
                 <div class="flex-horizontal">
                   <div class="event_page_menu">
-                    <div class="menu_title text-center">
-                      <h3> MENU </h3>
+                    <div class=" text-center">
+                      <h3> <%= @event.title %> </h3>
                     </div>
                     <div class="menu_meals">
-                      <div class="menu_main">
-                        MAIN
-                      </div>
+                      <input type="text" class="menu_main text_hover text_hover form-control" id="menu_snacks" placeholder="menu main" >
                       <div class="menu_others flex-between">
-                        <div class="menu_drinks">
-                          DRINKS
-                        </div>
-                        <div class="menu_snacks">
-                          SNACKS
-                        </div>
+                        <input type="text" class="menu_drinks text_hover form-control" id="menu_snacks" placeholder="menu drinks" >
+                        <input type="text" class="menu_snacks text_hover form-control" id="menu_snacks" placeholder="menu snacks" >
+
                       </div>
 
                     </div>
                   </div>
                   <div class="event_page_menu_choices">
                     <div class="choice_buttons flex-between">
-                      <button type="button" class="imin_btn btn btn-default">Im'in</button>
-                      <button type="button" class="imout_btn btn btn-default">Im'out</button>
+                      <button type="button" class="imin_btn btn btn-success">SHARE!</button>
+                      <button type="button" class="imout_btn btn btn-danger">See event</button>
                     </div>
-                    <div class="required_items text-center">
-                      Choose something to bring
-                    </div>
+                      <input type="text" class="required_items text_hover form-control" id="menu_snacks" placeholder="What should your friend bring ?">
                   </div>
                 </div>
               </div>
