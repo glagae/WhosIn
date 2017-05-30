@@ -7,6 +7,7 @@ class User < ApplicationRecord
   # Associations
   has_many :invitations
 
+
   # Validations
   validates :email, presence: true, uniqueness: true
   validates :first_name, presence: true

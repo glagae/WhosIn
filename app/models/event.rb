@@ -2,6 +2,8 @@ class Event < ApplicationRecord
   # Associations
   has_many :invitations
   has_many :menu_items
+  accepts_nested_attributes_for :menu_items, reject_if: :all_blank, allow_destroy: true
+
 
   # Validations
   validates :start_date, presence: true

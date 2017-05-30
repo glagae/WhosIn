@@ -7,7 +7,7 @@ class InvitationPolicy < ApplicationPolicy
 
   def create?
     # if the user is a manager then
-    is_manager?
+    true
   end
 
   def update?
