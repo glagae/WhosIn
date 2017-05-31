@@ -57,14 +57,27 @@
                         <%= simple_form_for @event do |f| %>
                           <div id='menu_items'>
                             <%= f.simple_fields_for :menu_items, @event.menu_items.build do |menu_item| %>
-                            <%= menu_item.input :name, label: 'name' %>
-                            <%= menu_item.input :category %>
+                            <%= menu_item.input :name, {:placeholder => 'name'} %>
+                            <%= menu_item.input :category, {:placeholder => 'category'} %>
+                            <%= menu_item.input :quantity, {:placeholder => 'quantity'} %>
                             <% end %>
 
                           </div>
-                            <%= f.submit 'Save' %>
+                          <%= f.submit 'Add' %>
+                        <% end %>
+                        <% @event.menu_items.each do |item|  %>
+                          <%= simple_form_for [@event, item] do |f| %>
+                              <%= f.input :name, {:placeholder => 'name'} %>
+                              <%= f.input :category, {:placeholder => 'category'} %>
+                              <%= f.input :quantity, {:placeholder => 'quantity'} %>
+                              <%= f.submit 'update'%>
+
+                          <% end %>
+                              <%= link_to 'destroy', controller: "menu_items", action: "destroy", id: item, event_id: @event %>
+<!-- id of the item is nil so route does not match -->
                         <% end %>
                       </div>
+
                       <div class="menu_others flex-between">
                         <input type="text" class="menu_drinks text_hover form-control" id="menu_snacks" placeholder="menu drinks" >
                         <input type="text" class="menu_snacks text_hover form-control" id="menu_snacks" placeholder="menu snacks" >
