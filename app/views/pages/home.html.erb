@@ -15,7 +15,7 @@
 
     <% current_user.guest.each do |event| %>
         <div class="col-xs-12 col-sm-4">
-          <%= render 'shared/card', e: event  %>
+          <%= render 'shared/card', e: event, host: false %>
         </div>
       <% end %>
   </div>
@@ -28,7 +28,7 @@
 
     <% current_user.host.each do |event| %>
         <div class="col-xs-12 col-sm-4">
-          <%= render 'shared/card', e: event  %>
+          <%= render 'shared/card', e: event, host: true  %>
         </div>
       <% end %>
   </div>
