@@ -34,8 +34,8 @@
                   <div class="event_page_informations">
                     <div class="flex-between">
                       <div class="venue-informations">
-                       <p id="venue-informations-month">  <%= @event.start_date.strftime("%b")  %> </p>
-                      <p id="venue-informations-date"><%= @event.start_date.strftime("%d")  %></p>
+<!--                        <p id="venue-informations-month">  <%= @event.start_date.strftime("%b")  %> </p>
+                      <p id="venue-informations-date"><%= @event.start_date.strftime("%d")  %></p> -->
 
                         <p><em>From <%= Date::DAYNAMES[@event.start_date.wday] %>
                          <%= @event.start_date.strftime("%d %B")  %>
@@ -117,7 +117,7 @@
                       <p>Choose something to bring</p>
                       <% @event.menu_items.each do |item|  %>
                           <% if item.invitation.nil? %>
-                          <%= link_to "#{item.name}  x#{item.quantity}", brings_item_path(@event, item), class: "btn btn-default btn-success" %>
+                          <%= link_to "#{item.name}  x#{item.quantity}", event_brings_item_path(@event, item), class: "btn btn-default btn-success" %>
                           <% end %>
                       <% end %>
                     </div>

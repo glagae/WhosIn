@@ -39,6 +39,10 @@ class MenuItemsController < ApplicationController
     @menu_item.invitation = invitation_of_current_user
     @menu_item.save
     redirect_to event_path(@menu_item.event)
+
+    # add quantity to invitation to know how much he brings
+    # check if this quantity is smaller than total quantity if so update quantity of what to bring
+    # update quantity of what is brought
   end
 
 

@@ -13,7 +13,7 @@
 
 <% else %>
 
-<%= link_to edit_event_path(e) do %>
+<%= link_to event_path(e) do %>
     <div class="my_cards card-img" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('http://res.cloudinary.com/cehrlicha/image/upload/v1496073649/bbq_atwwbi.jpg');">
      <div class="card-date"><p> <%= Date::DAYNAMES[e.start_date.wday] %></p>
       <p>  <%= e.start_date.strftime("%B %d")  %> </p>
