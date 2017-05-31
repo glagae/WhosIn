@@ -20,10 +20,18 @@ class MenuItemPolicy < ApplicationPolicy
     is_manager?
   end
 
+  def brings?
+    true
+  end
+
   private
 
   def is_manager?
     # get event, get list of managers, is the user in this list?
     record.event.managers.include? user
+  end
+
+  def is_guest
+    record.event.guests.include? user
   end
 end

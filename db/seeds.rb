@@ -14,20 +14,23 @@ puts "Create users"
     email: "bg1@mail.com",
     password: "123456",
     first_name: "Benoît",
-    last_name: "Habfast")
+    last_name: "Habfast",
+    facebook_picture_url:'http://res.cloudinary.com/cehrlicha/image/upload/v1495813639/puracrb2wb9dvtqjmk1l.png')
 
 
   gauthier = User.create!(
     email: "bg2@mail.com",
     password: "123456",
     first_name: "Gauthier",
-    last_name: "Lagae")
+    last_name: "Lagae",
+    facebook_picture_url:'http://res.cloudinary.com/cehrlicha/image/upload/v1496240437/avatar_glagae_v4ydf1.jpg')
 
   const = User.create!(
     email: "bg3@mail.com",
     password: "123456",
     first_name: "Constantin",
-    last_name: "Ehrlich-Adam")
+    last_name: "Ehrlich-Adam",
+    facebook_picture_url: 'http://res.cloudinary.com/cehrlicha/image/upload/v1496240414/constantin_square_heftuu.png')
 
 puts "Create Events"
 
