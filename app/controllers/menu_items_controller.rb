@@ -12,7 +12,6 @@ class MenuItemsController < ApplicationController
       @menu_item.invitation = current_user.invitations.where(event_id: menu_items_params["event_id"]).first
     end
     authorize @menu_item
-    byebug
     @menu_item.save
     redirect_to edit_event_path(@menu_item.event)
   end
