@@ -8,6 +8,9 @@ class MenuItemsController < ApplicationController
 
   def create
     @menu_item = MenuItem.new(menu_items_params)
+    if !@menu_item.bring
+      @menu_item.invitation = current_user.invitations.where(event_id: menu_items_params["event_id"]).first
+    end
     authorize @menu_item
     @menu_item.save
     redirect_to edit_event_path(@menu_item.event)
@@ -40,6 +43,6 @@ class MenuItemsController < ApplicationController
   end
 
   def menu_items_params
-    params.require(:menu_item).permit(:name, :category, :quantity, :event_id)
+    params.require(:menu_item).permit(:name, :category, :quantity, :event_id, :bring)
   end
 end

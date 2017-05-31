@@ -33,7 +33,14 @@
                   </div>
                   <div class="event_page_informations">
                     <div class="flex-between">
-                      <input type="text" class="venue-informations text_hover text_hover form-control" id="menu_snacks" placeholder="Venu informations" >
+                      <div class="venue-informations text_hover text_hover">
+                        <%= simple_form_for @event do |f| %>
+                          <%= f.input :start_date %>
+                          <%= f.input :end_date %>
+                          <%= f.input :address %>
+                            <%= f.submit 'Save' %>
+                        <% end %>
+                      </div>
 
 
 
@@ -50,15 +57,17 @@
                 <div class="flex-horizontal">
                   <div class="event_page_menu">
                     <div class=" text-center">
-                      <h3> <%= @event.id %> <%= @event.title %> </h3>
+                      <h3> <%= @event.title %> </h3>
                     </div>
                     <div class="menu_meals">
                       <div class="event-friend text_hover text_hover">
                         <%= simple_form_for [@event, @menu_item], wrapper: :inline_form, html: {class: "form-inline"} do |f| %>
 
                             <%= f.input :name, {:placeholder => 'name'} %>
-                            <%= f.input :category, collection: ["Appetizer", "Snacks", "Drinks", "Main", "Dessert"] %>
+                            <%= f.input :category, collection: ["Appetizer", "Snack", "Drink", "Main", "Dessert"] %>
                             <%= f.input :quantity, {:placeholder => 'quantity'} %>
+                            <%= f.input :bring, label: 'to_bring', :as => :boolean %>
+
                             <%= f.hidden_field :event_id, value: @event.id  %>
 
                             <%= f.submit 'Add' %>
@@ -66,17 +75,18 @@
                         <% end %>
 
                         <% @event.menu_items.each do |item|  %>
-                          <% if item.category == "Main" %>
+                          <% if (item.category == "Main" ||item.category == "Appetizer" ||item.category == "Dessert") && !item.invitation.nil? %>
                           <%= simple_form_for [@event, item], wrapper: :inline_form, html: {class: "form-inline"} do |f| %>
 
                               <%= f.input :name, {:placeholder => 'name'} %>
                               <%= f.input :category, {:placeholder => 'category'} %>
                               <%= f.input :quantity, {:placeholder => 'quantity'} %>
+
                               <%= f.button :submit%>
                           <% end %>
+                              <%= link_to 'destroy', event_menu_item_path(@event, item),method: :delete, id: item.id, event_id: @event.id %>
                           <% end %>
 
-                              <%= link_to 'destroy', event_menu_item_path(@event, item),method: :delete, id: item.id, event_id: @event.id %>
                         <% end %>
                       </div>
 
@@ -84,7 +94,7 @@
                         <!-- <input type="text" class="menu_drinks text_hover form-control" id="menu_snacks" placeholder="menu drinks" > -->
                         <div class="menu_drinks text_hover form-control" id="menu_snacks">
                          <% @event.menu_items.each do |item|  %>
-                          <% if item.category == "Drink" %>
+                          <% if item.category == "Drink" && !item.invitation.nil? %>
                           <%= simple_form_for [@event, item], wrapper: :inline_form, html: {class: "form-inline"} do |f| %>
 
                               <%= f.input :name, {:placeholder => 'name'} %>
@@ -101,7 +111,7 @@
                         <!-- <input type="text" class="menu_snacks text_hover form-control" id="menu_snacks" placeholder="menu snacks" > -->
                         <div class="menu_snacks text_hover form-control" id="menu_snacks">
                          <% @event.menu_items.each do |item|  %>
-                          <% if item.category == "Snack" %>
+                          <% if item.category == "Snack" && !item.invitation.nil? %>
                           <%= simple_form_for [@event, item], wrapper: :inline_form, html: {class: "form-inline"} do |f| %>
 
                               <%= f.input :name, {:placeholder => 'name'} %>
@@ -121,11 +131,28 @@
                     </div>
                   </div>
                   <div class="event_page_menu_choices">
+
                     <div class="choice_buttons flex-between">
                       <%= social_share_button_tag("Share") %>
-                      <button type="button" class="imout_btn btn btn-danger">See event</button>
+                      <%= link_to "See event", event_path(@event), class: "btn btn-default btn-danger" %>
                     </div>
-                      <input type="text" class="required_items text_hover form-control" id="menu_snacks" placeholder="What should your friend bring ?">
+
+                      <div class="required_items text_hover form-control" id="menu_snacks">
+                         <% @event.menu_items.each do |item|  %>
+                          <% if item.invitation.nil? %>
+                          <%= simple_form_for [@event, item], wrapper: :inline_form, html: {class: "form-inline"} do |f| %>
+
+                              <%= f.input :name, {:placeholder => 'name'} %>
+                              <%= f.input :category, {:placeholder => 'category'} %>
+                              <%= f.input :quantity, {:placeholder => 'quantity'} %>
+                              <%= f.button :submit%>
+                          <% end %>
+                          <%= link_to 'destroy', event_menu_item_path(@event, item),method: :delete, id: item.id, event_id: @event.id %>
+                          <% end %>
+
+
+                        <% end %>
+                        </div>
                   </div>
                 </div>
               </div>
