@@ -34,10 +34,12 @@
                   <div class="event_page_informations">
                     <div class="flex-between">
                       <div class="venue-informations">
-                        VENUE INFORMATIONS
+                        <p><%= Date::DAYNAMES[@event.start_date.wday] %> <%= @event.start_date.to_date  %></p>
+                        <br>
+                        <p><%= @event.address %></p>
                       </div>
                       <div class="event-friend">
-                        DINNER DESCRIPTION
+                        <p><%= @event.description %></p>
                       </div>
                     </div>
                   </div>
@@ -65,7 +67,7 @@
                   <div class="event_page_menu_choices">
                     <div class="choice_buttons flex-between">
                       <!-- <button type="button" class="imin_btn btn btn-default">Im'in</button> -->
-                      <%= link_to "I'm in", event_invitation_path(@event, @invitation, { :button => "in" }), :method => :patch, class: "btn btn-default imin-btn" %>
+                      <%= link_to "I'm in", event_invitation_path(@event, @invitation, { :button => "in" }), method: :patch, class: "btn btn-default imin-btn" %>
                       <%= link_to "I'm out", event_invitation_path(@event, @invitation, { :button => "out" }), :method => :patch, class: "btn btn-default imout-btn" %>
                     </div>
                     <div class="required_items text-center">

@@ -1,0 +1,24 @@
+<% if !host %>
+<%= link_to event_path(e) do %>
+    <div class="my_cards card-img" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('http://res.cloudinary.com/cehrlicha/image/upload/v1496073649/bbq_atwwbi.jpg');">
+     <div class="card-date"><p> <%= Date::DAYNAMES[e.start_date.wday] %> <%= e.start_date.to_date  %></p></div>
+        <div class="card-description">
+          <h2><%= e.title %></h2>
+        </div>
+      <img class= "card-user avatar avatar-large" src="http://res.cloudinary.com/cehrlicha/image/upload/v1495706341/benoit_pw94em.png">
+    </div>
+  <% end %>
+
+<% else %>
+
+<%= link_to edit_event_path(e) do %>
+    <div class="my_cards card-img" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('http://res.cloudinary.com/cehrlicha/image/upload/v1496073649/bbq_atwwbi.jpg');">
+     <div class="card-date"><p> <%= Date::DAYNAMES[e.start_date.wday] %> <%= e.start_date.to_date  %></p></div>
+        <div class="card-description">
+          <h2><%= e.title %></h2>
+        </div>
+      <img class= "card-user avatar avatar-large" src="http://res.cloudinary.com/cehrlicha/image/upload/v1495706341/benoit_pw94em.png">
+    </div>
+  <% end %>
+
+<% end %>
