@@ -28,8 +28,8 @@ class EventsController < ApplicationController
     authorize @event
     @menu_items = @event.menu_items
 
-    user = current_user
-    @fb_friends = Friend.fb_friends(user)
+
+    @fb_friends = Friend.fb_friends(current_user)
   end
 
 
