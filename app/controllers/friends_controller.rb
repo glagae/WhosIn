@@ -11,4 +11,5 @@ class FriendsController < ApplicationController
     friend.name
     end
   end
+  
 end
