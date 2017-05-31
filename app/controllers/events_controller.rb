@@ -21,6 +21,7 @@ class EventsController < ApplicationController
   end
 
   def edit
+    @menu_item = MenuItem.new
     @event = Event.find(params[:id])
     authorize @event
     @menu_items = @event.menu_items
