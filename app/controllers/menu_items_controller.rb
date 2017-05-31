@@ -1,5 +1,5 @@
 class MenuItemsController < ApplicationController
-  before_action :set_menu_item, only: [:edit, :update, :destroy, :show]
+  before_action :set_menu_item, only: [:edit, :update, :destroy, :show, :brings]
 
   def new
     @menu_item = MenuItem.new
@@ -31,7 +31,14 @@ class MenuItemsController < ApplicationController
     authorize @menu_item
     @menu_item.destroy
     redirect_to edit_event_path(@menu_item.event)
+  end
 
+  def brings
+    authorize @menu_item
+    invitation_of_current_user = current_user.invitations.where(event: params["event_id"]).first
+    @menu_item.invitation = invitation_of_current_user
+    @menu_item.save
+    redirect_to event_path(@menu_item.event)
   end
 
 

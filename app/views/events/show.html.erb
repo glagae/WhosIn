@@ -60,14 +60,34 @@
                     </div>
                     <div class="menu_meals">
                       <div class="menu_main">
-                        MAIN
+                      <% @event.menu_items.each do |item|  %>
+                          <% if (item.category == "Appetizer") && !item.invitation.nil? %>
+                          <p><span><%= item.category %> | </span><%= item.name %></p>
+                          <% end %>
+                           <% if (item.category == "Main") && !item.invitation.nil? %>
+                          <p><span><%= item.category %> | </span><%= item.name %></p>
+                         <% if (item.category == "Dessert") && !item.invitation.nil? %>
+                          <p><span><%= item.category %> | </span><%= item.name %></p>
+                          <% end %>
+                          <% end %>
+                      <% end %>
                       </div>
                       <div class="menu_others flex-between">
                         <div class="menu_drinks">
-                          DRINKS
+                        <h3>DRINKS</h3>
+                        <% @event.menu_items.each do |item|  %>
+                          <% if item.category == "Drink" && !item.invitation.nil? %>
+                          <p><%= item.name %> x<%= item.quantity %></p>
+                          <% end %>
+                      <% end %>
                         </div>
                         <div class="menu_snacks">
-                          SNACKS
+                        <h3>SNACKS</h3>
+                        <% @event.menu_items.each do |item|  %>
+                          <% if item.category == "Snack" && !item.invitation.nil? %>
+                          <p><%= item.name %></p>
+                          <% end %>
+                      <% end %>
                         </div>
                       </div>
 
@@ -80,7 +100,12 @@
                       <%= link_to "I'm out", event_invitation_path(@event, @invitation, { :button => "out" }), :method => :patch, class: "btn btn-default imout-btn" %>
                     </div>
                     <div class="required_items text-center">
-                      Choose something to bring
+                      <p>Choose something to bring</p>
+                      <% @event.menu_items.each do |item|  %>
+                          <% if item.invitation.nil? %>
+                          <%= link_to "#{item.name}  x#{item.quantity}", brings_item_path(@event, item), class: "btn btn-default btn-success" %>
+                          <% end %>
+                      <% end %>
                     </div>
                   </div>
                 </div>
