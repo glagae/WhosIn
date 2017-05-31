@@ -6,7 +6,7 @@ class Friend < ApplicationRecord
     if user.facebook.access_token.nil?
         fb_friends
     else
-      fb_friends = current_user.facebook.get_connection("me","friends").map do |friend|
+      fb_friends = user.facebook.get_connection("me","friends").map do |friend|
       friend["name"]
       end
     end
