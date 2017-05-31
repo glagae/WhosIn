@@ -7,7 +7,10 @@ class MenuItemsController < ApplicationController
   end
 
   def create
+    @menu_item = MenuItem.new(menu_items_params)
     authorize @menu_item
+    @menu_item.save
+    redirect_to edit_event_path(@menu_item.event)
   end
 
   def edit
@@ -37,6 +40,6 @@ class MenuItemsController < ApplicationController
   end
 
   def menu_items_params
-    params.require(:menu_item).permit(:name, :category, :quantity)
+    params.require(:menu_item).permit(:name, :category, :quantity, :event_id)
   end
 end
