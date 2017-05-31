@@ -67,8 +67,9 @@
                   <div class="event_page_menu_choices">
                     <div class="choice_buttons flex-between">
                       <!-- <button type="button" class="imin_btn btn btn-default">Im'in</button> -->
-                      <%= link_to "I'm in", event_invitation_path(@event, @invitation, { :button => "in" }), method: :patch, class: "btn btn-default imin-btn" %>
-                      <%= link_to "I'm out", event_invitation_path(@event, @invitation, { :button => "out" }), :method => :patch, class: "btn btn-default imout-btn" %>
+                      <%= social_share_button_tag("Share") %>
+
+                      <%= link_to "Edit", edit_event_path(@event), class: "btn btn-default imin-btn" %>
                     </div>
                     <div class="required_items text-center">
                       Choose something to bring
