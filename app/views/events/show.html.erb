@@ -34,7 +34,16 @@
                   <div class="event_page_informations">
                     <div class="flex-between">
                       <div class="venue-informations">
-                        <p><%= Date::DAYNAMES[@event.start_date.wday] %> <%= @event.start_date.to_date  %></p>
+                       <p id="venue-informations-month">  <%= @event.start_date.strftime("%b")  %> </p>
+                      <p id="venue-informations-date"><%= @event.start_date.strftime("%d")  %></p>
+
+                        <p><em>From <%= Date::DAYNAMES[@event.start_date.wday] %>
+                         <%= @event.start_date.strftime("%d %B")  %>
+                         <%= @event.start_date.strftime("%H:%M") %></em></p>
+
+                        <p><em>To <%= Date::DAYNAMES[@event.end_date.wday] %>
+                         <%= @event.end_date.strftime("%d %B") %>
+                          <%= @event.end_date.strftime("%H:%M") %></em></p>
                         <br>
                         <p><%= @event.address %></p>
                       </div>
