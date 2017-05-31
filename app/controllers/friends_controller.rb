@@ -5,9 +5,9 @@ class FriendsController < ApplicationController
 
   def fb_friends
     # access_token and other values aren't required if you set the defaults as described above
-    db_friends = []
+    fb_friends = []
 
-    db_friends = current_user.facebook.get_connection("me","friends").map do |friend|
+    fb_friends = current_user.facebook.get_connection("me","friends").map do |friend|
     friend.name
     end
   end
