@@ -5,7 +5,6 @@ class FriendsController < ApplicationController
 
   def fb_friends
     # access_token and other values aren't required if you set the defaults as described above
-  @current_user = current_user
-  @fb_friends = @current_user.facebook.get_connection("me","friends")
+    @fb_friends = current_user.facebook.get_connection("me","friends")
   end
 end

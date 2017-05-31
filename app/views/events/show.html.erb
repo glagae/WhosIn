@@ -60,15 +60,22 @@
                     </div>
                     <div class="menu_meals">
                       <div class="menu_main">
+                      <h5>Appetizer</h5>
                       <% @event.menu_items.each do |item|  %>
                           <% if (item.category == "Appetizer") && !item.invitation.nil? %>
-                          <p><span><%= item.category %> | </span><%= item.name %></p>
+                          <p><span></span><%= item.name %></p>
                           <% end %>
+                      <% end %>
+                      <h5>Main</h5>
+                      <% @event.menu_items.each do |item|  %>
                            <% if (item.category == "Main") && !item.invitation.nil? %>
-                          <p><span><%= item.category %> | </span><%= item.name %></p>
-                         <% if (item.category == "Dessert") && !item.invitation.nil? %>
-                          <p><span><%= item.category %> | </span><%= item.name %></p>
+                          <p><span></span><%= item.name %></p>
                           <% end %>
+                      <% end %>
+                      <h5>Dessert</h5>
+                      <% @event.menu_items.each do |item|  %>
+                         <% if (item.category == "Dessert") && !item.invitation.nil? %>
+                          <p><span></span><%= item.name %></p>
                           <% end %>
                       <% end %>
                       </div>
@@ -96,10 +103,16 @@
                   <div class="event_page_menu_choices">
                     <div class="choice_buttons flex-between">
                       <!-- <button type="button" class="imin_btn btn btn-default">Im'in</button> -->
-                      <%= social_share_button_tag("Share") %>
+                    <% if @event.managers.include? current_user %>
 
+                      <%= social_share_button_tag("Share") %>
                       <%= link_to "Edit", edit_event_path(@event), class: "btn btn-default imin-btn" %>
+                    <% else %>
+                      <%= link_to "I'm in", event_invitation_path(@event, @invitation, { :button => "in" }), method: :patch, class: "btn btn-default imin-btn" %>
+                     <%= link_to "I'm out", event_invitation_path(@event, @invitation, { :button => "out" }), :method => :patch, class: "btn btn-default imout-btn" %>
+                     <% end %>
                     </div>
+
                     <div class="required_items text-center">
                       <p>Choose something to bring</p>
                       <% @event.menu_items.each do |item|  %>
