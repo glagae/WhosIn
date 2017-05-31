@@ -26,25 +26,40 @@ class EventsController < ApplicationController
     @menu_items = @event.menu_items
   end
 
-  def menu_update(parameters)
-    @menu_item = MenuItem.where(:event_id => self.id)
-    @menu_item.update(name: parameters["menu_items_attributes"]["0"]["name"])
-    @menu_item.update(quantity: parameters["menu_items_attributes"]["0"]["quantity"])
-    @menu_item.update(category: parameters["menu_items_attributes"]["0"]["category"])
-  end
+
 
   def update
     @event = Event.find(params[:id])
     authorize @event
-    @event.menu_update(event_params)
-
-
-    if @event.save
-      redirect_to edit_event_path(@event)
+    if event_params["menu_items_attributes"]["0"]["id"] == nil
+      if menu_create(@event, event_params)
+        redirect_to edit_event_path(@event)
+      else
+        render 'edit'
+      end
     else
-      render 'edit'
+      if menu_update(@event, event_params)
+        redirect_to edit_event_path(@event)
+      else
+        render 'edit'
+      end
     end
+  end
 
+  def menu_create(event, parameters)
+    @menu_item = MenuItem.new(event: event)
+    @menu_item.name = parameters["menu_items_attributes"]["0"]["name"]
+    @menu_item.quantity = parameters["menu_items_attributes"]["0"]["quantity"]
+    @menu_item.category = parameters["menu_items_attributes"]["0"]["category"]
+    @menu_item.save
+  end
+
+  def menu_update(event, parameters)
+    @menu_item = MenuItem.where(event: event)
+    @menu_item.name = parameters["menu_items_attributes"]["0"]["name"]
+    @menu_item.quantity = parameters["menu_items_attributes"]["0"]["quantity"]
+    @menu_item.category = parameters["menu_items_attributes"]["0"]["category"]
+    @menu_item.save
   end
 
   def destroy

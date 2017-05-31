@@ -15,11 +15,17 @@ class MenuItemsController < ApplicationController
   end
 
   def update
+    @menu_item.update(menu_items_params)
     authorize @menu_item
+    redirect_to edit_event_path(@menu_item.event)
+
   end
 
   def destroy
     authorize @menu_item
+    @menu_item.destroy
+    redirect_to edit_event_path(@menu_item.event)
+
   end
 
 
