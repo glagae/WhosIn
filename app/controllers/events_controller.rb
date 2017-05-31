@@ -27,9 +27,9 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     authorize @event
     @menu_items = @event.menu_items
+
     user = current_user
     @fb_friends = Friend.fb_friends(user)
-
   end
 
 
