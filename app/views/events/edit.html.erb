@@ -33,7 +33,14 @@
                   </div>
                   <div class="event_page_informations">
                     <div class="flex-between">
-                      <input type="text" class="venue-informations text_hover text_hover form-control" id="menu_snacks" placeholder="Venu informations" >
+                      <div class="venue-informations text_hover text_hover">
+                        <%= simple_form_for @event do |f| %>
+                          <%= f.input :start_date %>
+                          <%= f.input :end_date %>
+                          <%= f.input :address %>
+                            <%= f.submit 'Save' %>
+                        <% end %>
+                      </div>
 
 
 
@@ -124,10 +131,12 @@
                     </div>
                   </div>
                   <div class="event_page_menu_choices">
+
                     <div class="choice_buttons flex-between">
                       <%= social_share_button_tag("Share") %>
-                      <button type="button" class="imout_btn btn btn-danger">See event</button>
+                      <%= link_to "See event", event_path(@event), class: "btn btn-default btn-danger" %>
                     </div>
+
                       <div class="required_items text_hover form-control" id="menu_snacks">
                          <% @event.menu_items.each do |item|  %>
                           <% if item.invitation.nil? %>

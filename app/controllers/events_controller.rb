@@ -32,14 +32,20 @@ class EventsController < ApplicationController
   def update
     @event = Event.find(params[:id])
     authorize @event
-    if event_params["menu_items_attributes"]["0"]["id"] == nil
+    if !event_params["menu_items_attributes"].nil? && event_params["menu_items_attributes"]["0"]["id"] == nil
       if menu_create(@event, event_params)
         redirect_to edit_event_path(@event)
       else
         render 'edit'
       end
-    else
+    elsif !event_params["menu_items_attributes"].nil? && !event_params["menu_items_attributes"]["0"]["id"].nil?
       if menu_update(@event, event_params)
+        redirect_to edit_event_path(@event)
+      else
+        render 'edit'
+      end
+    else
+      if @event.update(event_params)
         redirect_to edit_event_path(@event)
       else
         render 'edit'
