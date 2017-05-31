@@ -45,10 +45,23 @@
 
 
                       <div class="event-friend text_hover text_hover">
+                        <div>
                         <%= simple_form_for @event do |f| %>
                           <%= f.input :description %>
                             <%= f.submit 'Save' %>
                         <% end %>
+                        </div>
+                        <div class="dropdown">
+                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                      Invite Friends
+                          <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                          <% @fb_friends.each do |friend| %>
+                          <li><a href="#"><%= friend  %></a></li>
+                          <% end %>
+                        </ul>
+                      </div>
                       </div>
 
                     </div>
