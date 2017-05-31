@@ -12,39 +12,12 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-xs-12 col-sm-4">
-      <div class="my_cards" style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('http://res.cloudinary.com/cehrlicha/image/upload/v1496073649/bbq_atwwbi.jpg');">
-        <div class="card-date">19 June</div>
-        <div class="card-description">
-          <h2>Const's home</h2>
-          <p>Goodbye Party Ben</p>
+
+    <% current_user.guest.each do |event| %>
+        <div class="col-xs-12 col-sm-4">
+          <%= render 'shared/card', e: event  %>
         </div>
-        <img class="card-user avatar avatar-large" src="http://res.cloudinary.com/cehrlicha/image/upload/v1495631422/lpef07avwf5hwoa5egyj.jpg">
-        <a class="card-link" href="#"></a>
-      </div>
-    </div>
-    <div class="col-xs-12 col-sm-4">
-      <div class="my_cards" style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('http://res.cloudinary.com/cehrlicha/image/upload/v1496073649/dinner_ndsmhz.jpg');">
-        <div class="card-date">21 July</div>
-        <div class="card-description">
-          <h2>Ben's home</h2>
-          <p>Bqq!!</p>
-        </div>
-        <img class="card-user avatar avatar-large" src="http://res.cloudinary.com/cehrlicha/image/upload/v1495706341/benoit_pw94em.png">
-        <a class="card-link" href="#"></a>
-      </div>
-    </div>
-    <div class="col-xs-12 col-sm-4">
-      <div class="my_cards" style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('http://res.cloudinary.com/cehrlicha/image/upload/v1496073649/party_1_vepeuk.jpg');">
-        <div class="card-date">30 August</div>
-        <div class="card-description">
-          <h2>Jean's home</h2>
-          <p>Surprise surprise...</p>
-        </div>
-        <img class="card-user avatar avatar-large" src="http://res.cloudinary.com/cehrlicha/image/upload/v1495812387/jmy8xlthud7afmcdluun.jpg">
-        <a class="card-link" href="#"></a>
-      </div>
-    </div>
+      <% end %>
   </div>
 </div>
 
@@ -52,16 +25,12 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-xs-12 col-sm-4">
-      <div class="my_cards" style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('http://res.cloudinary.com/cehrlicha/image/upload/v1496077041/food-salad-restaurant-person_dibjex.jpg');">
-        <div class="card-date">20 August</div>
-        <div class="card-description">
-          <h2>Gauth's home</h2>
-          <p>Tapaaaaas</p>
+
+    <% current_user.host.each do |event| %>
+        <div class="col-xs-12 col-sm-4">
+          <%= render 'shared/card', e: event  %>
         </div>
-        <a class="card-link" href="#"></a>
-      </div>
-    </div>
+      <% end %>
   </div>
 </div>
 
