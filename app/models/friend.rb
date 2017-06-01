@@ -6,7 +6,16 @@ class Friend < ApplicationRecord
     if user.facebook.access_token.nil?
         fb_friends
     else
-      fb_friends = user.facebook.get_connection("me","friends")
+      fb_friend_id = user.facebook.get_connection("me","friends")
     end
+  end
+
+  def self.fb_friend_users(user)
+    ids = self.fb_friends(user).map do |fb_friend|
+      fb_friend["id"]
+
+      # [{"name"=>"Gauth Lag", "id"=>"10158941048160637"}]
+    end
+    User.where(uid: ids)
   end
 end

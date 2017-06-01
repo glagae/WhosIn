@@ -108,11 +108,18 @@
             </div>
               <div>
                 <ul class="list-group">
-                  <% @fb_friends.each do |friend| %>
+                  <% @friends.each do |friend| %>
+                  <% if @event.guests.include? friend %>
+                    <li class="list-group-item">
+                      <input type="checkbox" disabled checked name="friends[]" value=<%= friend["id"] %> id="friend" />
+                      <label for="friend"><%= image_tag friend.facebook_picture_url, class: "avatar picture"%><%= friend.first_name %> (invited) </label>
+                    </li>
+                  <% else %>
                     <li class="list-group-item">
                       <input type="checkbox" name="friends[]" value=<%= friend["id"] %> id="friend" />
-                      <label for="friend"><%= friend["name"] %></label>
+                      <label for="friend"><%= image_tag friend.facebook_picture_url, class: "avatar picture"%><%= friend.first_name %></label>
                     </li>
+                  <% end %>
                   <% end %>
                 </ul>
               </div>

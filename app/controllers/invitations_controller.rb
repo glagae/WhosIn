@@ -23,7 +23,6 @@ class InvitationsController < ApplicationController
       user_invited_id = User.where(uid: friend_id).first.id
       Invitation.create(user_id: user_invited_id, event_id: @event.id, role: "guest")
     end
-
     redirect_to edit_event_path(@event)
   end
 
