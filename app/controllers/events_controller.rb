@@ -31,8 +31,6 @@ class EventsController < ApplicationController
 
     @fb_friends = Friend.fb_friends(current_user)
     @users = User.all
-
-    @friends = @fb_friends + @users
   end
 
 

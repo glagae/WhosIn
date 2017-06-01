@@ -8,12 +8,25 @@
   </div>
 </div>
 
+<h2 class="text-center">Your are invited - Please reply</h2>
+
+<div class="container">
+  <div class="row">
+
+    <% current_user.open_invitation.each do |event| %>
+        <div class="col-xs-12 col-sm-4">
+          <%= render 'shared/card', e: event, host: false %>
+        </div>
+      <% end %>
+  </div>
+</div>
+
 <h2 class="text-center">Your are attending</h2>
 
 <div class="container">
   <div class="row">
 
-    <% current_user.guest.each do |event| %>
+    <% current_user.attending.each do |event| %>
         <div class="col-xs-12 col-sm-4">
           <%= render 'shared/card', e: event, host: false %>
         </div>
