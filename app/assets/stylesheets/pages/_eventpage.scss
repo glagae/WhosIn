@@ -56,11 +56,20 @@
 }
 .venue-informations {
   text-align: center;
-  background-color: white;
   padding: 15px 10px;
   font-size: 18px;
   font-weight: lighter;
 }
+
+.venue-informations-free-spots {
+  padding: 10px 10px;
+}
+
+.event-friend-invited {
+  padding: 10px 10px;
+}
+
+
 
 .venue-informations-free-spots {
   padding: 10px 10px;
@@ -189,4 +198,15 @@
 }
 
 #socialshare {
+}
+
+.description_padding {
+  padding: 20px 40px;
+  margin: 40px 100px;
+  border: 1px solid lightgrey;
+}
+
+.date_picker_format {
+  width: 45%;
+  display: inline-block;
 }
