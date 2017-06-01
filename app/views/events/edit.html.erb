@@ -56,20 +56,30 @@
 
                           <div class="dropdown">
                             <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                          Invite Friends
+                              Invite Friends
                               <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                              <% @fb_friends.each do |friend| %>
-                              <li><a href="#"><%= friend  %></a></li>
+                              <% @friends.each do |friend| %>
+                              <li><%= link_to "#{friend.first_name} #{friend.last_name}", event_invitations_path({event_id: @event.id, user_id: friend.id}), method: :post %></li>
                               <% end %>
                             </ul>
                           </div>
+                        <br>
+                         <div class="event-friend-invited">
+                          <% @event.guests.each do |guest| %>
+                            <p> <%= image_tag guest.facebook_picture_url, class: "avatar-small"%> <%= guest.first_name %>
+                            <%= link_to event_invitation_path(@event, guest.invitations.where(event: @event).first), method: :delete do %> <i class="fa fa-trash"></i> <% end %></p>
+                          <% end %>
+                        </div>
+
                           <br>
                           <div class="venue-informations-free-spots">
-                            <% @event.free_spots.times do %>
-                                <button class="free-spots"></button>
-                            <% end %>
+
+                              <% @event.free_spots.times do %>
+                                  <button class="free-spots"><%= link_to deletefreespot_event_path(@event) do %> <i class="fa fa-trash"></i> <% end %></button>
+                              <% end %>
+                            <%= link_to "+", addfreespot_event_path(@event) %>
                           </div>
                       </div>
 

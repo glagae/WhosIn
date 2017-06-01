@@ -22,6 +22,14 @@ class EventPolicy < ApplicationPolicy
     is_manager?
   end
 
+  def addfreespot?
+    is_manager?
+  end
+
+  def deletefreespot?
+    is_manager?
+  end
+
   private
 
   def is_manager?
