@@ -1,4 +1,4 @@
-<div id="wrapper">
+<div id="wrapper" class="toggled">
 
 <!-- test comment -->
         <!-- Sidebar -->
@@ -25,27 +25,20 @@
 
           <div id="sidebar-wrapper2">
             <ul class="sidebar-nav">
-              <li>
-                <a href="#">Dashboard</a>
-              </li>
-              <li>
-                <a href="#">Shortcuts</a>
-              </li>
-              <li>
-                <a href="#">Overview</a>
-              </li>
-              <li>
-                <a href="#">Events</a>
-              </li>
-              <li>
-                <a href="#">About</a>
-              </li>
-              <li>
-                <a href="#">Services</a>
-              </li>
-              <li>
-                <a href="#">Contact</a>
-              </li>
+              <div class="event_page_menu_choices">
+                <div class="required_items text_hover form-control" id="menu_snacks">
+                 <% @event.menu_items.each do |item|  %>
+                 <% if item.invitation.nil? %>
+                 <%= simple_form_for [@event, item], wrapper: :inline_form, html: {class: "form-inline"} do |f| %>
+                 <%= f.input :name, {:placeholder => 'name'} %>
+                 <%= f.input :quantity, {:placeholder => 'quantity'} %>
+                 <%= f.button :submit%>
+                 <% end %>
+                 <%= link_to 'destroy', event_menu_item_path(@event, item),method: :delete, id: item.id, event_id: @event.id %>
+                 <% end %>
+                 <% end %>
+               </div>
+             </div>
             </ul>
           </div>
         </div>
@@ -86,9 +79,7 @@
       <div class="event_page_image">
         <a href="#menu-toggle" class="btn btn-default" id="menu-toggle"><i class="fa fa-arrow-right" aria-hidden="true"></i></a>
       </div>
-      <div class="event_page_image">
-        <a href="#menu-toggle2" class="btn btn-default" id="menu-toggle2"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>
-      </div>
+
 
     </div>
   </div>
@@ -163,9 +154,6 @@
             <%= f.hidden_field :category, value: "Appetizer" %>
 
             <%= f.hidden_field :event_id, value: @event.id  %>
-
-            <%= f.submit 'Add' %>
-
             <% end %>
           </div>
         </div>
@@ -252,7 +240,7 @@
           <%= f.hidden_field :event_id, value: @event.id  %>
 
           <%= f.submit 'Add' %>
-
+            <a href="#menu-toggle2" class="btn btn-default" id="menu-toggle2">see all</a>
           <% end %>
         </div>
       </div>
@@ -266,25 +254,7 @@
     </div>
   </div>
 
-  <div class="event_page_menu_choices">
 
-    <div class="required_items text_hover form-control" id="menu_snacks">
-     <% @event.menu_items.each do |item|  %>
-     <% if item.invitation.nil? %>
-     <%= simple_form_for [@event, item], wrapper: :inline_form, html: {class: "form-inline"} do |f| %>
-
-     <%= f.input :name, {:placeholder => 'name'} %>
-     <%= f.input :category, {:placeholder => 'category'} %>
-     <%= f.input :quantity, {:placeholder => 'quantity'} %>
-     <%= f.button :submit%>
-     <% end %>
-     <%= link_to 'destroy', event_menu_item_path(@event, item),method: :delete, id: item.id, event_id: @event.id %>
-     <% end %>
-
-
-     <% end %>
-   </div>
- </div>
  </div>
 
 </div>
@@ -319,4 +289,11 @@
         $("#wrapper2").toggleClass("toggled");
     });
     </script>
+    <script>
+    $("stuff_to_bring").click(function(e) {
+        e.preventDefault();
+        $("#wrapper2").toggleClass("toggled");
+    });
+    </script>
+
     <% end %>
