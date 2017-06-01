@@ -7,7 +7,15 @@ class InvitationsController < ApplicationController
   end
 
   def create
+    @invitation = Invitation.new
     authorize @invitation
+    data = invitation_params
+    @invitation.user = User.find(data["user_id"].to_i)
+    @invitation.event = Event.find(data["event_id"].to_i)
+    @invitation.role = "guest"
+    @invitation.save
+
+    redirect_to edit_event_path(@invitation.event)
   end
 
   def edit
@@ -34,9 +42,18 @@ class InvitationsController < ApplicationController
 
   def destroy
     authorize @invitation
+    data = invitation_params
+    event = Event.find(data["event_id"].to_i)
+    @invitation.destroy
+
+    redirect_to edit_event_path(event)
   end
 
   private
+
+  def invitation_params
+    params.permit(:user_id, :event_id)
+  end
 
   def set_invitation
     @invitation = Invitation.find(params[:id])

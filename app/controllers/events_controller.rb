@@ -1,7 +1,7 @@
 require 'koala'
 
 class EventsController < ApplicationController
-  before_action :set_event, only: [:update, :destroy, :show]
+  before_action :set_event, only: [:update, :destroy, :show, :addfreespot, :deletefreespot]
 
   def index
     @events = policy_scope(Event).order(created_at: :desc)
@@ -30,11 +30,15 @@ class EventsController < ApplicationController
 
 
     @fb_friends = Friend.fb_friends(current_user)
+    @users = User.all
+
+    @friends = @fb_friends + @users
   end
 
 
 
   def update
+    byebug
     @event = Event.find(params[:id])
     authorize @event
     if !event_params["menu_items_attributes"].nil? && event_params["menu_items_attributes"]["0"]["id"].nil?
@@ -73,6 +77,20 @@ class EventsController < ApplicationController
   def show
     authorize @event
     @invitation = current_user.invitations.select { |invitation| invitation.event == @event }.first
+  end
+
+  def addfreespot
+    authorize @event
+    @event.free_spots += 1
+    @event.save
+    redirect_to edit_event_path(@event)
+  end
+
+   def deletefreespot
+    authorize @event
+    @event.free_spots -= 1
+    @event.save
+    redirect_to edit_event_path(@event)
   end
 
   private
