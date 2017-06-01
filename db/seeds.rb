@@ -38,25 +38,29 @@ puts "Create Events"
     start_date: DateTime.new(2017,11, 10),
     end_date: DateTime.new(2017, 11, 10),
     title: "Benoît B-Day",
-    address: "Paris")
+    address: "Paris",
+    free_spots: 4)
 
   bday_constantin = Event.create(
     start_date: DateTime.new(2017,06, 25),
     end_date: DateTime.new(2017, 06, 25),
     title: "Constantin B-Day",
-    address: "Vienna")
+    address: "Vienna",
+    free_spots: 4)
 
   bday_gauthier = Event.create(
     start_date: DateTime.new(2017,07, 25),
     end_date: DateTime.new(2017, 07, 25),
     title: "Gauthier B-Day",
-    address: "Brussels")
+    address: "Brussels",
+    free_spots: 4)
 
   demo_day = Event.create(
     start_date: DateTime.new(2017,06, 10),
     end_date: DateTime.new(2017, 06, 10),
     title: "Demo Day",
-    address: "Lisbon")
+    address: "Lisbon",
+    free_spots: 4)
 
 puts "Create Invitations"
 puts "Invitation Benoit bDay"

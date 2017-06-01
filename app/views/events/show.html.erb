@@ -47,9 +47,25 @@
                         <br>
                         <p><%= @event.address %></p>
                       </div>
+
                       <div class="event-friend">
-                        <p><%= @event.description %></p>
+                        <div class= "event-friend-description">
+                          <p><%= @event.description %></p>
+                        </div>
+
+                        <div class="event-friend-invited">
+                          <% @event.guests.each do |guest| %>
+                            <p> <%= image_tag guest.facebook_picture_url, class: "avatar-small"%> <%= guest.first_name %> </p>
+                          <% end %>
+                        </div>
+
+                        <div class="venue-informations-free-spots">
+                            <% @event.free_spots.times do %>
+                                <button class="free-spots"></button>
+                            <% end %>
+                          </div>
                       </div>
+
                     </div>
                   </div>
                 </div>
