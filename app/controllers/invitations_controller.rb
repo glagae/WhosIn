@@ -24,15 +24,25 @@ class InvitationsController < ApplicationController
 
   def update
     authorize @invitation
+    @event = Event.find(params[:event_id])
     if params[:button] == "in" && @invitation.accepted
       flash[:notice] = "You are already attending! Great motivation :) "
       redirect_to event_path(params[:event_id])
     elsif params[:button] == "in" && (@invitation.accepted == false || @invitation.accepted.nil?)
       @invitation.accepted = true
       @invitation.save
+      @event.free_spots -= 1
+      @event.save
       flash[:notice] = "You are attending! See you soon :) "
       redirect_to event_path(params[:event_id])
-    elsif params[:button] == "out" && (@invitation.accepted || @invitation.accepted.nil?)
+    elsif params[:button] == "out" && (@invitation.accepted)
+      @invitation.accepted = false
+      @invitation.save
+      @event.free_spots += 1
+      @event.save
+      flash[:alert] = " :( Sad! You changed your mind  "
+      redirect_to event_path(params[:event_id])
+    elsif params[:button] == "out" && (@invitation.accepted == false)
       @invitation.accepted = false
       @invitation.save
       flash[:alert] = " :( Sad!  "

@@ -7,7 +7,7 @@
 .flex-between {
     height: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 
 .flex-form {
@@ -18,10 +18,8 @@
 .event_page_image {
   height: 40vh;
   padding: 8px 0px 0px 8px;
-  background-image: url('https://www.towcestermillbrewery.co.uk/wp-content/uploads/2016/07/bbq.jpg');
+  background-image: url('http://cache.boston.com/bonzai-fba/Third_Party_Photo/2008/11/18/party__1302209396_7677-1.jpg');
   background-size: cover;
-  margin-right : 5px
-
 }
 
 .event_page_informations {
@@ -45,11 +43,37 @@
   width: 100%;
 }
 
+.event_description {
+  min-height: 100px;
+  height: 100%;
+  padding: 15px 0;
+  font-size: 20px;
+  font-weight: lighter;
+}
+
+#event-title {
+  font-size: 26px;
+}
 .venue-informations {
   text-align: center;
   background-color: white;
-  border: 1px solid grey;
+  padding: 15px 10px;
+  font-size: 18px;
+  font-weight: lighter;
 }
+
+.venue-informations-free-spots {
+  padding: 10px 10px;
+}
+
+.event-friend-invited {
+  padding: 10px 10px;
+}
+
+.no-padding {
+  padding: 0 !important;
+}
+
 
 .event-friend {
   background-color: white;
@@ -60,62 +84,24 @@
 }
 
 
-.menu_title h3 {
+.menu_title h4 {
   margin: 0px 0px;
 }
 
-.menu_meals {
-  height: calc(100% - 50px - 8px - 8px);
-  width: 100%;
+.menu-text {
+  font-size: 16px;
+  font-weight: lighter;
 }
 
-.menu_others {
-  margin-top: 8px;
-  height: 100%;
-  height: 45%;
-}
-
-.menu_main {
-  text-align: center;
-
-  background-color: white;
-  border: 1px solid grey;
-  height: 55%;
-}
 
 .text_hover:hover {
   cursor: text;
   background-color: #fcfcfc;
 }
 
-.menu_snacks {
-  text-align: center;
-  height: 100%;
-  background-color: white;
-  border: 1px solid grey;
-  width: 50%;
-  margin-left: 5px;
-  width: calc(50% - 5px);
-}
-
-.menu_drinks {
-  text-align: center;
-  margin-right: 5px;
-  width: calc(50% - 5px);
-  height: 100%;
-  background-color: white;
-  border: 1px solid grey;
-}
-
 
 .choice_buttons {
-  height: 20%;
-  margin-bottom: 8px;
-
-}
-
-.event_page_menu_choices {
-
+  height: 100%;
 }
 
 .imin_btn {
@@ -124,6 +110,7 @@
   width: 50%;
   margin-right: 5px;
   height: 100%;
+  padding: 10px 40px;
 
 }
 
@@ -133,7 +120,7 @@
   width: 50%;
   margin-left: 5px;
   height: 100%;
-
+  padding: 10px 40px;
 }
 
 .required_items {
@@ -162,10 +149,11 @@
 
 .free-spots {
   background-color: lightgrey;
-  height: 30px;
-  width: 30px;
+  height: 50px;
+  width: 50px;
   border-radius: 50%;
 }
+
 
 .to_bring_formgroup {
   margin: 10px;
@@ -188,6 +176,18 @@
   margin: 0px 100px;
   border: 1px solid lightgrey;
   padding-bottom: 20px;
+
+.boxed {
+  border: 0px solid grey;
+  margin: 15px 5px;
+}
+
+
+.edit-button {
+  padding: 10px 40px;
+}
+
+#socialshare {
 }
 
 .description_padding {
