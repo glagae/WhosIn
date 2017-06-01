@@ -20,133 +20,168 @@
                 <li>
             </ul>
         </div>
-        <!-- /#sidebar-wrapper -->
+    <% if @event.coming.include? current_user %>
+        <div id="wrapper2">
 
-        <!-- Page Content -->
-        <div id="page-content-wrapper">
-          <div class="container-fluid">
-            <div class="row">
-              <div id="colum_media_corretion" class="col-lg-12">
-                <div class="flex-horizontal">
-                  <div class="event_page_image">
-                    <a href="#menu-toggle" class="btn btn-default" id="menu-toggle"><i class="fa fa-arrow-right" aria-hidden="true"></i></a>
-                  </div>
-                  <div class="event_page_informations">
-                    <div class="flex-between">
-                      <div class="venue-informations">
-<!--                        <p id="venue-informations-month">  <%= @event.start_date.strftime("%b")  %> </p>
-                      <p id="venue-informations-date"><%= @event.start_date.strftime("%d")  %></p> -->
+          <div id="sidebar-wrapper2">
 
-                        <p><em>From <%= Date::DAYNAMES[@event.start_date.wday] %>
-                         <%= @event.start_date.strftime("%d %B")  %>
-                         <%= @event.start_date.strftime("%H:%M") %></em></p>
-
-                        <p><em>To <%= Date::DAYNAMES[@event.end_date.wday] %>
-                         <%= @event.end_date.strftime("%d %B") %>
-                          <%= @event.end_date.strftime("%H:%M") %></em></p>
-                        <br>
-                        <p><%= @event.address %></p>
-                      </div>
-
-                      <div class="event-friend">
-                        <div class= "event-friend-description">
-                          <p><%= @event.description %></p>
-                        </div>
-
-                        <div class="event-friend-invited">
-                          <% @event.guests.each do |guest| %>
-                            <p> <%= image_tag guest.facebook_picture_url, class: "avatar-small"%> <%= guest.first_name %> </p>
-                          <% end %>
-                        </div>
-
-                        <div class="venue-informations-free-spots">
-
-                            <% @event.free_spots.times do %>
-                                <button class="free-spots"></button>
-                            <% end %>
-                          </div>
-                      </div>
-
-                    </div>
-                  </div>
-                </div>
-                <div class="flex-horizontal">
-                  <div class="event_page_menu">
-                    <div class="menu_title text-center">
-                      <h3> MENU </h3>
-                    </div>
-                    <div class="menu_meals">
-                      <div class="menu_main">
-                      <h5>Appetizer</h5>
-                      <% @event.menu_items.each do |item|  %>
-                          <% if (item.category == "Appetizer") && !item.invitation.nil? %>
-                          <p><span></span><%= item.name %></p>
-                          <% end %>
-                      <% end %>
-                      <h5>Main</h5>
-                      <% @event.menu_items.each do |item|  %>
-                           <% if (item.category == "Main") && !item.invitation.nil? %>
-                          <p><span></span><%= item.name %></p>
-                          <% end %>
-                      <% end %>
-                      <h5>Dessert</h5>
-                      <% @event.menu_items.each do |item|  %>
-                         <% if (item.category == "Dessert") && !item.invitation.nil? %>
-                          <p><span></span><%= item.name %></p>
-                          <% end %>
-                      <% end %>
-                      </div>
-                      <div class="menu_others flex-between">
-                        <div class="menu_drinks">
-                        <h3>DRINKS</h3>
-                        <% @event.menu_items.each do |item|  %>
-                          <% if item.category == "Drink" && !item.invitation.nil? %>
-                          <p><%= item.name %> x<%= item.quantity %></p>
-                          <% end %>
-                      <% end %>
-                        </div>
-                        <div class="menu_snacks">
-                        <h3>SNACKS</h3>
-                        <% @event.menu_items.each do |item|  %>
-                          <% if item.category == "Snack" && !item.invitation.nil? %>
-                          <p><%= item.name %></p>
-                          <% end %>
-                      <% end %>
-                        </div>
-                      </div>
-
-                    </div>
-                  </div>
-                  <div class="event_page_menu_choices">
-                    <div class="choice_buttons flex-between">
-                      <!-- <button type="button" class="imin_btn btn btn-default">Im'in</button> -->
-                    <% if @event.managers.include? current_user %>
-
-                      <%= social_share_button_tag("Share") %>
-                      <%= link_to "Edit", edit_event_path(@event), class: "btn btn-default imin-btn" %>
-                    <% else %>
-                      <%= link_to "I'm in", event_invitation_path(@event, @invitation, { :button => "in" }), method: :patch, class: "btn btn-default imin-btn" %>
-                     <%= link_to "I'm out", event_invitation_path(@event, @invitation, { :button => "out" }), :method => :patch, class: "btn btn-default imout-btn" %>
-                     <% end %>
-                    </div>
-
-                    <div class="required_items text-center">
-                      <p>Choose something to bring</p>
-                      <% @event.menu_items.each do |item|  %>
-                          <% if item.invitation.nil? %>
-                          <%= link_to "#{item.name}  x#{item.quantity}", event_brings_item_path(@event, item), class: "btn btn-default btn-success" %>
-                          <% end %>
-                      <% end %>
-                    </div>
-                  </div>
-                </div>
-              </div>
+            <div class="required_items text-center">
+              <p>Choose something to bring</p>
+              <% @event.menu_items.each do |item|  %>
+              <% if item.invitation.nil? %>
+              <%= link_to "#{item.name}  x#{item.quantity}", event_brings_item_path(@event, item), class: "btn btn-default btn-success" %>
+              <% end %>
+              <% end %>
             </div>
           </div>
         </div>
-        <!-- /#page-content-wrapper -->
+        <% end %>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+<div id="page-content-wrapper">
+<div class="container-fluid-right container-fluid-left">
+<div class="row">
+<div class="col-lg-12">
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6">
+
+      <div class="venue-informations text_hover text_hover">
+        <div class="venue-informations-date">
+          <div class=" text-center">
+              <h4> <%= @event.title %> </h4>
+              <% @event.managers.each do |guest| %>
+                 <%= image_tag guest.facebook_picture_url, class: "avatar-small"%>
+              <% end %>
+              invited you
+          </div>
+            <p><em>From <%= Date::DAYNAMES[@event.start_date.wday] %>
+             <%= @event.start_date.strftime("%d %B")  %>
+             <%= @event.start_date.strftime("%H:%M") %></em></p>
+
+            <p><em>To <%= Date::DAYNAMES[@event.end_date.wday] %>
+             <%= @event.end_date.strftime("%d %B") %>
+              <%= @event.end_date.strftime("%H:%M") %></em></p>
+            <br>
+            <p><%= @event.address %></p>
+        </div>
+        <div class="choice_buttons flex-between">
+          <% if @event.managers.include? current_user %>
+            <%= social_share_button_tag("Share") %>
+            <%= link_to "Edit", edit_event_path(@event), class: "btn btn-default imin-btn" %>
+          <% else %>
+            <%= link_to "I'm in", event_invitation_path(@event, @invitation, { :button => "in" }), method: :patch, class: "btn btn-success imin-btn", id: "iaminbutton" %>
+            <%= link_to "I'm out", event_invitation_path(@event, @invitation, { :button => "out" }), :method => :patch, class: "btn btn-danger imout-btn" %>
+          <% end %>
+        </div>
+      </div>
 
     </div>
+    <div class="col-xs-12 col-sm-6">
+
+      <div class="event_page_image">
+        <a href="#menu-toggle" class="btn btn-default" id="menu-toggle"><i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12 col-sm-6">
+
+      <div class="venue-informations-free-spots">
+        <% @event.coming.each do |guest| %>
+          <%= image_tag guest.facebook_picture_url, class: "avatar-small"%> <%= guest.first_name %>
+        <% end %>
+        <% @event.free_spots.times do %>
+          <button class="free-spots">
+          </button>
+        <% end %>
+      </div>
+
+    </div>
+    <div class="col-xs-12 col-sm-6">
+      <div class="event-friend-invited">
+        <% @event.notresponded.each do |guest| %>
+        <%= image_tag guest.facebook_picture_url, class: "avatar-small"%> <%= guest.first_name %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12 col-sm-12">
+
+      <div class="event_description">
+          <div class= "event-friend-description">
+            <p><%= @event.description %></p>
+          </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12 col-sm-12">
+      <div class="flex-form">
+        <div class="menu_title">
+          <h4>APPETIZER</h4>
+        </div>
+        <div>
+          <% @event.menu_items.each do |item|  %>
+              <% if (item.category == "Appetizer") && !item.invitation.nil? %>
+              <p><span></span><%= item.name %></p>
+              <% end %>
+          <% end %>
+        </div>
+      </div>
+      <div class="flex-form">
+        <div class="menu_title">
+          <h4>MAIN</h4>
+        </div>
+        <div>
+          <% @event.menu_items.each do |item|  %>
+            <% if (item.category == "Main") && !item.invitation.nil? %>
+              <p><span></span><%= item.name %></p>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+      <div class="flex-form">
+        <div class="menu_title">
+          <h4>DESSERT</h4>
+        </div>
+        <div>
+          <% @event.menu_items.each do |item|  %>
+            <% if (item.category == "Dessert") && !item.invitation.nil? %>
+              <p><span></span><%= item.name %></p>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12 col-sm-12">
+      FEED
+    </div>
+  </div>
+
+
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+
+        <!-- /#page-content-wrapper -->
+
     <!-- /#wrapper -->
 
     <!-- jQuery -->
@@ -162,6 +197,12 @@
     $("#menu-toggle").click(function(e) {
         e.preventDefault();
         $("#wrapper").toggleClass("toggled");
+    });
+    </script>
+    <script>
+    $("#menu-toggle2").click(function(e) {
+        e.preventDefault();
+        $("#wrapper2").toggleClass("toggled");
     });
     </script>
     <% end %>
