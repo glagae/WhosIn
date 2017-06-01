@@ -38,7 +38,8 @@ puts "Create Events"
     start_date: DateTime.new(2017,11, 10),
     end_date: DateTime.new(2017, 11, 10),
     title: "Benoît B-Day",
-    address: "Paris")
+    address: "Paris",
+    free_spots: 4)
 
   bday_constantin = Event.create(
     start_date: DateTime.new(2017,06, 25),
