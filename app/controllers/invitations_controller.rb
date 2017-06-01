@@ -20,7 +20,7 @@ class InvitationsController < ApplicationController
     @event = Event.find(params[:event_id])
     authorize @invitation
     params[:friends].each do |friend_id|
-      user_invited_id = User.where(uid: friend_id).first.id
+      user_invited_id = User.where(id: friend_id).first.id
       Invitation.create(user_id: user_invited_id, event_id: @event.id, role: "guest")
     end
     redirect_to edit_event_path(@event)
