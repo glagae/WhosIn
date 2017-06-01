@@ -56,7 +56,6 @@
 }
 .venue-informations {
   text-align: center;
-  background-color: white;
   padding: 15px 10px;
   font-size: 18px;
   font-weight: lighter;
@@ -186,6 +185,7 @@
   margin: 0px 100px;
   border: 1px solid lightgrey;
   padding-bottom: 20px;
+}
 
 .boxed {
   border: 0px solid grey;
@@ -204,3 +204,9 @@
   padding: 20px 40px;
   margin: 40px 100px;
   border: 1px solid lightgrey;
+}
+
+.date_picker_format {
+  width: 45%;
+  display: inline-block;
+}

@@ -38,6 +38,7 @@ class EventsController < ApplicationController
 
 
   def update
+
     @event = Event.find(params[:id])
     authorize @event
     if !event_params["menu_items_attributes"].nil? && event_params["menu_items_attributes"]["0"]["id"].nil?
@@ -53,12 +54,6 @@ class EventsController < ApplicationController
         render 'edit'
       end
     else
-      if event_params["start_date(1i)"] && event_params["end_date(1i)"]
-        date = set_datetime(event_params)
-        start_date = date[0]
-        end_date = date[1]
-        @event.update(start_date: start_date, end_date: end_date)
-      end
       if @event.update(event_params)
         redirect_to edit_event_path(@event)
       else
