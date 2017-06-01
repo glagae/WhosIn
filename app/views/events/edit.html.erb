@@ -22,19 +22,18 @@
             </ul>
         </div>
         <div id="wrapper2">
-
           <div id="sidebar-wrapper2">
             <ul class="sidebar-nav">
               <div class="event_page_menu_choices">
-                <div class="required_items text_hover form-control" id="menu_snacks">
+                <div class="required_items form-control" id="menu_snacks">
                  <% @event.menu_items.each do |item|  %>
                  <% if item.invitation.nil? %>
-                 <%= simple_form_for [@event, item], wrapper: :inline_form, html: {class: "form-inline"} do |f| %>
-                 <%= f.input :name, {:placeholder => 'name'} %>
-                 <%= f.input :quantity, {:placeholder => 'quantity'} %>
-                 <%= f.button :submit%>
+                 <%= simple_form_for [@event, item], wrapper: :inline_form, html: {class: "form-inline to_bring_formgroup"} do |f| %>
+                 <%= f.input :name, {:placeholder => 'name', :input_html => { :class => 'text_hover', :style => 'display: inline;' }} %>
+                 <%= f.input :quantity, {:label=>false, :placeholder => 'quantity', :input_html => { :class => 'text_hover', :style => 'display: inline; width: 35%' }} %>
+                 <%= f.button :submit, 'update'%>
                  <% end %>
-                 <%= link_to 'destroy', event_menu_item_path(@event, item),method: :delete, id: item.id, event_id: @event.id %>
+                 <%= link_to event_menu_item_path(@event, item),method: :delete, id: item.id, event_id: @event.id, class: "inline_display" do %> <i class="fa fa-trash"></i> <% end %>
                  <% end %>
                  <% end %>
                </div>
@@ -127,11 +126,12 @@
 
   <div class="row">
     <div class="col-xs-12 col-sm-12">
-      <div class="flex-form">
+      <div class="menu-box">
+      <div class="flex-form menu_category">
         <div class="menu_title">
-          <h4>APPETIZER</h4>
+          <h5>APPETIZER</h5>
         </div>
-        <div>
+        <div >
           <div class="menu_items_box">
             <% @event.menu_items.each do |item|  %>
             <% if (item.category == "Appetizer") && !item.invitation.nil? %>
@@ -140,11 +140,13 @@
             <%= f.input :name, {:placeholder => 'name'} %>
 
             <%= f.button :submit%>
-            <% end %>
-            <%= link_to event_menu_item_path(@event, item),method: :delete, id: item.id, event_id: @event.id, class: "inline_display" do %> <i class="fa fa-trash"></i> <% end %>
-            <% end %>
 
             <% end %>
+            <%= link_to event_menu_item_path(@event, item),method: :delete, id: item.id, event_id: @event.id, class: "inline_display" do %> <i class="fa fa-trash" style="margin-left: 5px; color: black"></i> <% end %>
+
+            <% end %>
+            <% end %>
+
           </div>
           <div>
             <%= simple_form_for [@event, @menu_item], wrapper: :inline_form, html: {class: "form-inline"} do |f| %>
@@ -154,13 +156,16 @@
             <%= f.hidden_field :category, value: "Appetizer" %>
 
             <%= f.hidden_field :event_id, value: @event.id  %>
+            <button type="submit" class="btn">
+              <i class="fa fa-plus" aria-hidden="true" style="color: white"></i>
+            </button>
             <% end %>
           </div>
         </div>
       </div>
-      <div class="flex-form">
+      <div class="flex-form menu_category">
         <div class="menu_title">
-          <h4>MAIN</h4>
+          <h5>MAIN</h5>
         </div>
         <div>
           <div class="menu_items_box">
@@ -172,9 +177,8 @@
 
             <%= f.button :submit%>
             <% end %>
-            <%= link_to event_menu_item_path(@event, item),method: :delete, id: item.id, event_id: @event.id, class: "inline_display" do %> <i class="fa fa-trash"></i> <% end %>
+            <%= link_to event_menu_item_path(@event, item),method: :delete, id: item.id, event_id: @event.id, class: "inline_display" do %> <i class="fa fa-trash" style="margin-left: 5px; color: black"></i> <% end %>
             <% end %>
-
             <% end %>
           </div>
           <div>
@@ -186,15 +190,17 @@
 
           <%= f.hidden_field :event_id, value: @event.id  %>
 
-          <%= f.submit 'Add' %>
+          <button type="submit" class="btn">
+            <i class="fa fa-plus" aria-hidden="true" style="color: white"></i>
+          </button>
 
           <% end %>
           </div>
         </div>
       </div>
-      <div class="flex-form">
+      <div class="flex-form menu_category ">
         <div class="menu_title">
-          <h4>DESSERT</h4>
+          <h5>DESSERT</h5>
         </div>
         <div>
           <div class="menu_items_box">
@@ -206,7 +212,7 @@
 
             <%= f.button :submit%>
             <% end %>
-            <%= link_to event_menu_item_path(@event, item),method: :delete, id: item.id, event_id: @event.id, class: "inline_display" do %> <i class="fa fa-trash"></i> <% end %>
+            <%= link_to event_menu_item_path(@event, item),method: :delete, id: item.id, event_id: @event.id, class: "inline_display" do %> <i class="fa fa-trash" style="margin-left: 5px; color: black"></i> <% end %>
             <% end %>
 
             <% end %>
@@ -220,17 +226,19 @@
 
             <%= f.hidden_field :event_id, value: @event.id  %>
 
-            <%= f.submit 'Add' %>
+            <button type="submit" class="btn">
+              <i class="fa fa-plus" aria-hidden="true" style="color: white"></i>
+            </button>
 
             <% end %>
           </div>
         </div>
       </div>
-      <div class="flex-form">
+      <div class="flex-form menu_category">
         <div class="menu_title">
-          <h4>TO BRING</h4>
+          <h5>TO BRING</h5>
         </div>
-        <div class="add_item_form">
+        <div class=" menu_items_box ">
           <%= simple_form_for [@event, @menu_item], wrapper: :inline_form, html: {class: "form-inline"} do |f| %>
 
           <%= f.input :name, {:placeholder => 'name'} %>
@@ -238,13 +246,14 @@
           <%= f.hidden_field :bring, value: true %>
 
           <%= f.hidden_field :event_id, value: @event.id  %>
-
-          <%= f.submit 'Add' %>
-            <a href="#menu-toggle2" class="btn btn-default" id="menu-toggle2">see all</a>
+          <button type="submit" class="btn">
+            <i class="fa fa-plus" aria-hidden="true" style="color: white"></i>
+          </button>
+          <a href="#menu-toggle2" class="btn btn-default" id="menu-toggle2">see all</a>
           <% end %>
         </div>
       </div>
-
+      </div>
     </div>
   </div>
 

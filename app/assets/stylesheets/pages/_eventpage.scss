@@ -41,7 +41,6 @@
   margin-left: 5px;
   margin-top: 10px;
   width: 100%;
-  background-color: lightgrey;
 }
 
 .event_description {
@@ -84,12 +83,6 @@
   max-height: 100%
 }
 
-.menu_title {
-  background-color: white;
-  margin-bottom: 8px;
-  height: 50px;
-  vertical-align: middle;
-}
 
 .menu_title h4 {
   margin: 0px 0px;
@@ -136,23 +129,14 @@
 
 }
 
-.add_item_form {
-  margin-top: 10px;
-  padding-bottom: 10px;
-  margin-bottom: 10px;
-  border-bottom: 1px solid lightgrey;
-}
 
 .menu_title {
   width: 30%;
-  border-right: 1px solid lightgrey;
-  margin-right: 10px;
+  padding-right: 30px;
+  text-align: right;
 }
 
-.menu_items_box {
-  width: 70%;
-  text-align: left;
-}
+
 
 .recognitionStyling {
   max-width: 10px;
@@ -170,6 +154,29 @@
   border-radius: 50%;
 }
 
+
+.to_bring_formgroup {
+  margin: 10px;
+  border-top: 1px solid lightgrey;
+  padding-top: 5px;
+}
+
+.menu_category {
+  padding-top: 20px;
+}
+
+.menu_items_box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 3px;
+}
+
+.menu-box {
+  margin: 0px 100px;
+  border: 1px solid lightgrey;
+  padding-bottom: 20px;
+
 .boxed {
   border: 0px solid grey;
   margin: 15px 5px;
@@ -181,5 +188,4 @@
 }
 
 #socialshare {
-
 }
