@@ -7,7 +7,7 @@
 .flex-between {
     height: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 
 .flex-form {
@@ -20,8 +20,6 @@
   padding: 8px 0px 0px 8px;
   background-image: url('https://www.towcestermillbrewery.co.uk/wp-content/uploads/2016/07/bbq.jpg');
   background-size: cover;
-  margin-right : 5px
-
 }
 
 .event_page_informations {
@@ -50,7 +48,14 @@
   text-align: center;
   background-color: white;
   border: 1px solid grey;
+  height: 100%;
+  padding: 15px 10px;
 }
+
+.no-padding {
+  padding: 0 !important;
+}
+
 
 .event-friend {
   background-color: white;
@@ -116,9 +121,7 @@
 
 
 .choice_buttons {
-  height: 20%;
-  margin-bottom: 8px;
-
+  height: 100%;
 }
 
 .event_page_menu_choices {
@@ -181,4 +184,16 @@
   height: 50px;
   width: 50px;
   border-radius: 50%;
+}
+
+.boxed {
+  border: 2px solid grey;
+}
+
+#edit-button {
+
+}
+
+#socialshare {
+
 }
