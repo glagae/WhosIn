@@ -29,12 +29,17 @@ class InvitationsController < ApplicationController
       flash[:notice] = "You are already attending! Great motivation :) "
       redirect_to event_path(params[:event_id])
     elsif params[:button] == "in" && (@invitation.accepted == false || @invitation.accepted.nil?)
-      @invitation.accepted = true
-      @invitation.save
-      @event.free_spots -= 1
-      @event.save
-      flash[:notice] = "You are attending! See you soon :) "
-      redirect_to event_path(params[:event_id])
+      if @event.free_spots == 0
+        flash[:alert] = "Sorry! The event is already full"
+        redirect_to event_path(params[:event_id])
+      else
+        @invitation.accepted = true
+        @invitation.save
+        @event.free_spots -= 1
+        @event.save
+        flash[:notice] = "You are attending! See you soon :) "
+        redirect_to event_path(params[:event_id])
+      end
     elsif params[:button] == "out" && (@invitation.accepted)
       @invitation.accepted = false
       @invitation.save
