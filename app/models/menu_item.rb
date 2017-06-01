@@ -5,7 +5,7 @@ class MenuItem < ApplicationRecord
 
   # Validations
   validates :name, presence: true
-  validates :category, presence: true
+  # validates :category, presence: true
   # validates :bring, presence: true
 
   def who
