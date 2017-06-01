@@ -95,20 +95,35 @@
 
     </div>
     <div class="col-xs-12 col-sm-6">
-      <div class="dropdown">
-        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-          Invite Friends
-          <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-          <% @fb_friends.each do |friend| %>
-          <li><%= link_to friend%></li>
-          <% end %>
-          <% @users.each do |friend| %>
-          <li><%= link_to "#{friend.first_name} #{friend.last_name}", event_invitations_path({event_id: @event.id, user_id: friend.id}), method: :post %></li>
-          <% end %>
-        </ul>
-      </div>
+  <!-- Trigger the modal with a button -->
+  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#example">Invite Friends</button>
+
+    <form action="<%= event_invitations_path(@event) %>" method="POST">
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+      <div class="modal fade" tabindex="-1" role="dialog" id="example">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Invite your friends</h4>
+            </div>
+              <div>
+                <ul class="list-group">
+                  <% @fb_friends.each do |friend| %>
+                    <li class="list-group-item">
+                      <input type="checkbox" name="friends[]" value=<%= friend["id"] %> id="friend" />
+                      <label for="friend"><%= friend["name"] %></label>
+                    </li>
+                  <% end %>
+                </ul>
+              </div>
+              <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <input type="submit" class="btn btn-primary" >
+            </div>
+          </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+      </div><!-- /.modal -->
+    </form>
 
     </div>
   </div>
