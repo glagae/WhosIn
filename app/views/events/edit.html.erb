@@ -61,7 +61,7 @@
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                               <% @friends.each do |friend| %>
-                              <li><%= link_to "#{friend.first_name} #{friend.last_name}", event_invitations_path({event_id: @event.id, user_id: friend.id}), method: :post %></li>
+                              <li><%= link_to "#{friend.name}", event_invitations_path({event_id: @event.id, user_id: friend.id}), method: :post %></li>
                               <% end %>
                             </ul>
                           </div>
