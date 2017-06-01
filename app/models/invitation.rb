@@ -6,4 +6,5 @@ class Invitation < ApplicationRecord
 
   # Validations
   validates :role, presence: true
+  validates :user, uniqueness: { scope: :event }
 end
