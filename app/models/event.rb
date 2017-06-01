@@ -32,6 +32,20 @@ class Event < ApplicationRecord
     end
   end
 
+  def notresponded
+    invitations_accepted = invitations.where(accepted: false, role: "guest")
+    invitations_accepted.map do |invitation|
+      invitation.user
+    end
+  end
+
+  def coming
+    invitations_accepted = invitations.where(accepted: true, role: "guest")
+    invitations_accepted.map do |invitation|
+      invitation.user
+    end
+  end
+
   def missing
     menu_items.where(invitation: nil)
   end

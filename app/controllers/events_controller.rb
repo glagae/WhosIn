@@ -32,13 +32,12 @@ class EventsController < ApplicationController
     @fb_friends = Friend.fb_friends(current_user)
     @users = User.all
 
-    @friends = @fb_friends
+    @friends = @fb_friends + @users
   end
 
 
 
   def update
-    byebug
     @event = Event.find(params[:id])
     authorize @event
     if !event_params["menu_items_attributes"].nil? && event_params["menu_items_attributes"]["0"]["id"].nil?
