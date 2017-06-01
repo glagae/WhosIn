@@ -38,7 +38,6 @@ class EventsController < ApplicationController
 
 
   def update
-    byebug
     @event = Event.find(params[:id])
     authorize @event
     if !event_params["menu_items_attributes"].nil? && event_params["menu_items_attributes"]["0"]["id"].nil?
