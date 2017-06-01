@@ -47,11 +47,11 @@
   <div class="row boxed">
 
     <div class="col-xs-12 col-sm-6 no-padding">
-      <div class="venue-informations text_hover">
+      <div class="venue-informations">
         <div class="venue-informations-date">
 
-          <div class=" text-center">
-              <h4> <%= @event.title %> </h4>
+          <div class="text-center">
+              <h4 id="event-title"> <%= @event.title %> </h4>
               <% @event.managers.each do |guest| %>
                  <%= image_tag guest.facebook_picture_url, class: "avatar-large picture"%>
               <% end %>
@@ -71,11 +71,8 @@
 
         <div class="choice_buttons flex-between border">
           <% if @event.managers.include? current_user %>
-            <div id="socialshare">
-              <%= social_share_button_tag("Share") %>
-            </div>
             <div id= "edit-button">
-              <%= link_to "Edit", edit_event_path(@event), class: "btn btn-default imin-btn" %>
+              <%= link_to "Edit", edit_event_path(@event), class: "btn-lg btn-warning edit-button" %>
             </div>
           <% else %>
             <%= link_to "I'm in", event_invitation_path(@event, @invitation, { :button => "in" }), method: :patch, class: "btn btn-success imin-btn", id: "iaminbutton" %>
@@ -94,9 +91,9 @@
   </div>
 
   <div class="row boxed">
-    <div class="col-xs-12 col-sm-6">
+    <div class="col-xs-12 col-sm-6 no-padding">
 
-      <div class="venue-informations-free-spots">
+      <div class="venue-informations-free-spots boxed">
         <% @event.coming.each do |guest| %>
           <%= image_tag guest.facebook_picture_url, class: "avatar-large"%>
         <% end %>
@@ -106,8 +103,8 @@
       </div>
 
     </div>
-    <div class="col-xs-12 col-sm-6">
-      <div class="event-friend-invited">
+    <div class="col-xs-12 col-sm-6 no-padding">
+      <div class="event-friend-invited boxed">
         <% @event.notresponded.each do |guest| %>
         <%= image_tag guest.facebook_picture_url, class: "avatar-large"%>
         <% end %>
@@ -119,9 +116,7 @@
     <div class="col-xs-12 col-sm-12">
 
       <div class="event_description">
-          <div class= "event-friend-description">
-            <p><%= @event.description %></p>
-          </div>
+          <p><%= @event.description %></p>
       </div>
 
     </div>
@@ -133,7 +128,7 @@
         <div class="menu_title">
           <h4>APPETIZER</h4>
         </div>
-        <div>
+        <div class= "menu-text">
           <% @event.menu_items.each do |item|  %>
               <% if (item.category == "Appetizer") && !item.invitation.nil? %>
               <p><span></span><%= item.name %></p>
@@ -145,7 +140,7 @@
         <div class="menu_title">
           <h4>MAIN</h4>
         </div>
-        <div>
+        <div class= "menu-text">
           <% @event.menu_items.each do |item|  %>
             <% if (item.category == "Main") && !item.invitation.nil? %>
               <p><span></span><%= item.name %></p>
@@ -157,7 +152,7 @@
         <div class="menu_title">
           <h4>DESSERT</h4>
         </div>
-        <div>
+        <div class= "menu-text">
           <% @event.menu_items.each do |item|  %>
             <% if (item.category == "Dessert") && !item.invitation.nil? %>
               <p><span></span><%= item.name %></p>
