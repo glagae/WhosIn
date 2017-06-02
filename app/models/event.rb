@@ -50,4 +50,6 @@ class Event < ApplicationRecord
     menu_items.where(invitation: nil)
   end
 
+
+
 end

@@ -67,7 +67,8 @@ puts "Create Events"
     end_date: DateTime.new(2017, 11, 10, 22),
     title: "Benoît B-Day",
     address: "Paris",
-    free_spots: 4)
+    free_spots: 4,
+    remote_photo_url: "http://res.cloudinary.com/cehrlicha/image/upload/v1496077041/food-salad-restaurant-person_dibjex.jpg" )
 
   bday_constantin = Event.create(
     start_date: DateTime.new(2017,06, 25, 19, 20),
@@ -75,6 +76,7 @@ puts "Create Events"
     title: "Constantin B-Day",
     address: "Vienna",
     free_spots: 4,
+    remote_photo_url: "http://res.cloudinary.com/cehrlicha/image/upload/v1496077041/food-salad-restaurant-person_dibjex.jpg",
     description: "It is time to celebrate come and join me on my birthday! It will be sunny and warm, a fantastic atmosphere with a lot of fun and all my best friends :) Hope to see you soon!")
 
   bday_gauthier = Event.create(
@@ -83,6 +85,7 @@ puts "Create Events"
     title: "Gauthier B-Day",
     address: "Brussels",
     free_spots: 4,
+    remote_photo_url: "http://res.cloudinary.com/cehrlicha/image/upload/v1496077041/food-salad-restaurant-person_dibjex.jpg",
     description: "Come to Brussels celebrate with me into my new year! There will be free beer at least for the first round. I's on me :) Hope to see you all very soon again !!")
 
   demo_day = Event.create(
@@ -91,6 +94,7 @@ puts "Create Events"
     title: "Demo Day",
     address: "Lisbon",
     free_spots: 4,
+    remote_photo_url: "http://res.cloudinary.com/cehrlicha/image/upload/v1496077041/food-salad-restaurant-person_dibjex.jpg",
     description: "It is demo day! Time to show off with our work and what we achieved after nine intense weeks in Lisbon, learning to code and enjoying the life. Join us on our final day of an incredible journey!")
 
 puts "Create Invitations"

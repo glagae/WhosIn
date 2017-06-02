@@ -14,6 +14,7 @@ Rails.application.routes.draw do
       get 'deletefreespot', on: :member, to: "events#deletefreespot"
     # CRUD for invitations
     resources :invitations, except: [:index, :show]
+    get 'sendinvitation', to: "invitations#send_invitation", as: "send_invitation"
     # CRUD for menu items
     resources :menu_items, except: [:index, :show]
       get "/invitations/:id", to: "menu_items#brings", as: "brings_item"

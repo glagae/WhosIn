@@ -20,6 +20,10 @@ class InvitationPolicy < ApplicationPolicy
     is_manager?
   end
 
+  def send_invitation?
+    record.first.event.managers.include? user
+  end
+
 
 private
 
