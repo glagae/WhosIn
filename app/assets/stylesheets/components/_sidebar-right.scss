@@ -30,7 +30,6 @@
     height: 100vh;
     margin-left: -250px;
     overflow-y: auto;
-    background: $white;
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
@@ -61,7 +60,6 @@
 
 .sidebar-nav {
     position: absolute;
-    top: 0;
     width: 250px;
     margin: 0;
     padding: 0;
