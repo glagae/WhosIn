@@ -7,15 +7,6 @@ class InvitationsController < ApplicationController
   end
 
   def create
-    # @invitation = Invitation.new
-    # authorize @invitation
-    # data = invitation_params
-    # @invitation.user = User.find(data["user_id"].to_i)
-    # @invitation.event = Event.find(data["event_id"].to_i)
-    # @invitation.role = "guest"
-    # @invitation.save
-
-    # redirect_to edit_event_path(@invitation.event)
     @invitation = Invitation.new
     @event = Event.find(params[:event_id])
     authorize @invitation
@@ -24,6 +15,9 @@ class InvitationsController < ApplicationController
       Invitation.create(user_id: user_invited_id, event_id: @event.id, role: "guest")
     end
     redirect_to edit_event_path(@event)
+
+    # After create method that sends email
+    # Try to send FB notif if friend is connected with FB
   end
 
   def edit

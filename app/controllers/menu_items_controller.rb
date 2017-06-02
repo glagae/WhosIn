@@ -43,6 +43,8 @@ class MenuItemsController < ApplicationController
     # add quantity to invitation to know how much he brings
     # check if this quantity is smaller than total quantity if so update quantity of what to bring
     # update quantity of what is brought
+    # menu_item.quantity
+
   end
 
 

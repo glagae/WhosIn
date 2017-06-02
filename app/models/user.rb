@@ -89,4 +89,9 @@ class User < ApplicationRecord
     @facebook = Koala::Facebook::API.new(oauth_token)
   end
 
+  def bring(event)
+    u_event = self.invitations.where(event: event).first
+    event.menu_items.where(invitation: u_event)
+  end
+
 end
