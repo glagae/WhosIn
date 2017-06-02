@@ -102,12 +102,16 @@
       </div>
 
     <div class="col-xs-12 col-sm-6">
+    <!-- show event picture if it already exists -->
+    <% if @event.photo.blank?  %>
+      <% @event.remote_photo_url = "http://via.placeholder.com/400x300"%>
+    <% end %>
         <div class="event_page_image" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
-         url('<%= cl_image_path "http://via.placeholder.com/350x200", height: 300, width: 400, crop: :fit %>')">
+         url('<%= cl_image_path @event.photo , height: 300, width: 400, crop: :fit %>')">
           <a href="#menu-toggle" class="btn btn-default" id="menu-toggle"><i class="fa fa-arrow-right" aria-hidden="true"></i></a>
         </div>
       <%= simple_form_for(@event) do |f| %>
-        <%= f.input :photo %>
+        <%= f.input :photo, class: "btn btn-default" %>
         <%= f.input :photo_cache, as: :hidden %>
         <%= f.submit %>
       <% end %>
@@ -156,6 +160,9 @@
                   <% end %>
                   <% end %>
                 </ul>
+                <!-- add simple form with email and name for user that does not exist -->
+                <!-- send to user model and create user + invitation -->
+                <!-- create avatar with initials -->
               </div>
               <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
