@@ -20,20 +20,12 @@
         </div>
       <% end %>
 
-    <!-- message -->
-      <%= link_to "#", class: "navbar-wagon-item navbar-wagon-link" do %>
-        <div class="badge-container">
-          <i> <%= image_tag "whosin_message.png"%></i>
-          <div class="badge badge-red"></div>
-        </div>
-      <% end %>
-
 
       <!-- Notification -->
       <%= link_to "#", class: "navbar-wagon-item navbar-wagon-link" do %>
         <div class="badge-container">
           <i> <%= image_tag "whosin_notification2.png"%></i>
-          <div class="badge badge-red"></div>
+          <div class="badge badge-red"><%= current_user.open_invitation.count %></div>
         </div>
       <% end %>
 

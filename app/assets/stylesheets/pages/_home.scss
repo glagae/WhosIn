@@ -2,3 +2,16 @@
  * CSS code specific to home page
  * (margin/padding adjustments)
  * ------------------------------------- */
+.btn-signup {
+  padding: 15px 90px;
+  color: white;
+  background-color: #DB6618;
+  font-size: 25px;
+  border: 0;
+  opacity: 0.8;
+}
+
+.btn-signup:hover{
+  opacity: 1;
+  color: white;
+}
