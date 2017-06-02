@@ -176,7 +176,7 @@
     </form>
       <div class="event-friend-invited">
         <% @event.notresponded.each do |guest| %>
-        <div id="invited-friend"> <%= link_to event_invitation_path(@event, guest.invitation(@event)), method: :delete do %> <%= image_tag guest.facebook_picture_url, class: "avatar-large invited-friend-avatar"%><i class="fa fa-trash hidden" id="invited-friend-delete"></i><% end %> </div>
+        <span id="invited-friend"> <%= link_to event_invitation_path(@event, guest.invitation(@event)), method: :delete do %> <%= image_tag guest.facebook_picture_url, class: "avatar-large invited-friend-avatar"%><i class="fa fa-trash hidden" id="invited-friend-delete"></i><% end %> </span>
         <% end %>
       </div>
       <%= link_to "Send Invitation", event_send_invitation_path(@event) %>
