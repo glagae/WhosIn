@@ -11,7 +11,12 @@ class EventsController < ApplicationController
   end
 
   def create
-    @event = Event.create(start_date: DateTime.new(24/12/2018), end_date: DateTime.new(25/12/2018), address:"Eiffel Tower", title:"My amazing event")
+    @event = Event.create(start_date: DateTime.new(24/12/2018),
+     end_date: DateTime.new(25/12/2018),
+     address:"Eiffel Tower",
+     title:"My amazing event",
+     remote_photo_url: "http://via.placeholder.com/350x200")
+
     @invitation = Invitation.new
     @invitation.event = @event
     @invitation.user = current_user
@@ -65,7 +70,8 @@ class EventsController < ApplicationController
 
   def destroy
     authorize @event
-
+    @event.destroy
+    redirect_to root_path
   end
 
   def show
@@ -90,7 +96,7 @@ class EventsController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit(:start_date, :end_date, :address, :description, :title, :photo, menu_items_attributes: [:id, :name, :category, :quantity])
+    params.require(:event).permit(:start_date, :end_date, :address, :description, :title, :photo, :photo_cache, menu_items_attributes: [:id, :name, :category, :quantity])
   end
 
   def set_event

@@ -83,7 +83,8 @@
     </div>
 
     <div class="col-xs-12 col-sm-6 no-padding">
-        <div class="event_page_image">
+        <div class="event_page_image" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
+         url('<%= cl_image_path @event.photo, height: 300, width: 400, crop: :fit %>')">
           <a href="#menu-toggle" class="btn btn-default" id="menu-toggle"><i class="fa fa-arrow-right" aria-hidden="true"></i></a>
         </div>
     </div>

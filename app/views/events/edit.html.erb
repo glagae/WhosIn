@@ -87,25 +87,30 @@
               <input type="text" name="event[address]" >
               <input type="submit" class="btn btn-default">
           </form>
-
           <%= simple_form_for @event do |f| %>
             <%= f.input :start_date %>
             <%= f.input :end_date %>
             <%= f.input :address %>
-              <%= f.submit 'Save' %>
-
+            <%= f.submit 'Save' %>
           <% end %>
         </div>
         <div class="choice_buttons flex-between">
           <%= social_share_button_tag("Share") %>
-          <%= link_to "See event", event_path(@event), class: "btn btn-default btn-danger" %>
+          <%= link_to "See event", event_path(@event), class: "btn btn-default btn-warning" %>
+          <%= link_to "Delete event", event_path(@event), method: :delete, class: "btn btn-default btn-danger" %>
         </div>
       </div>
 
     <div class="col-xs-12 col-sm-6">
-
-      <div class="event_page_image">
-      </div>
+        <div class="event_page_image" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
+         url('<%= cl_image_path "http://via.placeholder.com/350x200", height: 300, width: 400, crop: :fit %>')">
+          <a href="#menu-toggle" class="btn btn-default" id="menu-toggle"><i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+        </div>
+      <%= simple_form_for(@event) do |f| %>
+        <%= f.input :photo %>
+        <%= f.input :photo_cache, as: :hidden %>
+        <%= f.submit %>
+      <% end %>
 
 
     </div>
@@ -119,7 +124,7 @@
         <% @event.free_spots.times do %>
           <button class="free-spots"><%= link_to deletefreespot_event_path(@event) do %> <i class="fa fa-trash"></i> <% end %></button>
         <% end %>
-        <%= link_to "+", addfreespot_event_path(@event) %>
+        <%= link_to "+", addfreespot_event_path(@event)%>
       </div>
 
     </div>
