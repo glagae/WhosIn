@@ -7,21 +7,32 @@
   align-items: center;
   justify-content: center;
 }
-
 .banner-content {
   color: white;
   h1{
     font-size: 130px;
+  }
+  h2{
+    font-size: 90px;
   }
   p{
     font-size: 30px;
     font-weight: lighter;
   }
 }
-
 .banner_full {
   text-align: center;
   height: 100vh;
+  /* if you have a 70px navbar => height: calc(100vh - 70px); */
+  background-size: cover !important;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.banner_half {
+  text-align: center;
+  height: 50vh;
   /* if you have a 70px navbar => height: calc(100vh - 70px); */
   background-size: cover !important;
   background-color: transparent;
