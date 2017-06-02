@@ -119,9 +119,9 @@
 
       <div class="venue-informations-free-spots">
         <% @event.free_spots.times do %>
-          <button class="free-spots"><%= link_to deletefreespot_event_path(@event) do %> <i class="fa fa-trash"></i> <% end %></button>
+          <button class="free-spots"><%= link_to deletefreespot_event_path(@event) do %> <i class="fa fa-trash" style="color: white"></i> <% end %></button>
         <% end %>
-        <%= link_to "+", addfreespot_event_path(@event)%>
+        <%= link_to "+", addfreespot_event_path(@event), style: "color: #DB6618"%>
       </div>
 
     </div>
