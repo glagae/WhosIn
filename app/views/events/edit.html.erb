@@ -60,7 +60,12 @@
         <div class="venue-informations-date">
 
           <div class=" text-center">
-              <h4> <%= @event.title %> </h4>
+              <h4>
+                    <%= simple_form_for(@event) do |f| %>
+                      <%= f.input :title%>
+                      <%= f.submit %>
+                <% end %>
+                </h4>
           </div>
 
 
