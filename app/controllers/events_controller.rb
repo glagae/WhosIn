@@ -21,6 +21,7 @@ class EventsController < ApplicationController
     @invitation.event = @event
     @invitation.user = current_user
     @invitation.role = "manager"
+    @invitation.accepted = true
     @invitation.save
     authorize @event
     redirect_to edit_event_path(@event)

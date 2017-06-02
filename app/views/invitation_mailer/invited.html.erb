@@ -1,0 +1,22 @@
+<h1><%=  @event.title %></h1>
+
+<p>
+  Hi <%= @user.first_name %>
+</p>
+<% if @event.managers.count > 1%>
+  <p> We hope you can make it to our next event</p>
+  <p> <%=  @event.description  %></p>
+  <p> See you there, </p>
+    <% @event.managers.each do |manager| %>
+      <em> <%= manager.first_name %> </em>
+    <% end %>
+    <br> <%= link_to "Check it out", "http://whosin.site/users/sign_in", class: "btn btn-success" %>
+  <% else %>
+  <p> I hope you can make it to my next event</p>
+  <p> <%=  @event.description  %></p>
+  <p> See you there, </p>
+  <% @event.managers.each do |manager| %>
+      <em> <%= manager.first_name %> </em>
+  <% end %>
+    <br> <%= link_to "Check it out", "http://whosin.site/users/sign_in", class: "btn btn-success" %>
+<% end %>

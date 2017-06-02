@@ -174,6 +174,12 @@
         </div><!-- /.modal-dialog -->
       </div><!-- /.modal -->
     </form>
+      <div class="event-friend-invited">
+        <% @event.notresponded.each do |guest| %>
+        <div id="invited-friend"> <%= link_to event_invitation_path(@event, guest.invitation(@event)), method: :delete do %> <%= image_tag guest.facebook_picture_url, class: "avatar-large invited-friend-avatar"%><i class="fa fa-trash hidden" id="invited-friend-delete"></i><% end %> </div>
+        <% end %>
+      </div>
+      <%= link_to "Send Invitation", event_send_invitation_path(@event) %>
 
     </div>
   </div>
@@ -394,6 +400,15 @@
             $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
         });
         });
+    </script>
+    <script>
+      $('#invited-friend').on('hover', function(){
+        $('.invited-friend-avatar').addClass("hidden";
+        $('#invited-friend-delete').removeClass("hidden");
+      }, function (){
+        $('#invited-friend-delete').addClass("hidden");
+        $('.invited-friend-avatar').removeClass("hidden");
+      });
     </script>
 
     <% end %>

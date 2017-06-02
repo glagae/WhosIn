@@ -90,8 +90,12 @@ class User < ApplicationRecord
   end
 
   def bring(event)
-    u_event = self.invitations.where(event: event).first
+    u_event = invitation(event)
     event.menu_items.where(invitation: u_event)
+  end
+
+  def invitation(event)
+    self.invitations.where(event: event).first
   end
 
 end

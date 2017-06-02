@@ -20,6 +20,8 @@ gem 'autoprefixer-rails'
 gem 'omniauth-facebook'
 gem 'koala'
 gem 'social-share-button'
+gem "letter_opener", group: :development
+gem 'postmark-rails'
 
 gem 'cloudinary'
 gem 'carrierwave', '~> 0.11.2'
