@@ -16,7 +16,7 @@
       <%= link_to "#", class: "navbar-wagon-item navbar-wagon-link" do %>
         <div class="badge-container">
           <i> <%= image_tag "whosin_calendar.png"%></i>
-          <div class="badge badge-red"></div>
+          <div class="badge badge-orange"></div>
         </div>
       <% end %>
 
@@ -25,7 +25,7 @@
       <%= link_to "#", class: "navbar-wagon-item navbar-wagon-link" do %>
         <div class="badge-container">
           <i> <%= image_tag "whosin_notification2.png"%></i>
-          <div class="badge badge-red"><%= current_user.open_invitation.count %></div>
+          <div class="badge badge-orange"><%= current_user.open_invitation.count %></div>
         </div>
       <% end %>
 
@@ -37,17 +37,17 @@
           <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
             <li>
               <%= link_to root_path do %>
-                <i class="fa fa-home"></i>  <%= t(".profile", default: "Home") %>
+                <i class="fa fa-home" style="color: #DB6618"></i>  <%= t(".profile", default: "Home") %>
               <% end %>
             </li>
             <li>
               <%= link_to edit_user_path(current_user.id) do %>
-                  <i class="fa fa-pencil" aria-hidden="true"></i> <%= t(".profile", default: "Edit Profile") %>
+                  <i class="fa fa-pencil" style="color: #DB6618" aria-hidden="true"></i> <%= t(".profile", default: "Edit Profile") %>
               <% end %>
             </li>
             <li>
               <%= link_to destroy_user_session_path, method: :delete do %>
-                <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out")%>
+                <i class="fa fa-sign-out" style="color: #DB6618"></i>  <%= t(".sign_out", default: "Log out")%>
               <% end %>
             </li>
           </ul>
@@ -57,6 +57,7 @@
     <% else %>
 
       <!-- Login text link -->
+      <%= link_to t(".sign_up", default: "Create account"), new_user_registration_path, class: "navbar-wagon-item navbar-wagon-link" %>
       <%= link_to t(".sign_in", default: "Login"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
 
     <% end %>
