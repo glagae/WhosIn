@@ -230,7 +230,12 @@
 
         <div class="row margin">
           <div class="col-xs-12 col-sm-12">
-            FEED
+            <%= simple_form_for "#"  do |f| %>
+            <%= f.input :post %>
+            <button type="submit" class="btn btn-warning">
+              <i class="icon-save" style="color: #DB6618"></i> Post
+            </button>
+            <% end %>
           </div>
         </div>
       </div>
