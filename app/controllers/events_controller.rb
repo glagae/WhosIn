@@ -44,7 +44,6 @@ class EventsController < ApplicationController
 
 
   def update
-
     @event = Event.find(params[:id])
     authorize @event
     if !event_params["menu_items_attributes"].nil? && event_params["menu_items_attributes"]["0"]["id"].nil?
@@ -60,10 +59,37 @@ class EventsController < ApplicationController
         render 'edit'
       end
     else
-      if @event.update(event_params)
-        redirect_to edit_event_path(@event)
+      start = event_params[:start_date]
+      final = event_params[:end_date]
+
+      if start == "" && final == ""
+        if @event.update(address: event_params[:address], title: event_params[:title])
+          redirect_to edit_event_path(@event)
+        else
+          render 'edit'
+        end
+      elsif start == ""
+        final = DateTime.parse(event_params[:end_date])
+        if @event.update(end_date: final, address: event_params[:address], title: event_params[:title])
+          redirect_to edit_event_path(@event)
+        else
+          render 'edit'
+        end
+      elsif final == ""
+        start = DateTime.parse(event_params[:start_date])
+        if @event.update(start_date: start, address: event_params[:address], title: event_params[:title])
+          redirect_to edit_event_path(@event)
+        else
+          render 'edit'
+        end
       else
-        render 'edit'
+        start = DateTime.parse(event_params[:start_date])
+        final = DateTime.parse(event_params[:end_date])
+        if @event.update(start_date: start,end_date: final, address: event_params[:address], title: event_params[:title])
+          redirect_to edit_event_path(@event)
+        else
+          render 'edit'
+        end
       end
     end
   end

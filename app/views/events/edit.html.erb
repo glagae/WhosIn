@@ -77,11 +77,11 @@
           <input type="hidden" name="_method" value="patch" class="venue_info_element">
             <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
 
-          <input type="text" name="event[title]" class="venue_info_element" placeholder="Title">
+          <input type="text" name="event[title]" class="venue_info_element" value="<%= @event.title %>" placeholder="Cooles Event EVER">
           <div class="venue_info_element">
             <div class="date_picker_format" >
               <div class='input-group date' id='datetimepicker6'>
-                <input type='text' class="form-control" name="event[start_date]" value="<%= Date.today %>" />
+                <input type='text' class="form-control" name="event[start_date]" value="<%= @event.start_date %>" placeholder="<%= @event.start_date %>" />
                 <span class="input-group-addon">
                   <span class="glyphicon glyphicon-calendar"></span>
                 </span>
@@ -90,7 +90,7 @@
 
             <div class="date_picker_format">
               <div class='input-group date' id='datetimepicker7'>
-                <input type='text' class="form-control" name="event[end_date]"/>
+                <input type='text' class="form-control" name="event[end_date]" value="<%= @event.end_date %>" placeholder = "<%= @event.start_date %>"/>
                 <span class="input-group-addon">
                   <span class="glyphicon glyphicon-calendar"></span>
                 </span>
@@ -98,7 +98,7 @@
             </div>
           </div>
 
-          <input type="text" name="event[address]" class="venue_info_element" placeholder="Address">
+          <input type="text" name="event[address]" class="venue_info_element" value="<%= @event.address %>" placeholder="Your address">
           <div class="choice_buttons flex-between venue_info_element">
             <%= link_to "See event", event_path(@event), class: "btn btn-default btn-warning" %>
             <input type="submit" class="btn btn-default" class="venue_info_element">
@@ -336,7 +336,7 @@
 </div>
 </div>
 </div>
-</div>
+
 
 
 
