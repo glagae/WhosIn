@@ -95,6 +95,7 @@ class User < ApplicationRecord
   end
 
   def invitation(event)
+    # returns inviation of the event looking at
     self.invitations.where(event: event).first
   end
 

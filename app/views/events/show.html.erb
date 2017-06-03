@@ -230,12 +230,30 @@
 
         <div class="row margin">
           <div class="col-xs-12 col-sm-12">
-            <%= simple_form_for [@event, @comment] "#"  do |f| %>
-            <%= f.input :post %>
+            <%= simple_form_for [@event, @comment]  do |f| %>
+            <%= f.input :comment %>
+            <%= f.hidden_field :event_id, value: @event.id  %>
             <button type="submit" class="btn btn-warning">
               <i class="icon-save" style="color: #DB6618"></i> Post
             </button>
             <% end %>
+          </div>
+
+           <div class="col-xs-12 col-sm-12">
+           <div id="comments">
+            <% @event.comments_ordered.each do |element| %>
+            <div> <%= image_tag element.invitation.user.facebook_picture_url, class: "avatar-large confirmed-element"%>
+            <%= element.comment %>
+            <p><em>Posted on <%= element.created_at.strftime("%d/%m") %> at <%= element.created_at.strftime("%H:%M") %></em>
+            <% if current_user == element.invitation.user %>
+               <%= link_to  event_comment_path(@event, element), method: :delete do %>
+              <i class="fa fa-trash" aria-hidden="true"></i>
+              <% end %>
+            <% end %>
+            </p>
+            </div>
+            <% end %>
+
           </div>
         </div>
       </div>

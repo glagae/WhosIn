@@ -51,6 +51,9 @@ class Event < ApplicationRecord
     menu_items.where(invitation: nil)
   end
 
+  def comments_ordered
+    self.comments.order('comments.created_at DESC')
+  end
 
 
 end
