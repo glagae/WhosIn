@@ -23,30 +23,26 @@
     </div>
     <% if @event.coming.include? current_user %>
 
-    <div id="wrapper2">
-      <div id="sidebar-wrapper2">
-        <ul class="sidebar-nav">
-          <div class="event_page_menu_choices">
-            <div class="required_items form-control" id="menu_snacks">
-             <% @event.menu_items.each do |item|  %>
-             <% if item.invitation.nil? %>
-             <div class="to_bring_formgroup">
-               <%= simple_form_for [@event, item], wrapper: :inline_form, html: {class: "form-inline"} do |f| %>
-               <%= f.input :name, {:placeholder => 'name', :input_html => { :class => 'text_hover', :style => 'display: inline;' }} %>
-               <%= f.input :quantity, {:label=>false, :placeholder => 'quantity', :input_html => { :class => 'text_hover', :style => 'display: inline; width: 35%' }} %>
-               <%= f.button :submit, 'update'%>
-               <% end %>
-               <%= link_to event_menu_item_path(@event, item),method: :delete, id: item.id, event_id: @event.id, class: "inline_display" do %> <i class="fa fa-trash"></i> <% end %>
-             </div>
-             <% end %>
-             <% end %>
-           </div>
-         </div>
-       </ul>
-     </div>
-   </div>
-  <% end %>
-   <!-- /#sidebar-wrapper -->
+    <div class="bring-items">
+        <div class="choose-item" id="menu_snacks">
+          <p>Choose something to bring</p>
+          <% @event.menu_items.each do |item|  %>
+          <% if item.invitation.nil? %>
+          <%= link_to "#{item.name}  x#{item.quantity}", event_brings_item_path(@event, item), class: "btn btn-default btn-success" %>
+          <% end %>
+          <% end %>
+        </div>
+        <div class="chosen-item">
+          <p>I bring</p>
+          <ul>
+            <% current_user.bring(@event).each do |element| %>
+            <li><%= element.name %> x <%= element.quantity %></li>
+            <% end %>
+          </ul>
+        </div>
+    </div>
+    <% end %>
+    <!-- /#sidebar-wrapper -->
 
    <!-- Page Content -->
    <div id="page-content-wrapper">
