@@ -104,6 +104,7 @@ class EventsController < ApplicationController
   def show
     authorize @event
     @invitation = current_user.invitations.select { |invitation| invitation.event == @event }.first
+    @comment = Comment.new
   end
 
   def addfreespot
