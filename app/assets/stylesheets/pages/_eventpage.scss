@@ -7,6 +7,12 @@
 .flex-between {
     height: 100%;
     display: flex;
+    justify-content: space-between;
+}
+
+.flex-between {
+    height: 100%;
+    display: flex;
     justify-content: space-around;
 }
 
@@ -136,23 +142,26 @@
   height: 100%;
 }
 
-.imin_btn {
+.choice-btn {
   font-size: 30px;
   font-weight: bold;
   width: 50%;
   margin-right: 5px;
   height: 100%;
-  padding: 10px 40px;
-
+  padding: 30px 40px;
+  border-radius: 6px;
 }
 
-.imout_btn {
-  font-size: 30px;
+.choice-btn-sm {
+  font-size: 15px;
   font-weight: bold;
   width: 50%;
-  margin-left: 5px;
+  margin-right: 5px;
+  margin-top: 20px;
+  opacity: 0.5;
   height: 100%;
-  padding: 10px 40px;
+  padding: 15px 20px;
+  border-radius: 3px;
 }
 
 .required_items {

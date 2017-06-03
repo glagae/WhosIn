@@ -89,8 +89,18 @@
                         <%= link_to "Edit", edit_event_path(@event), class: "btn-lg btn-warning edit-button" %>
                       </div>
                     <% else %>
-                      <%= link_to "I'm in", event_invitation_path(@event, @invitation, { :button => "in" }), method: :patch, class: "btn btn-success imin-btn", id: "iaminbutton" %>
-                      <%= link_to "I'm out", event_invitation_path(@event, @invitation, { :button => "out" }), :method => :patch, class: "btn btn-danger imout-btn" %>
+                      <% if current_user.invitation(@event).accepted%>
+                        <p class="text-center" style="margin-top: 20px">Cool you are coming</p>
+                        <%= link_to "I'm in", event_invitation_path(@event, @invitation, { :button => "in" }), method: :patch, class: "btn-success choice-btn-sm", id: "iaminbutton" %>
+                        <%= link_to "I'm out", event_invitation_path(@event, @invitation, { :button => "out" }), :method => :patch, class: "btn-danger choice-btn" %>
+                      <% elsif !current_user.invitation(@event).accepted%>
+                        <%= link_to "I'm in", event_invitation_path(@event, @invitation, { :button => "in" }), method: :patch, class: "btn-success choice-btn", id: "iaminbutton" %>
+                        <%= link_to "I'm out", event_invitation_path(@event, @invitation, { :button => "out" }), :method => :patch, class: "btn-danger choice-btn-sm" %>
+                        <p class="text-center" style="margin-top: 20px">You can still join</p>
+                        <% else %>
+                         <%= link_to "I'm in", event_invitation_path(@event, @invitation, { :button => "in" }), method: :patch, class: "btn-success choice-btn", id: "iaminbutton" %>
+                          <%= link_to "I'm out", event_invitation_path(@event, @invitation, { :button => "out" }), :method => :patch, class: "btn-danger choice-btn" %>
+                      <% end %>
                     <% end %>
                   </div>
 
