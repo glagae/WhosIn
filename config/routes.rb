@@ -1,5 +1,15 @@
 Rails.application.routes.draw do
 
+  get 'comments/new'
+
+  get 'comments/create'
+
+  get 'comments/update'
+
+  get 'comments/destroy'
+
+  get 'comments/edit'
+
   devise_for :users,
     controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
@@ -18,6 +28,8 @@ Rails.application.routes.draw do
     # CRUD for menu items
     resources :menu_items, except: [:index, :show]
       get "/invitations/:id", to: "menu_items#brings", as: "brings_item"
+    # CRUD for comments
+    resources :comments, except: [:index, :show]
   end
 
 

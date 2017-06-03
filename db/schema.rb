@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170602130954) do
+ActiveRecord::Schema.define(version: 20170603140059) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "comments", force: :cascade do |t|
+    t.text "comment"
+    t.bigint "invitation_id"
+    t.bigint "event_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_comments_on_event_id"
+    t.index ["invitation_id"], name: "index_comments_on_invitation_id"
+  end
 
   create_table "events", force: :cascade do |t|
     t.datetime "start_date"
@@ -87,6 +97,8 @@ ActiveRecord::Schema.define(version: 20170602130954) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "comments", "events"
+  add_foreign_key "comments", "invitations"
   add_foreign_key "invitations", "events"
   add_foreign_key "invitations", "users"
   add_foreign_key "menu_items", "events"
