@@ -40,3 +40,19 @@
   align-items: center;
   justify-content: center;
 }
+
+.banner_edit {
+  height: 40vh;
+  /* if you have a 70px navbar => height: calc(100vh - 70px); */
+  background-size: cover !important;
+  background-color: transparent;
+
+}
+
+.banner_form_pack {
+  position: absolute;
+   top: 0px;
+   left: 0px;
+   margin: 0;
+   padding: 0;
+}
