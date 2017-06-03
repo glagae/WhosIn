@@ -6,6 +6,7 @@
 
  body {
     overflow-x: hidden;
+    position: relative;
  }
 
 /* Toggle Styles */
@@ -57,6 +58,12 @@
 
 
 /* Sidebar Styles */
+
+.fixed_always {
+  position: fixed !important;
+  right: 0;
+  top: 0;
+}
 
 .sidebar-nav {
     position: absolute;

@@ -7,6 +7,12 @@
 .flex-between {
     height: 100%;
     display: flex;
+    justify-content: space-between;
+}
+
+.flex-between {
+    height: 100%;
+    display: flex;
     justify-content: space-around;
 }
 
@@ -77,6 +83,10 @@
   opacity: 1;
 }
 
+.additional-info {
+  min-width: 500px;
+}
+
 .upload_image {
   position: absolute;
   left: 5px;
@@ -125,7 +135,6 @@
   font-weight: lighter;
 }
 
-
 .text_hover:hover {
   cursor: text;
   background-color: #fcfcfc;
@@ -136,23 +145,35 @@
   height: 100%;
 }
 
-.imin_btn {
+.choice-btn {
   font-size: 30px;
   font-weight: bold;
   width: 50%;
   margin-right: 5px;
   height: 100%;
-  padding: 10px 40px;
-
+  padding: 30px 40px;
+  border-radius: 6px;
 }
 
-.imout_btn {
-  font-size: 30px;
+.choice-btn-sm {
+  font-size: 15px;
   font-weight: bold;
   width: 50%;
-  margin-left: 5px;
+  margin-right: 5px;
+  margin-top: 20px;
+  opacity: 0.5;
   height: 100%;
-  padding: 10px 40px;
+  padding: 15px 20px;
+  border-radius: 3px;
+}
+
+.confirmed {
+  display: flex;
+  align-items: center;
+}
+
+.confirmed-element {
+  margin-right: 5px;
 }
 
 .required_items {
@@ -160,15 +181,6 @@
   height: calc(80% - 8px);
 
 }
-
-
-.menu_title {
-  width: 30%;
-  padding-right: 30px;
-  text-align: right;
-}
-
-
 
 .recognitionStyling {
   max-width: 10px;
@@ -185,7 +197,17 @@
   width: 50px;
   border-radius: 50%;
   border: 0;
-  opacity: 0.9;
+  opacity: 0.6;
+}
+.free-spots-counter {
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.free-spot-placeholder {
+  color: white;
+  opacity: 1;
 }
 
 
@@ -195,8 +217,25 @@
   padding: 10px;
 }
 
+.menu {
+  padding-bottom: 10px;
+}
+
+
+.menu_title {
+  width: 30%;
+  padding-right: 30px;
+  text-align: right;
+}
+
 .menu_category {
   padding-top: 20px;
+  padding-bottom: 10px;
+}
+
+.menu-text {
+  border-left: 1px solid lightgrey;
+  padding: 0px 10px;
 }
 
 .menu_items_box {
@@ -213,7 +252,7 @@
 }
 
 .boxed {
-  border: 0px solid grey;
+  border: 1px solid lightgrey;
   margin: 15px 5px;
 }
 
@@ -238,5 +277,17 @@
 
 .margin {
   margin-bottom: 20px;
+}
+
+.bring-items {
+  position: fixed;
+  right: 0;
+  top: 70px;
+  bottom: 70px;
+  margin-left: 40px;
+  z-index: 1;
+  height: 100vh;
+  width: 250px;
+  background-color: lightgrey;
 }
 

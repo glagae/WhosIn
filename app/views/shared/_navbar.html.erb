@@ -25,7 +25,7 @@
       <%= link_to "#", class: "navbar-wagon-item navbar-wagon-link" do %>
         <div class="badge-container">
           <i> <%= image_tag "whosin_notification2.png"%></i>
-          <div class="badge badge-orange"><%= current_user.open_invitation.count %></div>
+          <div class="badge badge-orange"><%= current_user.open_invitation.count unless current_user.open_invitation.count == 0%></div>
         </div>
       <% end %>
 
