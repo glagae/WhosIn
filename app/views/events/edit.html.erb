@@ -205,24 +205,30 @@
                             <% end %>
                           </div>
 
-                           <ul class="list-group">
-                            <% @users.each do |friend| %>
-                              <% if @event.guests.include? friend %>
-                                <li class="list-group-item">
-                                  <input type="checkbox" disabled checked name="friends[]" value=<%= friend["id"] %> id="friend" />
-                                  <label for="friend">
-                                    <%= image_tag friend.facebook_picture_url, class: "avatar picture"%>
-                                    <%= friend.first_name %> (invited)
-                                  </label>
-                                </li>
-                              <% else %>
-                                <li class="list-group-item">
-                                  <input type="checkbox" name="friends[]" value=<%= friend["id"] %> id="friend" />
-                                  <label for="friend"><%= image_tag friend.facebook_picture_url, class: "avatar picture"%><%= friend.first_name %></label>
-                                </li>
+                          <form action="<%= event_invitations_path(@event) %>" method="POST" class="form">
+                            <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+                            <ul class="list-group">
+                              <% @users.each do |friend| %>
+                                <% if @event.guests.include? friend %>
+                                  <li class="list-group-item">
+                                    <input type="checkbox" disabled checked name="friends[]" value=<%= friend["id"] %> id="friend" />
+                                    <label for="friend">
+                                      <%= image_tag friend.facebook_picture_url, class: "avatar picture"%>
+                                      <%= friend.first_name %> (invited)
+                                    </label>
+                                  </li>
+                                <% else %>
+                                  <li class="list-group-item">
+                                    <input type="checkbox" name="friends[]" value=<%= friend["id"] %> id="friend" />
+                                    <label for="friend"><%= image_tag friend.facebook_picture_url, class: "avatar picture"%><%= friend.first_name %></label>
+                                  </li>
+                                <% end %>
                               <% end %>
-                            <% end %>
-                           </ul>
+                             </ul>
+                              <div class="modal-footer">
+                                <input type="submit" value="Invite" class="btn btn-warning" >
+                            </div>
+                          </form>
                         </div>
 
                     </div>

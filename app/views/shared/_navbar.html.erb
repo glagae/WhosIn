@@ -22,12 +22,21 @@
 
 
       <!-- Notification -->
-      <%= link_to "#", class: "navbar-wagon-item navbar-wagon-link" do %>
-        <div class="badge-container">
-          <i> <%= image_tag "whosin_notification2.png"%></i>
+      <div class="navbar-wagon-item">
+        <div class="dropdown">
+          <%= image_tag "whosin_notification2.png", class: "dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
           <div class="badge badge-orange"><%= current_user.open_invitation.count unless current_user.open_invitation.count == 0%></div>
+          <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
+          <% current_user.open_invitation.each do |event| %>
+            <li id="notif-element">
+              <em><%= event.title %> </em>
+              <%= link_to "Check it out", event_path(event) %>
+            </li>
+          <% end %>
+          </ul>
         </div>
-      <% end %>
+      </div>
+
 
       <!-- Profile picture and dropdown -->
       <div class="navbar-wagon-item">
@@ -54,26 +63,57 @@
         </div>
       </div>
 
+      <!-- Dropdown list appearing on mobile only -->
+      <div class="navbar-wagon-item hidden-md hidden-lg">
+        <div class="dropdown">
+          <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i>
+          <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
+
+            <li>
+              <%= link_to root_path do %>
+              <i class="fa fa-home" style="color: #DB6618"></i>  <%= t(".profile", default: "Home") %>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to edit_user_path(current_user.id) do %>
+              <i class="fa fa-pencil" style="color: #DB6618" aria-hidden="true"></i> <%= t(".profile", default: "Edit Profile") %>
+              <% end %>
+            </li>
+            <li> <%= link_to destroy_user_session_path, method: :delete do %>
+              <i class="fa fa-sign-out" style="color: #DB6618"></i>  <%= t(".sign_out", default: "Log out")%>
+              <% end %>
+            </li>
+          </ul>
+        </div>
+      </div>
+
     <% else %>
 
       <!-- Login text link -->
       <%= link_to t(".sign_up", default: "Create account"), new_user_registration_path, class: "navbar-wagon-item navbar-wagon-link" %>
       <%= link_to t(".sign_in", default: "Login"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
 
+
+      <!-- Dropdown list appearing on mobile only -->
+      <div class="navbar-wagon-item hidden-md hidden-lg">
+        <div class="dropdown">
+          <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i>
+          <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
+
+            <li>
+              <%= link_to t(".sign_up", default: "Create account"), new_user_registration_path, class: "navbar-wagon-item navbar-wagon-link" %>
+            </li>
+            <li>
+              <%= link_to t(".sign_in", default: "Login"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
+            </li>
+          </ul>
+        </div>
+      </div>
+
     <% end %>
 
   </div>
 
-  <!-- Dropdown list appearing on mobile only -->
-  <div class="navbar-wagon-item hidden-md hidden-lg">
-    <div class="dropdown">
-      <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i>
-      <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
-        <li><a href="#">Some mobile link</a></li>
-        <li><a href="#">Other one</a></li>
-        <li><a href="#">Other one</a></li>
-      </ul>
-    </div>
-  </div>
+
 </div>
 
