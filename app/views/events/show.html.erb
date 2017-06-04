@@ -164,12 +164,30 @@
         </div>
 
           <div class="col-xs-12 col-sm-6">
+          <% if @event.notresponded.count > 3 %>
+                <div class="venue-informations-free-spots">
+                  <p><em>Invited</em></p>
+                  <div class="dropdown">
+                  <% @event.notresponded[0...3].each do |guest| %>
+                    <%= image_tag guest.facebook_picture_url, class: "avatar-large"%>
+                  <% end %>
+                    <button class="free-spots confirmed-element dropdown-toggle", data-toggle="dropdown" style="cursor: pointer"><i class="fa fa-plus free-spot-placeholder" aria-hidden="true"></i> <i class="fa fa-user free-spot-placeholder" aria-hidden="true"></i></button>
+                    <ul class="dropdown-menu navbar-wagon-dropdown-menu dropdown-content">
+                    <% @event.notresponded[3..@event.notresponded.size].each do |guest| %>
+                      <li>  <%= image_tag guest.facebook_picture_url, class: "avatar-large"%></li>
+                  <% end %>
+                    </ul>
+                  </div>
+
+                </div>
+            <% else %>
               <div class="venue-informations-free-spots">
                 <p><em>Invited</em></p>
                 <% @event.notresponded.each do |guest| %>
                 <%= image_tag guest.facebook_picture_url, class: "avatar-large"%>
                 <% end %>
               </div>
+          <% end %>
           </div>
 
 
