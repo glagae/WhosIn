@@ -6,4 +6,9 @@
 //= require moment
 //= require bootstrap-datetimepicker
 //= require_tree .
+//= require fullcalendar
+
+$('#calendar').fullCalendar({
+   events: /events.json
+});
 
