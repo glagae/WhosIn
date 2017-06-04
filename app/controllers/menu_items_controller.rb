@@ -40,7 +40,7 @@ class MenuItemsController < ApplicationController
     @menu_item.save
     @comment = Comment.new
     @comment.event = @menu_item.event
-    @comment.invitation = @menu.invitation
+    @comment.invitation = @menu_item.invitation
     @comment.comment = "I will bring #{@menu_item.quantity} #{@menu_item.name}"
     redirect_to event_path(@menu_item.event)
 

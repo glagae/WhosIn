@@ -44,9 +44,13 @@ class InvitationsController < ApplicationController
       end
     elsif params[:button] == "out" && (@invitation.accepted)
       @invitation.accepted = false
+      @invitation.menu_items.each {|item| item.invitation = nil}
+      @invitation.menu_items = []
       @invitation.save
+
       @event.free_spots += 1
       @event.save
+
       flash[:alert] = " :( Sad! You changed your mind  "
       redirect_to event_path(params[:event_id])
     elsif params[:button] == "out" && (@invitation.accepted == false)

@@ -8,7 +8,8 @@
     <%= link_to "Create Dinner", events_path, {method: :post, class: "btn btn-warning"} %>
   </div>
 </div>
-<% if current_user.open_invitation.length != 0 %>
+
+<% if current_user.open_invitation.length != 0%>
 <div class="container">
   <div class="row">
     <h2 class="dashboard_subtitle">Your are invited - Please reply</h2>

@@ -80,13 +80,18 @@ class User < ApplicationRecord
 
     # returns all the events where the user is a guest and has not responded
   def open_invitation
-    guest = self.invitations.select do |invitation|
-      invitation.role == "guest" && !invitation.accepted
+    guest = invitations.where(role: "guest", accepted: false)
+
+    a = guest.map do |invitation|
+      invitation.event unless invitation.event.start_date < DateTime.now
     end
 
-    guest.map do |invitation|
-      invitation.event
+    if a[1].nil?
+      a = []
     end
+
+    a
+
   end
 
   def facebook
