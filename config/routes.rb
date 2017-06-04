@@ -17,6 +17,7 @@ Rails.application.routes.draw do
 
   # Edit my profile page
   resources :users, only: [:edit, :update]
+  post 'createnewuser', to:"users#createnewuser", as: "email_friend"
 
   # CRUD for events
   resources :events, except: [:index] do

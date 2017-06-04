@@ -33,12 +33,11 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     authorize @event
     @menu_items = @event.menu_items
-
+    @comment = Comment.new
+    @user = User.new
 
     @fb_friends = Friend.fb_friend_users(current_user)
     @users = User.all
-    @friends = @users + @fb_friends
-    @friends.uniq!
   end
 
 
@@ -110,8 +109,15 @@ class EventsController < ApplicationController
   def addfreespot
     authorize @event
     @event.free_spots += 1
-    @event.save
-    redirect_to edit_event_path(@event)
+    respond_to do |format|
+      if  @event.save
+        format.html { redirect_to edit_event_path(@event) }
+        format.js # reviews/deletefreespot.js.erb
+      else
+        format.html { render 'events/edit' }
+        format.js # same think
+      end
+    end
   end
 
    def deletefreespot
