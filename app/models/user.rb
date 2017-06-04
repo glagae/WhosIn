@@ -16,6 +16,10 @@ class User < ApplicationRecord
   # Avatar upload
   mount_uploader :photo, PhotoUploader
 
+  attr_accessor :skip_password_validation  # virtual attribute to skip password validation while saving
+
+
+
   #facebook connect
   def self.find_for_facebook_oauth(auth)
     user_params = auth.slice(:provider, :uid)
@@ -97,6 +101,13 @@ class User < ApplicationRecord
   def invitation(event)
     # returns inviation of the event looking at
     self.invitations.where(event: event).first
+  end
+
+  protected
+
+  def password_required?
+    return false if skip_password_validation
+    super
   end
 
 end

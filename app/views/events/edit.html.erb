@@ -121,7 +121,7 @@
         <div>
             <button class="free-spots free-spots-counter"><strong><%= @event.free_spots %></strong></button>
             <button class="free-spots"><%= link_to addfreespot_event_path(@event) do %> <i class="fa fa-plus" style="color: white"></i> <% end %></button>
-            <button class="free-spots"><%= link_to deletefreespot_event_path(@event) do %> <i class="fa fa-trash" style="color: white"></i> <% end %></button>
+            <button class="free-spots"><%= link_to deletefreespot_event_path(@event)do %> <i class="fa fa-minus" style="color: white"></i> <% end %></button>
         </div>
       </div>
 
@@ -130,49 +130,109 @@
   <!-- Trigger the modal with a button -->
   <div class="event-friend-invited">
   <p><em>Invite your friends</em></p>
-  <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#example">Invite Friends</button>
+  <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#invite">Invite Friends</button>
         <% @event.notresponded.each do |guest| %>
-        <span id="invited-friend"> <%= link_to event_invitation_path(@event, guest.invitation(@event)), method: :delete do %> <%= image_tag guest.facebook_picture_url, class: "avatar-large invited-friend-avatar"%><i class="fa fa-trash hidden" id="invited-friend-delete"></i><% end %> </span>
+        <span id="invited-friend"> <%= link_to event_invitation_path(@event, guest.invitation(@event)), method: :delete do %> <%= image_tag guest.facebook_picture_url, class: "avatar-large invited-friend-avatar", "data-toggle" => "tooltip", "data-placement"=>"left", "title" =>"#{guest.first_name}"%><i class="fa fa-trash hidden" id="invited-friend-delete"></i><% end %> </span>
         <% end %>
       <%= link_to "Send Invitation", event_send_invitation_path(@event), class: "btn btn-success" %>
-      </div>
+  </div>
 
-    <form action="<%= event_invitations_path(@event) %>" method="POST">
-    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-      <div class="modal fade" tabindex="-1" role="dialog" id="example">
-        <div class="modal-dialog">
-          <div class="modal-content">
+
+
+
+<div class="modal fade" id="invite" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
             <div class="modal-header">
-              <h4 class="modal-title">Invite your friends</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                 <h4 class="modal-title" id="myModalLabel">Invite your friends</h4>
+
             </div>
-              <div>
-                <ul class="list-group">
-                  <% @friends.each do |friend| %>
-                  <% if @event.guests.include? friend %>
-                    <li class="list-group-item">
-                      <input type="checkbox" disabled checked name="friends[]" value=<%= friend["id"] %> id="friend" />
-                      <label for="friend"><%= image_tag friend.facebook_picture_url, class: "avatar picture"%><%= friend.first_name %> (invited) </label>
-                    </li>
-                  <% else %>
-                    <li class="list-group-item">
-                      <input type="checkbox" name="friends[]" value=<%= friend["id"] %> id="friend" />
-                      <label for="friend"><%= image_tag friend.facebook_picture_url, class: "avatar picture"%><%= friend.first_name %></label>
-                    </li>
-                  <% end %>
-                  <% end %>
-                </ul>
-                <!-- add simple form with email and name for user that does not exist -->
-                <!-- send to user model and create user + invitation -->
-                <!-- create avatar with initials -->
-              </div>
-              <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <input type="submit" class="btn btn-primary" >
+            <div class="modal-body">
+                <div role="tabpanel">
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active"><a href="#fbfriend" aria-controls="fbfriend" role="tab" data-toggle="tab">Facebook</a>
+
+                        </li>
+                        <li role="presentation"><a href="#emailfriends" aria-controls="emailfriends" role="tab" data-toggle="tab">Email</a>
+
+                        </li>
+                    </ul>
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active" id="fbfriend">
+                          <form action="<%= event_invitations_path(@event) %>" method="POST" class="form">
+                            <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+                            <ul class="list-group">
+                              <% @fb_friends.each do |friend| %>
+                                <% if @event.guests.include? friend %>
+                                  <li class="list-group-item">
+                                    <input type="checkbox" disabled checked name="friends[]" value=<%= friend["id"] %> id="friend" />
+                                    <label for="friend">
+                                      <%= image_tag friend.facebook_picture_url, class: "avatar picture"%>
+                                      <%= friend.first_name %> (invited)
+                                    </label>
+                                  </li>
+                                <% else %>
+                                  <li class="list-group-item">
+                                    <input type="checkbox" name="friends[]" value=<%= friend["id"] %> id="friend" />
+                                    <label for="friend"><%= image_tag friend.facebook_picture_url, class: "avatar picture"%><%= friend.first_name %></label>
+                                  </li>
+                                <% end %>
+                              <% end %>
+                             </ul>
+                              <div class="modal-footer">
+                                <input type="submit" value="Invite" class="btn btn-warning" >
+                            </div>
+                          </form>
+                        </div>
+
+                        <div role="tabpanel" class="tab-pane" id="emailfriends">
+                           <div>
+                            <%= simple_form_for @user, :url => email_friend_path, wrapper: :inline_form, html: {class: "form-inline"} do |f| %>
+                              <%= f.input :first_name, {:placeholder => 'Max'} %>
+                              <%= f.input :last_name, {:placeholder => 'Moritz'} %>
+                              <%= f.input :email, {:placeholder => 'bob@mgail.com'} %>
+                              <%= f.hidden_field :event_id, value: @event.id %>
+
+
+                              <button type="submit" class="btn">
+                                <i class="fa fa-plus" aria-hidden="true" style="color: white"></i>
+                              </button>
+
+                            <% end %>
+                          </div>
+
+                           <ul class="list-group">
+                            <% @users.each do |friend| %>
+                              <% if @event.guests.include? friend %>
+                                <li class="list-group-item">
+                                  <input type="checkbox" disabled checked name="friends[]" value=<%= friend["id"] %> id="friend" />
+                                  <label for="friend">
+                                    <%= image_tag friend.facebook_picture_url, class: "avatar picture"%>
+                                    <%= friend.first_name %> (invited)
+                                  </label>
+                                </li>
+                              <% else %>
+                                <li class="list-group-item">
+                                  <input type="checkbox" name="friends[]" value=<%= friend["id"] %> id="friend" />
+                                  <label for="friend"><%= image_tag friend.facebook_picture_url, class: "avatar picture"%><%= friend.first_name %></label>
+                                </li>
+                              <% end %>
+                            <% end %>
+                           </ul>
+                        </div>
+
+                    </div>
+                </div>
             </div>
-          </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-      </div><!-- /.modal -->
-    </form>
+
+        </div>
+    </div>
+</div>
+
 
     </div>
   </div>
@@ -419,5 +479,21 @@
         }
       });
     </script>
+
+    <script>
+  $(function(){
+
+  $(".tab").on("click", function(e){
+    // Change active tab
+    $(".tab").removeClass('active');
+    $(this).addClass('active');
+    // Hide all tab-content (use class="hidden")
+    $(".tab-content").addClass('hidden');
+    // Show target tab-content (use class="hidden")
+    $($(this).data('target')).removeClass('hidden');
+  });
+
+});
+</script>
 
     <% end %>
