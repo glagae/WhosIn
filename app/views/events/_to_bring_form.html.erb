@@ -1,9 +1,9 @@
 <div class="to_bring_formgroup" id="to_bring_formgroup_<%= item.id %>">
-  <%= simple_form_for [event, item], wrapper: :inline_form, html: {class: "form-inline"} do |f| %>
+  <%= simple_form_for [event, item], wrapper: :inline_form, html: {class: "form-inline"}, remote: true do |f| %>
     <%= f.input :name, {:placeholder => 'name', :input_html => { :class => 'text_hover', :style => 'display: inline;' }} %>
     <%= f.input :quantity, {:label=>false, :placeholder => 'quantity', :input_html => { :class => 'text_hover', :style => 'display: inline; width: 35%' }} %>
-    <%= f.button :submit, 'update'%>
+    <%= f.button :submit, 'update', id: 'update_' + item.id.to_s %>
     <% end %>
-    <%= link_to event_menu_item_path(event, item),method: :delete, id: item.id, event_id: event.id, class: "inline_display", :remote => true do %> <i class="fa fa-trash"></i> <% end %>
+    <%= link_to event_menu_item_path(event, item),method: :delete, id: 'delete_' + item.id.to_s, event_id: event.id, class: "inline_display", :remote => true do %> <i class="fa fa-trash"></i> <% end %>
 </div>
 

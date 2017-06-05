@@ -27,9 +27,13 @@ class MenuItemsController < ApplicationController
   end
 
   def update
-    @menu_item.update(menu_items_params)
-    authorize @menu_item
-    redirect_to edit_event_path(@menu_item.event)
+    if @menu_item.update(menu_items_params)
+      authorize @menu_item
+      respond_to do |format|
+        format.html { redirect_to edit_event_path(@menu_item.event) }
+        format.js
+      end
+    end
 
   end
 
