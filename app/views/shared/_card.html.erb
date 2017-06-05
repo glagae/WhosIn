@@ -1,9 +1,9 @@
 <% if !host %>
 <%= link_to event_path(e) do %>
     <div class="my_cards card-img" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path e.photo , height: 300, width: 400, crop: :fit %>');">
-     <div class="card-date"><p> <%= Date::DAYNAMES[e.start_date.wday] %></p>
-      <p>  <%= e.start_date.strftime("%B %d")  %> </p>
-      </div>
+      <span class="card-date"><p style="margin-bottom: 2px;"><%= e.start_date.strftime("%b")%> </p>
+        <p style="color: white"> <%= e.start_date.strftime("%A %d")  %> </p></span>
+
         <div class="card-description">
           <h2><%= e.title %></h2>
         </div>
@@ -15,9 +15,8 @@
 
 <%= link_to event_path(e) do %>
     <div class="my_cards card-img" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path e.photo , height: 300, width: 400, crop: :fit %>');">
-     <div class="card-date"><p> <%= Date::DAYNAMES[e.start_date.wday] %></p>
-      <p>  <%= e.start_date.strftime("%B %d")  %> </p>
-      </div>
+    <span class="card-date"><p style="margin-bottom: 2px;"><%= e.start_date.strftime("%b")%> </p>
+        <p style="color: white"> <%= e.start_date.strftime("%A %d")  %> </p></span>
         <div class="card-description">
           <h2><%= e.title %></h2>
         </div>
