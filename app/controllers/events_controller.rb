@@ -1,7 +1,7 @@
 require 'koala'
 
 class EventsController < ApplicationController
-  before_action :set_event, only: [:update, :destroy, :show, :addfreespot, :deletefreespot]
+  before_action :set_event, only: [:update, :destroy, :show, :addfreespot, :deletefreespot, :pictures]
 
   def index
     @events = policy_scope(Event).order(created_at: :desc)
@@ -127,10 +127,25 @@ class EventsController < ApplicationController
     redirect_to edit_event_path(@event)
   end
 
+
   private
 
   def event_params
-    params.require(:event).permit(:start_date, :end_date, :address, :description, :title, :photo, :photo_cache, menu_items_attributes: [:id, :name, :category, :quantity])
+    params.require(:event).permit(
+      :start_date,
+      :end_date,
+      :address,
+      :description,
+      :title,
+      :photo,
+      :photo_cache,
+      menu_items_attributes: [
+        :id,
+        :name,
+        :category,
+        :quantity
+        ]
+      )
   end
 
   def set_event
