@@ -8,12 +8,18 @@ class MenuItemsController < ApplicationController
 
   def create
     @menu_item = MenuItem.new(menu_items_params)
+    @event = @menu_item.event
+    authorize @menu_item
     if !@menu_item.bring
       @menu_item.invitation = current_user.invitations.where(event_id: menu_items_params["event_id"]).first
+      @menu_item.save
+      redirect_to edit_event_path(@menu_item.event)
+    elsif @menu_item.save
+      respond_to do |format|
+        format.html { redirect_to events_path }
+        format.js  # <-- will render `app/views/reviews/create.js.erb`
+      end
     end
-    authorize @menu_item
-    @menu_item.save
-    redirect_to edit_event_path(@menu_item.event)
   end
 
   def edit

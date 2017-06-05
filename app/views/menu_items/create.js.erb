@@ -1,20 +1,2 @@
-<% if @menu_item.errors.any? %>
-  // Render new review form with errors
-  $('#new_review').html("<%= j render 'reviews/form', restaurant: @restaurant, review: @review %>");
-<% else %>
-
-  <% if @menu_item.event.menu_items.nil? %>
-  $("#menu-toggle2").click(function(e) {
-        e.preventDefault();
-        $("#wrapper2").toggleClass("toggled");
-    });
-  <% end %>
-  // Create a paragraph for the new review. But hide it.
-  var new_item = $("<%= j render 'events/_to_bring_form', event: @event, item: @menu_item %>").hide();
-  // Add it to the DOM, at the end of the existing reviews. It's still hidden.
-  $('.event_page_menu_choices').append(new_item);
-  // Show the new review with an animation!
-  new_item.slideDown();
-  // Reset the form
-  $('#new_review').html("<%= j render 'reviews/form', restaurant: @restaurant, review: Review.new %>");
-<% end %>
+var new_item = $("<%= j render 'events/to_bring_form', event: @event, item: @menu_item %>")
+$('#menu_snacks').append(new_item)
