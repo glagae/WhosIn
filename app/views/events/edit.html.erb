@@ -117,15 +117,19 @@
     <div class="col-xs-12 col-sm-6">
 
       <div class="venue-informations-free-spots ">
-      <p><em>Add your free spots</em></p>
-        <div>
-            <button class="free-spots free-spots-counter"><strong><%= @event.free_spots %></strong></button>
-            <button class="free-spots"><%= link_to addfreespot_event_path(@event) do %> <i class="fa fa-plus" style="color: white"></i> <% end %></button>
-            <button class="free-spots"><%= link_to deletefreespot_event_path(@event)do %> <i class="fa fa-minus" style="color: white"></i> <% end %></button>
-        </div>
-      </div>
 
+      <p><em>Add your free spots</em></p>
+      <div>
+       <button class="free-spots free-spots-counter" id="spot-counter"><strong>
+        <%= render "free_spots", event: @event %>
+      </strong></button>
+
+      <button class="free-spots"><%= link_to addfreespot_event_path(@event), method: :post, remote: true do %> <i class="fa fa-plus" style="color: white"></i> <% end %></button>
+      <button class="free-spots"><%= link_to deletefreespot_event_path(@event), method: :post, remote: true do %> <i class="fa fa-minus" style="color: white"></i> <% end %></button>
+      </div>
+      </div>
     </div>
+
     <div class="col-xs-12 col-sm-6">
   <!-- Trigger the modal with a button -->
   <div class="event-friend-invited">

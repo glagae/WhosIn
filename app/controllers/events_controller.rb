@@ -44,6 +44,7 @@ class EventsController < ApplicationController
 
   def update
     @event = Event.find(params[:id])
+
     authorize @event
     if !event_params["menu_items_attributes"].nil? && event_params["menu_items_attributes"]["0"]["id"].nil?
       if menu_create(@event, event_params)
@@ -57,7 +58,7 @@ class EventsController < ApplicationController
       else
         render 'edit'
       end
-    else
+    elsif !event_params[:start_date].nil? || !event_params[:end_date].nil?
       start = event_params[:start_date]
       final = event_params[:end_date]
 
@@ -90,6 +91,13 @@ class EventsController < ApplicationController
           render 'edit'
         end
       end
+
+    else
+      if @event.update(event_params)
+          redirect_to edit_event_path(@event)
+        else
+          render 'edit'
+        end
     end
   end
 
@@ -112,7 +120,7 @@ class EventsController < ApplicationController
     respond_to do |format|
       if  @event.save
         format.html { redirect_to edit_event_path(@event) }
-        format.js # reviews/deletefreespot.js.erb
+        format.js # events/addfreespot.js.erb
       else
         format.html { render 'events/edit' }
         format.js # same think
@@ -123,8 +131,15 @@ class EventsController < ApplicationController
    def deletefreespot
     authorize @event
     @event.free_spots -= 1
-    @event.save
-    redirect_to edit_event_path(@event)
+    respond_to do |format|
+      if  @event.save
+        format.html { redirect_to edit_event_path(@event) }
+        format.js # events/addfreespot.js.erb
+      else
+        format.html { render 'events/edit' }
+        format.js # same think
+      end
+    end
   end
 
 

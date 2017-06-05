@@ -10,6 +10,8 @@ class CommentsController < ApplicationController
     @comment = Comment.new(comment_params)
     authorize @comment
     @comment.invitation = current_user.invitation(@comment.event)
+    @event = @comment.event
+
     if @comment.save
       respond_to do |format|
         format.html { redirect_to event_path(@comment.event) }
@@ -25,14 +27,12 @@ class CommentsController < ApplicationController
 
   def update
     authorize @comment
-    byebug
   end
 
   def destroy
     authorize @comment
-    event = @comment.event
     @comment.destroy
-    redirect_to event_path(event)
+
 
   end
 

@@ -86,12 +86,7 @@ class User < ApplicationRecord
       invitation.event unless invitation.event.start_date < DateTime.now
     end
 
-    if a[1].nil?
-      a = []
-    end
-
-    a
-
+    a.compact!
   end
 
   def facebook

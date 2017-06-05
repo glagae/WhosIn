@@ -1,0 +1,12 @@
+<div id="delete-comment-<%= element.id %>">
+  <div>
+    <%= image_tag element.invitation.user.facebook_picture_url, class: "avatar-large confirmed-element"%>
+    <p><em>Posted on <%= element.created_at.strftime("%d/%m") %> at <%= element.created_at.strftime("%H:%M") %></em></p>
+    <% if current_user == element.invitation.user %>
+      <%= link_to  event_comment_path(event, element), method: :delete, remote: true do %>
+          <i class="fa fa-trash" aria-hidden="true"></i>
+      <% end %>
+     <% end %>
+  </div>
+    <p><%= element.comment %> </p>
+</div>
