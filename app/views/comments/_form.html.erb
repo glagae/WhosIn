@@ -1,0 +1,7 @@
+<%= simple_form_for([ event, comment ], remote: true)  do |f| %>
+  <%= f.input :comment %>
+  <%= f.hidden_field :event_id, value: event.id  %>
+  <button type="submit" class="btn btn-warning">
+    <i class="icon-save" style="color: #DB6618"></i> Post
+  </button>
+<% end %>

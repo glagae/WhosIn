@@ -91,11 +91,11 @@
                     <% else %>
                       <% if current_user.invitation(@event).accepted%>
                         <p class="text-center" style="margin-top: 20px">Cool you are coming</p>
-                        <%= link_to "I'm in", event_invitation_path(@event, @invitation, { :button => "in" }), method: :patch, class: "btn-warning choice-btn-sm", id: "iaminbutton" %>
-                        <%= link_to "I'm out", event_invitation_path(@event, @invitation, { :button => "out" }), :method => :patch, class: "btn-warning choice-btn" %>
-                      <% elsif !current_user.invitation(@event).accepted%>
                         <%= link_to "I'm in", event_invitation_path(@event, @invitation, { :button => "in" }), method: :patch, class: "btn-warning choice-btn", id: "iaminbutton" %>
                         <%= link_to "I'm out", event_invitation_path(@event, @invitation, { :button => "out" }), :method => :patch, class: "btn-warning choice-btn-sm" %>
+                      <% elsif !current_user.invitation(@event).accepted%>
+                        <%= link_to "I'm in", event_invitation_path(@event, @invitation, { :button => "in" }), method: :patch, class: "btn-warning choice-btn-sm", id: "iaminbutton" %>
+                        <%= link_to "I'm out", event_invitation_path(@event, @invitation, { :button => "out" }), :method => :patch, class: "btn-warning choice-btn" %>
                         <p class="text-center" style="margin-top: 20px">You can still join</p>
                         <% else %>
                          <%= link_to "I'm in", event_invitation_path(@event, @invitation, { :button => "in" }), method: :patch, class: "btn-warning choice-btn", id: "iaminbutton" %>
@@ -251,31 +251,17 @@
 
         <div class="row margin">
           <div class="col-xs-12 col-sm-12">
-            <%= simple_form_for [@event, @comment]  do |f| %>
-            <%= f.input :comment %>
-            <%= f.hidden_field :event_id, value: @event.id  %>
-            <button type="submit" class="btn btn-warning">
-              <i class="icon-save" style="color: #DB6618"></i> Post
-            </button>
-            <% end %>
+            <div id="new_comment">
+              <%= render 'comments/form', event: @event, comment: @comment %>
+            </div>
           </div>
 
            <div class="col-xs-12 col-sm-12">
-           <div id="comments">
-            <% @event.comments_ordered.each do |element| %>
-            <div> <%= image_tag element.invitation.user.facebook_picture_url, class: "avatar-large confirmed-element"%>
-            <%= element.comment %>
-            <p><em>Posted on <%= element.created_at.strftime("%d/%m") %> at <%= element.created_at.strftime("%H:%M") %></em>
-            <% if current_user == element.invitation.user %>
-               <%= link_to  event_comment_path(@event, element), method: :delete do %>
-              <i class="fa fa-trash" aria-hidden="true"></i>
+             <div id="comments">
+              <% @event.comments_ordered.each do |element| %>
+                <%= render 'comments/show', event: @event, element: element %>
               <% end %>
-            <% end %>
-            </p>
             </div>
-            <% end %>
-
-          </div>
         </div>
       </div>
 

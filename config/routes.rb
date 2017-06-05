@@ -21,8 +21,8 @@ Rails.application.routes.draw do
 
   # CRUD for events
   resources :events, except: [:index] do
-      get 'addfreespot', on: :member, to: "events#addfreespot"
-      get 'deletefreespot', on: :member, to: "events#deletefreespot"
+      post 'addfreespot', on: :member, to: "events#addfreespot"
+      post 'deletefreespot', on: :member, to: "events#deletefreespot"
     # CRUD for invitations
     resources :invitations, except: [:index, :show]
     get 'sendinvitation', to: "invitations#send_invitation", as: "send_invitation"
