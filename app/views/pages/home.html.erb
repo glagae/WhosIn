@@ -5,12 +5,12 @@
   <div class="banner-content">
     <h2>WhosIn</h2>
     <h3>My dashboard</h3>
-    <%= link_to "Create Dinner", events_path, {method: :post, class: "btn btn-warning"} %>
+    <%= link_to "Create Dinner", events_path, {method: :post, class: "btn btn-danger"} %>
   </div>
 </div>
 
 <% if current_user.open_invitation.length != 0%>
-<div class="container">
+<div class="container home-container-margin">
   <div class="row">
     <h2 class="dashboard_subtitle">Your are invited - Please reply</h2>
     <% current_user.open_invitation.each do |event| %>
@@ -22,7 +22,7 @@
 </div>
 <% end %>
 <% if current_user.attending.length != 0 %>
-  <div class="container">
+  <div class="container home-container-margin">
     <div class="row">
       <h2 class="dashboard_subtitle">Your are attending</h2>
       <% current_user.attending.each do |event| %>
@@ -34,7 +34,7 @@
   </div>
 <% end %>
 <% if current_user.host.length != 0 %>
-<div class="container">
+<div class="container last-home-container-margin">
   <div class="row">
 <h2 class="dashboard_subtitle">Next Hosting</h2>
     <% current_user.host.each do |event| %>

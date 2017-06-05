@@ -83,10 +83,9 @@ class User < ApplicationRecord
     guest = invitations.where(role: "guest", accepted: false)
 
     a = guest.map do |invitation|
-      invitation.event unless invitation.event.start_date < DateTime.now
+      invitation.event
     end
 
-    a.compact!
   end
 
   def facebook

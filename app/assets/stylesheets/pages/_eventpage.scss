@@ -48,8 +48,8 @@
 }
 
 .event_description {
-  min-height: 100px;
-  height: 100%;
+  display: inline-block;
+  width: 100%;
   padding: 15px 0;
   font-size: 20px;
   font-weight: lighter;
@@ -64,12 +64,14 @@
   padding: 20px 15px;
   font-size: 18px;
   font-weight: lighter;
-  border: 1px solid lightgrey;
   background-color: white;
   opacity: 1;
   position: relative;
   left: calc(50% - 250px);
   top: -200px;
+  border: 1px solid;
+  border-color: #e5e6e9 #dfe0e4 #d0d1d5;
+  border-radius: 4px;
 }
 
 .venue-informations-show {
@@ -78,7 +80,7 @@
   padding: 20px 15px;
   font-size: 18px;
   font-weight: lighter;
-  border: 1px solid lightgrey;
+  border: 1px solid $dark-blue;
   background-color: white;
   opacity: 1;
 }
@@ -133,6 +135,8 @@
 .menu-text {
   font-size: 16px;
   font-weight: lighter;
+  border-left: 1px solid $light-blue;
+  padding: 0px 10px;
 }
 
 .text_hover:hover {
@@ -155,6 +159,7 @@
   height: 100%;
   padding: 12px 20px;
   border-radius: 6px;
+  text-decoration: none;
 }
 
 .choice-btn-sm {
@@ -194,12 +199,12 @@
 }
 
 .free-spots {
-  background-color: #DB6618;
+  background-color: $pink;
   height: 50px;
   width: 50px;
   border-radius: 50%;
   border: 0;
-  opacity: 0.6;
+  opacity: 1;
 }
 .free-spots-counter {
   color: white;
@@ -230,14 +235,15 @@
   text-align: right;
 }
 
+.menu_title_show {
+  width: 50%;
+  padding-right: 30px;
+  text-align: right;
+}
+
 .menu_category {
   padding-top: 20px;
   padding-bottom: 10px;
-}
-
-.menu-text {
-  border-left: 1px solid lightgrey;
-  padding: 0px 10px;
 }
 
 .menu_items_box {
@@ -253,6 +259,10 @@
   padding-bottom: 20px;
 }
 
+body {
+  background-color: rgb(249, 249, 249);
+}
+
 .boxed {
   border: 1px solid lightgrey;
   margin: 15px 5px;
@@ -266,10 +276,27 @@
 #socialshare {
 }
 
-.description_padding {
+.show_page_content {
+  padding: 20px 0px;
+  margin: 40px 120px;
+  border-top: 1px solid $dark-blue;
+  border-bottom: 1px solid $dark-blue;
+  background-color: white;
+  border: 1px solid;
+    border-color: #e5e6e9 #dfe0e4 #d0d1d5;
+    border-radius: 4px;
+
+}
+
+.show_page_content_no_border {
   padding: 20px 40px;
-  margin: 40px 100px;
-  border: 1px solid lightgrey;
+  margin: 0px 120px 0px 120px;
+background-color: white;
+border: 1px solid;
+    border-color: #e5e6e9 #dfe0e4 #d0d1d5;
+    border-radius: 4px;
+
+
 }
 
 .date_picker_format {
@@ -302,3 +329,63 @@
   overflow: auto;
 }
 
+#new_comment {
+  margin: 25px 0px 25px 0px;
+}
+
+#event-title {
+  padding-bottom: 5px;
+  border-bottom: 2px solid $dark-blue ;
+  margin-bottom: 25px;
+}
+
+#event-month {
+  color: $pink;
+  margin-bottom: 0;
+  font-size: 25px;
+  font-weight: normal;
+}
+
+#event-day {
+  color: black;
+  font-weight: normal;
+  margin-bottom: 0;
+  margin-top: 0;
+  font-size: 25px;
+}
+
+#event-hour {
+  margin-top: 15px;
+}
+
+#at_hour {
+  color: $pink;
+}
+
+
+.comment {
+  border-top: 1px solid $light-blue;
+
+  padding: 15px 30px;
+  margin-bottom: 10px;
+}
+
+#comment-info {
+  font-size: 12px;
+  margin-left: 5px;
+  margin-bottom: 0;
+}
+
+#comments {
+  max-height: 300px;
+  overflow: auto;
+}
+
+#menu-toggle {
+  top: 50%;
+  position: fixed;
+}
+
+#additional-info {
+  border-right: 1px solid $light-blue;
+}

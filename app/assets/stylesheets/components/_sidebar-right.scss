@@ -6,7 +6,6 @@
 
  body {
     overflow-x: hidden;
-    position: relative;
  }
 
 /* Toggle Styles */
@@ -44,11 +43,7 @@
     width: 250px;
 }
 
-#page-content-wrapper {
-    width: 100%;
-    position: absolute;
-    padding: 0px 10px 10px 10px;
-}
+
 
 #wrapper2.toggled #page-content-wrapper {
     position: absolute;
@@ -58,12 +53,6 @@
 
 
 /* Sidebar Styles */
-
-.fixed_always {
-  position: fixed !important;
-  right: 0;
-  top: 0;
-}
 
 .sidebar-nav {
     position: absolute;
@@ -111,6 +100,7 @@
 }
 
 #sidebar_title {
+  color: $pink;
 }
 .sidebar-nav > .sidebar-brand a {
     color: #999999;
