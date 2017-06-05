@@ -87,10 +87,10 @@
                       </div>
                     <% else %>
                       <% if current_user.invitation(@event).accepted%>
-                        <%= link_to "I'm in", event_invitation_path(@event, @invitation, { :button => "in" }), method: :patch, class: "btn-danger choice-btn", id: "iaminbutton", style:"text-decoration: 'none'" %>
+                        <%= link_to "I'm in", event_invitation_path(@event, @invitation, { :button => "in" }), method: :patch, class: "btn-danger choice-btn", id: "iaminbutton", style:"text-decoration: 'none'"%>
                         <%= link_to "I'm out", event_invitation_path(@event, @invitation, { :button => "out" }), :method => :patch, class: "btn-danger choice-btn-sm" %>
                       <% elsif !current_user.invitation(@event).accepted%>
-                        <%= link_to "I'm in", event_invitation_path(@event, @invitation, { :button => "in" }), method: :patch, class: "btn-danger choice-btn-sm", id: "iaminbutton" %>
+                        <%= link_to "I'm in", event_invitation_path(@event, @invitation, { :button => "in" }), method: :patch, class: "btn-danger choice-btn-sm", id: "iaminbutton"%>
                         <%= link_to "I'm out", event_invitation_path(@event, @invitation, { :button => "out" }), :method => :patch, class: "btn-danger choice-btn" %>
                         <% else %>
                          <%= link_to "I'm in", event_invitation_path(@event, @invitation, { :button => "in" }), method: :patch, class: "btn-danger choice-btn", id: "iaminbutton" %>

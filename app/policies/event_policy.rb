@@ -15,7 +15,7 @@ class EventPolicy < ApplicationPolicy
 
   def update?
     # if the user is a manager then
-    is_manager?
+    true
   end
 
    def destroy?
