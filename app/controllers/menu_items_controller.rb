@@ -57,6 +57,7 @@ class MenuItemsController < ApplicationController
     @comment.event = @menu_item.event
     @comment.invitation = @menu_item.invitation
     @comment.comment = "I will bring #{@menu_item.quantity} #{@menu_item.name}"
+    @comment.save
     redirect_to event_path(@menu_item.event)
 
     # add quantity to invitation to know how much he brings
