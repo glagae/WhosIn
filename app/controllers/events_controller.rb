@@ -104,6 +104,16 @@ class EventsController < ApplicationController
     authorize @event
     @invitation = current_user.invitations.select { |invitation| invitation.event == @event }.first
     @comment = Comment.new
+
+
+    # Code used for google map geocoder
+
+    @event = Event.find(params[:id])
+
+    @hash_markers = Gmaps4rails.build_markers(@event) do |event, marker|
+      marker.lat event.latitude
+      marker.lng event.longitude
+    end
   end
 
   def addfreespot
