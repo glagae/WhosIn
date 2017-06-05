@@ -1,7 +1,7 @@
 require 'koala'
 
 class EventsController < ApplicationController
-  before_action :set_event, only: [:update, :destroy, :show, :addfreespot, :deletefreespot, :pictures]
+  before_action :set_event, only: [:update, :destroy, :show, :addfreespot, :deletefreespot]
 
   def index
     @events = policy_scope(Event).order(created_at: :desc)
