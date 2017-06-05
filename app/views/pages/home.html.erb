@@ -12,7 +12,7 @@
 <% if current_user.open_invitation.length != 0%>
 <div class="container home-container-margin">
   <div class="row">
-    <h2 class="dashboard_subtitle">Your are invited - Please reply</h2>
+    <h2 class="dashboard_subtitle">Your are invited</h2>
     <% current_user.open_invitation.each do |event| %>
         <div class="col-xs-12 col-sm-4">
           <%= render 'shared/card', e: event, host: false %>
@@ -53,7 +53,7 @@
     <h1>WhosIn</h1>
     <p>Let's invite some friends for a great dinner!</p>
           <!-- Sign-up btn text link -->
-      <button class="navbar-wagon-item navbar-wagon-link btn-lg btn-signup" data-toggle="modal" data-target="#myModal"> Sign-up </button>
+      <button class="navbar-wagon-item navbar-wagon-link btn-lg btn-signup" data-toggle="modal" data-target="#myModal"> Sign Up </button>
 
       <!-- Sign-up modal -->
       <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -61,7 +61,7 @@
           <div class="modal-content">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <h4 class="modal-title text-center" id="myModalLabel"> Sign-up</h4>
+              <h4 class="modal-title text-center" id="myModalLabel"> Sign Up</h4>
             </div>
             <div class="modal-body">
               <div class="text-center">
@@ -92,15 +92,15 @@
 
 <div class="container">
   <div class="col-xs-12 col-sm-4 text-center">
-    <h4 class="icon_descr"> organize dinners </h4>
+    <h4 class="icon_descr"> ORGANIZE DINNERS </h4>
     <%= link_to image_tag("organize.png", class: "home_icon") %>
   </div>
   <div class="col-xs-12 col-sm-4 text-center">
-    <h4 class="icon_descr"> manage dinner invitations </h4>
+    <h4 class="icon_descr"> MANAGE DINNER INVITATIONS </h4>
     <%= link_to image_tag("manage.png", class: "home_icon") %>
   </div>
   <div class="col-xs-12 col-sm-4 text-center">
-    <h4 class="icon_descr"> join lots of dinners </h4>
+    <h4 class="icon_descr"> JOIN LOTS OF DINNERS </h4>
     <%= link_to image_tag("join.png", class: "home_icon") %>
   </div>
 
