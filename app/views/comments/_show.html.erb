@@ -1,5 +1,5 @@
-<div id="delete-comment-<%= element.id %>">
-  <div>
+<div id="delete-comment-<%= element.id %>" class="comment" >
+  <div id="comment-info">
     <%= image_tag element.invitation.user.facebook_picture_url, class: "avatar-large confirmed-element"%>
     <p><em>Posted on <%= element.created_at.strftime("%d/%m") %> at <%= element.created_at.strftime("%H:%M") %></em></p>
     <% if current_user == element.invitation.user %>

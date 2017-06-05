@@ -26,7 +26,7 @@
       <div class="navbar-wagon-item">
         <div class="dropdown">
           <%= image_tag "whosin_notification2.png", class: "dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
-          <div class="badge badge-orange"><%= current_user.open_invitation.count unless current_user.open_invitation.count == 0%></div>
+          <div class="badge badge-pink"><%= current_user.open_invitation.count unless current_user.open_invitation.count == 0%></div>
           <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
           <% current_user.open_invitation.each do |event| %>
             <li id="notif-element">
