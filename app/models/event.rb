@@ -1,11 +1,9 @@
 class Event < ApplicationRecord
   # Associations
-
   has_many :invitations, dependent: :destroy
   has_many :menu_items, dependent: :destroy
   has_many :comments, dependent: :destroy
   accepts_nested_attributes_for :menu_items, reject_if: :all_blank, allow_destroy: true
-
 
   # Validations
   validates :start_date, presence: true
@@ -15,6 +13,10 @@ class Event < ApplicationRecord
 
   # Picture upload
   mount_uploader :photo, PhotoUploader
+
+  # Geocoder
+  geocoded_by :address
+  after_validation :geocode, if: :address_changed?
 
   def managers
     # return array with all the invitations where the role is manager
