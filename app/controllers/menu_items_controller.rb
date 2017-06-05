@@ -34,11 +34,16 @@ class MenuItemsController < ApplicationController
   end
 
   def destroy
-    authorize @menu_item
-    @menu_item.destroy
-    redirect_to edit_event_path(@menu_item.event)
+  authorize @menu_item
+    if @menu_item.destroy && @menu_item.bring
+        respond_to do |format|
+        format.html { redirect_to events_path }
+        format.js  # <-- will render `app/views/reviews/create.js.erb`
+      end
+    else @menu_item.destroy
+      redirect_to edit_event_path(@menu_item.event)
+    end
   end
-
   def brings
     authorize @menu_item
     invitation_of_current_user = current_user.invitations.where(event: params["event_id"]).first
