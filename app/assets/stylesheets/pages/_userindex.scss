@@ -2,7 +2,7 @@
   background: $white;
   display: flex;
   padding: 0px 10px 0 10px;
-  border: 1px solid $dark-orange
+  border: 1px solid $pink
 }
 .tabs a {
   color: white;
@@ -22,7 +22,7 @@
   margin: 0;
 }
 .tab {
-  background: $light-orange;
+  background: $pink;
   flex: 0 0 25%;
   text-align: center;
   padding: 20px 0;
@@ -34,6 +34,6 @@
   border-radius: 0 8px 0 0;
 }
 .tab.active {
-  background: $dark-orange;
+  background: $pink;
   color: white;
 }
