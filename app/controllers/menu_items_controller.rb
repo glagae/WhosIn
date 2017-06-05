@@ -8,12 +8,18 @@ class MenuItemsController < ApplicationController
 
   def create
     @menu_item = MenuItem.new(menu_items_params)
+    @event = @menu_item.event
+    authorize @menu_item
     if !@menu_item.bring
       @menu_item.invitation = current_user.invitations.where(event_id: menu_items_params["event_id"]).first
+      @menu_item.save
+      redirect_to edit_event_path(@menu_item.event)
+    elsif @menu_item.save
+      respond_to do |format|
+        format.html { redirect_to events_path }
+        format.js  # <-- will render `app/views/reviews/create.js.erb`
+      end
     end
-    authorize @menu_item
-    @menu_item.save
-    redirect_to edit_event_path(@menu_item.event)
   end
 
   def edit
@@ -21,18 +27,27 @@ class MenuItemsController < ApplicationController
   end
 
   def update
-    @menu_item.update(menu_items_params)
-    authorize @menu_item
-    redirect_to edit_event_path(@menu_item.event)
+    if @menu_item.update(menu_items_params)
+      authorize @menu_item
+      respond_to do |format|
+        format.html { redirect_to edit_event_path(@menu_item.event) }
+        format.js
+      end
+    end
 
   end
 
   def destroy
-    authorize @menu_item
-    @menu_item.destroy
-    redirect_to edit_event_path(@menu_item.event)
+  authorize @menu_item
+    if @menu_item.destroy && @menu_item.bring
+        respond_to do |format|
+        format.html { redirect_to events_path }
+        format.js  # <-- will render `app/views/reviews/create.js.erb`
+      end
+    else @menu_item.destroy
+      redirect_to edit_event_path(@menu_item.event)
+    end
   end
-
   def brings
     authorize @menu_item
     invitation_of_current_user = current_user.invitations.where(event: params["event_id"]).first

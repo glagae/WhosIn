@@ -26,18 +26,9 @@
             <ul class="sidebar-nav">
               <div class="event_page_menu_choices">
                 <div class="required_items form-control" id="menu_snacks">
-                 <% @event.menu_items.each do |item|  %>
-                 <% if item.invitation.nil? %>
-                 <div class="to_bring_formgroup">
-                   <%= simple_form_for [@event, item], wrapper: :inline_form, html: {class: "form-inline"} do |f| %>
-                   <%= f.input :name, {:placeholder => 'name', :input_html => { :class => 'text_hover', :style => 'display: inline;' }} %>
-                   <%= f.input :quantity, {:label=>false, :placeholder => 'quantity', :input_html => { :class => 'text_hover', :style => 'display: inline; width: 35%' }} %>
-                   <%= f.button :submit, 'update'%>
-                   <% end %>
-                   <%= link_to event_menu_item_path(@event, item),method: :delete, id: item.id, event_id: @event.id, class: "inline_display" do %> <i class="fa fa-trash"></i> <% end %>
-                 </div>
-                 <% end %>
-                 <% end %>
+                 <% @event.menu_items.each do |bring_item|  %>
+                  <%= render 'to_bring_form', event: @event, item: bring_item %>
+                <% end %>
                </div>
              </div>
             </ul>
@@ -373,15 +364,15 @@
           <h5>TO BRING</h5>
         </div>
         <div class=" menu_items_box ">
-          <%= simple_form_for [@event, @menu_item], wrapper: :inline_form, html: {class: "form-inline"} do |f| %>
+          <%= simple_form_for [@event, @menu_item], remote: true, wrapper: :inline_form, html: {class: "form-inline"} do |f| %>
 
-          <%= f.input :name, {:placeholder => 'name'} %>
+          <%= f.input :name, {:placeholder => 'name', id: 'to_bring_form' }%>
           <%= f.input :quantity, {:placeholder => 'quantity'} %>
           <%= f.hidden_field :bring, value: true %>
 
           <%= f.hidden_field :event_id, value: @event.id  %>
-          <button type="button" class="btn" id="to_bring_btn">
-            <i class="fa fa-plus" aria-hidden="true" style="color: white"></i>
+          <button type="submit" class="btn" id="add_item_ingredient_btn" >
+            <i class="fa fa-plus" aria-hidden="true" style="color: white" id="to_bring_btn"></i>
           </button>
           <a href="#menu-toggle2" class="btn btn-default" id="menu-toggle2">see all</a>
           <% end %>
@@ -419,10 +410,21 @@
     <script src="js/jquery.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap.min.js">
 
-
+    </script>
     <!-- AJAX requests -->
+
+<!--       <script>
+        var counter = 0;
+        if (counter == 0) {
+          counter += 1;
+          $('#add_item_ingredient_btn').on('click',function(e){
+          $("#wrapper2").toggleClass("toggled");
+        });
+        }
+
+      </script> -->
 
 
     <!-- Menu Toggle Script -->
