@@ -10,7 +10,7 @@
     justify-content: space-between;
 }
 
-.flex-between {
+.flex-around {
     height: 100%;
     display: flex;
     justify-content: space-around;
@@ -143,28 +143,30 @@
 
 .choice_buttons {
   height: 100%;
+  padding: 10px 30px;
 }
 
 .choice-btn {
   font-size: 30px;
   font-weight: bold;
   width: 50%;
-  margin-right: 5px;
+  margin-right: 30px;
+  margin-left: 10px;
   height: 100%;
-  padding: 30px 40px;
+  padding: 12px 20px;
   border-radius: 6px;
 }
 
 .choice-btn-sm {
-  font-size: 15px;
+  font-size: 30px;
   font-weight: bold;
   width: 50%;
-  margin-right: 5px;
-  margin-top: 20px;
+  margin-left: 30px;
+  margin-right: 10px;
   opacity: 0.5;
   height: 100%;
-  padding: 15px 20px;
-  border-radius: 3px;
+  padding: 12px 20px;
+  border-radius: 6px;
 }
 
 .confirmed {

@@ -28,7 +28,7 @@
           <p>Choose something to bring</p>
           <% @event.menu_items.each do |item|  %>
           <% if item.invitation.nil? %>
-          <%= link_to "#{item.name}  x#{item.quantity}", event_brings_item_path(@event, item), class: "btn btn-default btn-success" %>
+          <%= link_to "#{item.name}  x#{item.quantity}", event_brings_item_path(@event, item), class: "btn btn-default btn-warning" %>
           <% end %>
           <% end %>
         </div>
@@ -83,20 +83,18 @@
                       <p><%= @event.address %></p>
                   </div>
 
-                  <div class="choice_buttons flex-between border">
+                  <div class="choice_buttons flex-around border">
                     <% if @event.managers.include? current_user %>
                       <div id= "edit-button">
                         <%= link_to "Edit", edit_event_path(@event), class: "btn-lg btn-warning edit-button" %>
                       </div>
                     <% else %>
                       <% if current_user.invitation(@event).accepted%>
-                        <p class="text-center" style="margin-top: 20px">Cool you are coming</p>
                         <%= link_to "I'm in", event_invitation_path(@event, @invitation, { :button => "in" }), method: :patch, class: "btn-warning choice-btn", id: "iaminbutton" %>
                         <%= link_to "I'm out", event_invitation_path(@event, @invitation, { :button => "out" }), :method => :patch, class: "btn-warning choice-btn-sm" %>
                       <% elsif !current_user.invitation(@event).accepted%>
                         <%= link_to "I'm in", event_invitation_path(@event, @invitation, { :button => "in" }), method: :patch, class: "btn-warning choice-btn-sm", id: "iaminbutton" %>
                         <%= link_to "I'm out", event_invitation_path(@event, @invitation, { :button => "out" }), :method => :patch, class: "btn-warning choice-btn" %>
-                        <p class="text-center" style="margin-top: 20px">You can still join</p>
                         <% else %>
                          <%= link_to "I'm in", event_invitation_path(@event, @invitation, { :button => "in" }), method: :patch, class: "btn-warning choice-btn", id: "iaminbutton" %>
                           <%= link_to "I'm out", event_invitation_path(@event, @invitation, { :button => "out" }), :method => :patch, class: "btn-warning choice-btn" %>
