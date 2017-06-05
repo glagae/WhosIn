@@ -1,2 +1,3 @@
 var new_item = $("<%= j render 'events/to_bring_form', event: @event, item: @menu_item %>")
-$('#menu_snacks').append(new_item)
+$('#menu_snacks').append(new_item);
+$('#to_bring_formgroup_'+ <%= @menu_item.id %>).hide().slideDown();
