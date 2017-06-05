@@ -27,6 +27,7 @@ class InvitationsController < ApplicationController
   def update
     authorize @invitation
     @event = Event.find(params[:event_id])
+    authorize @event
     if params[:button] == "in" && @invitation.accepted
       flash[:notice] = "You are already attending! Great motivation :) "
       redirect_to event_path(params[:event_id])
@@ -36,7 +37,13 @@ class InvitationsController < ApplicationController
         redirect_to event_path(params[:event_id])
       else
         @invitation.accepted = true
-        @invitation.save
+        if @invitation.save
+          respond_to do |format|
+          format.html { redirect_to edit_event_path(@menu_item.event) }
+          format.js
+          end
+        end
+
         @event.free_spots -= 1
         @event.save
         flash[:notice] = "You are attending! See you soon :) "
