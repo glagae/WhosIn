@@ -55,7 +55,9 @@
                 <%= simple_form_for(@event) do |f| %>
                   <%= f.input :photo, class: "btn btn-default", label: false %>
                   <%= f.input :photo_cache, as: :hidden %>
-                  <%= f.submit %>
+                  <button type="submit" class="btn btn-danger">
+                      Save
+                  </button>
               <% end %>
               </div>
           </div>
@@ -79,7 +81,7 @@
               </div>
             </div>
 
-            <div class="date_picker_format">
+            <div class="date_picker_format hidden">
               <div class='input-group date' id='datetimepicker7'>
                 <input type='text' class="form-control" name="event[end_date]" value="<%= @event.end_date %>" placeholder = "<%= @event.start_date %>"/>
                 <span class="input-group-addon">
@@ -116,8 +118,8 @@
           <%= render "free_spots", event: @event %>
         </strong></button>
 
-        <button class="free-spots"><%= link_to addfreespot_event_path(@event), method: :post, remote: true do %> <i class="fa fa-plus" style="color: white"></i> <% end %></button>
-        <button class="free-spots"><%= link_to deletefreespot_event_path(@event), method: :post, remote: true do %> <i class="fa fa-minus" style="color: white"></i> <% end %></button>
+        <button class="free-spots-blue"><%= link_to addfreespot_event_path(@event), method: :post, remote: true do %> <i class="fa fa-plus" style="color: white"></i> <% end %></button>
+        <button class="free-spots-blue"><%= link_to deletefreespot_event_path(@event), method: :post, remote: true do %> <i class="fa fa-minus" style="color: white"></i> <% end %></button>
         </div>
       </div>
 
@@ -363,19 +365,8 @@
         <div class="menu_title">
           <h5>TO BRING</h5>
         </div>
-        <div class=" menu_items_box ">
-          <%= simple_form_for [@event, @menu_item], remote: true, wrapper: :inline_form, html: {class: "form-inline"} do |f| %>
-
-          <%= f.input :name, {:placeholder => 'name', id: 'to_bring_form' }%>
-          <%= f.input :quantity, {:placeholder => 'quantity'} %>
-          <%= f.hidden_field :bring, value: true %>
-
-          <%= f.hidden_field :event_id, value: @event.id  %>
-          <button type="submit" class="btn" id="add_item_ingredient_btn" >
-            <i class="fa fa-plus" aria-hidden="true" style="color: white" id="to_bring_btn"></i>
-          </button>
-          <a href="#menu-toggle2" class="btn btn-default" id="menu-toggle2">see all</a>
-          <% end %>
+        <div class=" menu_items_box " id="to-bring-form">
+          <%= render 'menu_items/form', event: @event, menu_item: @menu_item %>
         </div>
       </div>
       </div>

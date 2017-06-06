@@ -11,7 +11,7 @@
 <% if current_user.open_invitation.length != 0%>
 <div class="container home-container-margin">
   <div class="row">
-    <h2 class="dashboard_subtitle">Your are invited</h2>
+    <h2 class="dashboard_subtitle">You are invited</h2>
     <% current_user.open_invitation.each do |event| %>
         <div class="col-xs-12 col-sm-4">
           <%= render 'shared/card', e: event, host: false %>
@@ -23,7 +23,7 @@
 <% if current_user.attending.length != 0 %>
   <div class="container home-container-margin">
     <div class="row">
-      <h2 class="dashboard_subtitle">Your are attending</h2>
+      <h2 class="dashboard_subtitle">You are attending</h2>
       <% current_user.attending.each do |event| %>
           <div class="col-xs-12 col-sm-4">
             <%= render 'shared/card', e: event, host: false %>
