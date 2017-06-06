@@ -44,7 +44,7 @@
     <div class="container-fluid-right container-fluid-left">
       <div class="row">
 
-
+        <!-- Banner-->
         <div banner_form_pack>
           <div class="event_banner_div" id="topofpage">
             <!-- show event picture if it already exists -->
@@ -55,231 +55,58 @@
             url('<%= cl_image_path @event.photo , height: 300, width: 400, crop: :fill %>')">
             <a href="#menu-toggle" class="btn btn-danger" id="menu-toggle" style="position: relative; top : 10px; left: 10px;"><i class="fa fa-arrow-right" aria-hidden="true"></i></a>
           </div>
-
         </div>
 
+        <!-- General Information of the event -->
         <div class="venue-informations">
-
-                   <div class="venue-informations-date">
-
-                    <div class="text-center">
-                        <h4 id="event-title"> <%= @event.title %> </h4>
-                        <% @event.managers.each do |guest| %>
-                           <%= image_tag guest.facebook_picture_url, class: "avatar-large"%>
-                        <% end %>
-                        <span style="margin-left: 5px;"> invited you </span>
-                    </div>
-                        <span><p id="event-month"><%= @event.start_date.strftime("%b")%> </p>
-                       <p id="event-day"> <%= @event.start_date.strftime("%a %d")  %> </p></span>
-
-                      <p id="event-hour"> <%= @event.start_date.strftime("%H:%M") %><span><em id="at_hour"> @</em></span> <a href="#map"><%= @event.address %></a> </p>
-                  </div>
-
-                  <div class="choice_buttons flex-around border">
-                    <% if @event.managers.include? current_user %>
-                      <div id= "edit-button">
-                        <%= link_to "Edit", edit_event_path(@event), class: "btn-lg btn-danger edit-button" %>
-                      </div>
-                    <% else %>
-                      <% if current_user.invitation(@event).accepted%>
-                        <%= link_to event_invitation_path(@event, @invitation, { :button => "in" }), method: :patch, class: "btn-danger choice-btn", id: "iaminbutton", style:"text-decoration: 'none'" do %>
-                          <div><i class="fa fa-check" aria-hidden="true"></i> I'm in</div>
-                        <% end %>
-                        <%= link_to "I'm out", event_invitation_path(@event, @invitation, { :button => "out" }), :method => :patch, class: "btn-danger choice-btn-sm" %>
-                      <% elsif current_user.invitation(@event).accepted == false %>
-                        <%= link_to "I'm in", event_invitation_path(@event, @invitation, { :button => "in" }), method: :patch, class: "btn-danger choice-btn-sm", id: "iaminbutton"%>
-                        <%= link_to event_invitation_path(@event, @invitation, { :button => "out" }), :method => :patch, class: "btn-danger choice-btn" do %>
-                          <div><i class="fa fa-check" aria-hidden="true"></i> I'm out</div>
-                        <% end %>
-                        <% elsif current_user.invitation(@event).accepted == nil %>
-                         <%= link_to "I'm in", event_invitation_path(@event, @invitation, { :button => "in" }), method: :patch, class: "btn-danger choice-btn", id: "iaminbutton" %>
-                          <%= link_to "I'm out", event_invitation_path(@event, @invitation, { :button => "out" }), :method => :patch, class: "btn-danger choice-btn" %>
-                      <% end %>
-                    <% end %>
-
-                  </div>
-
-
+          <%= render 'events/information', event: @event %>
         </div>
       </div>
 
+      <!-- Secondary Information spots, description -->
       <div class="container">
-
-
         <div class="row margin show_page_content" style="margin-top: -150px;">
+
           <div class="col-xs-12 col-sm-6" id="additional-info">
-
-            <div class="venue-informations-free-spots ">
-            <% if @event.free_spots >= 3 %>
-              <p><em><%= @event.free_spots %> free spots left</em></p>
-              <div class="confirmed">
-                <% @event.coming.each do |guest| %>
-                  <%= image_tag guest.facebook_picture_url, class: "avatar-large confirmed-element", "data-toggle" => "tooltip", "data-placement"=>"left", "title" =>"#{guest.first_name}"%>
-                <% end %>
-                <% 3.times do %>
-                  <button class="free-spots avatar-large confirmed-element"><i class="fa fa-user fa-2x free-spot-placeholder" aria-hidden="true"></i></button>
-                <% end %>
-                  <button class="free-spots avatar-large confirmed-element"><i class="fa fa-plus fa-2x free-spot-placeholder" aria-hidden="true"></i></button>
-              </div>
-            <% elsif @event.free_spots == 2 %>
-              <p><em><%= @event.free_spots %> free spots left</em></p>
-              <div class="confirmed">
-              <% @event.coming.each do |guest| %>
-                <%= image_tag guest.facebook_picture_url, class: "avatar-large confirmed-element", "data-toggle" => "tooltip", "data-placement"=>"left", "title" =>"#{guest.first_name}"%>
-              <% end %>
-              <% @event.free_spots.times do %>
-                <button class="free-spots avatar-large confirmed-element"><i class="fa fa-user fa-2x free-spot-placeholder" aria-hidden="true"></i></button>
-              <% end %>
-              </div>
-
-            <% elsif @event.free_spots == 1 %>
-              <p><em><%= @event.free_spots %> free spot left! QUICK!</em></p>
-              <div class="confirmed">
-              <% @event.coming.each do |guest| %>
-                <%= image_tag guest.facebook_picture_url, class: "avatar-large confirmed-element", "data-toggle" => "tooltip", "data-placement"=>"left", "title" =>"#{guest.first_name}"%>
-              <% end %>
-              <% @event.free_spots.times do %>
-                <button class="free-spots avatar-large confirmed-element"><i class="fa fa-user fa-2x free-spot-placeholder" aria-hidden="true"></i></button>
-              <% end %>
-              </div>
-
-            <% elsif @event.free_spots == 0 %>
-            <p><em>They are coming</em></p>
-              <div class="confirmed">
-              <% @event.coming.each do |guest| %>
-                <%= image_tag guest.facebook_picture_url, class: "avatar-large confirmed-element", "data-toggle" => "tooltip", "data-placement"=>"left", "title" =>"#{guest.first_name}"%>
-              <% end %>
-              <% @event.free_spots.times do %>
-                <button class="free-spots confirmed-element"><i class="fa fa-user fa-2x free-spot-placeholder" aria-hidden="true"></i></button>
-              <% end %>
-              </div>
-            <% end %>
-
-            </div>
-            <% if @event.notresponded.count > 0 %>
-            <div class="venue-informations-invited">
-            <p><em>Invited</em></p>
-
-            <% if @event.notresponded.count > 3 %>
-                    <div>
-                    <% @event.notresponded[0...3].each do |guest| %>
-                      <%= image_tag guest.facebook_picture_url, class: "avatar-large", "data-toggle" => "tooltip", "data-placement"=>"left", "title" =>"#{guest.first_name}"%>
-                    <% end %>
-                    </div>
-                    <div class="dropdown">
-                      <button class="free-spots confirmed-element dropdown-toggle", data-toggle="dropdown" style="cursor: pointer"><i class="fa fa-plus free-spot-placeholder" aria-hidden="true"></i> <i class="fa fa-user free-spot-placeholder" aria-hidden="true"></i></button>
-                      <ul class="dropdown-menu navbar-wagon-dropdown-menu dropdown-content">
-                      <% @event.notresponded[3..@event.notresponded.size].each do |guest| %>
-                        <li>  <%= image_tag guest.facebook_picture_url, class: "avatar-large", "data-toggle" => "tooltip", "data-placement"=>"left", "title" =>"#{guest.first_name}"%></li>
-                    <% end %>
-                      </ul>
-                    </div>
-
-
-              <% else %>
-                <div class="venue-informations-free-spots">
-                  <% @event.notresponded.each do |guest| %>
-                  <%= image_tag guest.facebook_picture_url, class: "avatar-large", "data-toggle" => "tooltip", "data-placement"=>"left", "title" =>"#{guest.first_name}"%>
-                  <% end %>
-                </div>
-            <% end %>
-            </div>
-            <% end %>
+            <%= render 'events/spots', event: @event, invitation: @invitation %>
           </div>
-
-
 
           <div class="col-xs-12 col-sm-6">
-
             <div class="text-center">
               <div class="event_description">
-
-                  <p><%= @event.description %></p>
+                <p><%= @event.description %></p>
               </div>
             </div>
-
-            </div>
-          </div>
-        </div>
-
-        <div class="container">
-          <div class="row show_page_content_no_border">
-            <div class="col-xs-12 col-sm-12">
-                <div class="menu">
-                <table id="menu-table">
-                  <tr>
-                    <th><h5 class="menu_title">APPETIZER</h5></th>
-                    <th><h5 class="menu_title">MAIN</h5></th>
-                    <th><h5 class="menu_title">DESSERT</h5></th>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="menu-text">
-                        <% @event.menu_items.each do |item|  %>
-                          <% if (item.category == "Appetizer") && !item.invitation.nil? %>
-                          <p><%= item.name %></p>
-                          <% end %>
-                        <% end %>
-                      </div>
-                    </td>
-                    <td>
-                    <div class="menu-text">
-                      <% @event.menu_items.each do |item|  %>
-                        <% if (item.category == "Main") && !item.invitation.nil? %>
-                        <p><%= item.name %></p>
-                        <% end %>
-                      <% end %>
-                    </div>
-                    </td>
-                    <td><div class="menu-text">
-                    <% @event.menu_items.each do |item|  %>
-                      <% if (item.category == "Dessert") && !item.invitation.nil? %>
-                      <p><%= item.name %></p>
-                      <% end %>
-                    <% end %>
-                  </div></td>
-                  </tr>
-
-                </table>
-
-
-
-
-
-
-
-
-
-
-
-            </div>
-          </div>
-        </div>
-
-        <div class="row show_page_content">
-          <div class="col-xs-12 col-sm-12">
-            <div id="new_comment">
-              <%= render 'comments/form', event: @event, comment: @comment %>
-            </div>
           </div>
 
-           <div class="col-xs-12 col-sm-12">
-             <div id="comments">
-              <% @event.comments_ordered.each do |element| %>
-                <%= render 'comments/show', event: @event, element: element %>
-              <% end %>
-            </div>
         </div>
       </div>
 
-    </div>
+      <!-- Event Information -->
+      <div class="container">
+        <div class="row show_page_content_no_border">
 
-    <div class="container map-padding">
-      <div id="map" class="row show_page_content margin" style="height: 400px;"></div>
-    </div>
+          <div class="col-xs-12 col-sm-12">
+            <%= render 'events/menu_table_show', event: @event  %>
+          </div>
 
+        </div>
+
+      <div class="row show_page_content">
+          <%=  render 'events/feed', event: @event, comment: @comment %>
+      </div>
+
+      </div>
+
+      <!-- Map -->
+      <div class="container map-padding">
+        <div id="map" class="row show_page_content margin" style="height: 400px;"></div>
+      </div>
+
+      <!-- Row closing -->
+    </div>
   </div>
-</div>
+  <!-- page content closing -->
 </div>
 
 

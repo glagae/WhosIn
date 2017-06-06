@@ -11,7 +11,7 @@
 <% if current_user.open_invitation.length != 0%>
 <div class="container home-container-margin">
   <div class="row">
-    <h2 class="dashboard_subtitle">You are invited</h2>
+    <h2 class="dashboard_subtitle">You're invited</h2>
     <% current_user.open_invitation.each do |event| %>
         <div class="col-xs-12 col-sm-4">
           <%= render 'shared/card', e: event, host: false %>
@@ -23,7 +23,7 @@
 <% if current_user.attending.length != 0 %>
   <div class="container home-container-margin">
     <div class="row">
-      <h2 class="dashboard_subtitle">You are attending</h2>
+      <h2 class="dashboard_subtitle">You're attending</h2>
       <% current_user.attending.each do |event| %>
           <div class="col-xs-12 col-sm-4">
             <%= render 'shared/card', e: event, host: false %>
@@ -35,7 +35,7 @@
 <% if current_user.host.length != 0 %>
 <div class="container last-home-container-margin">
   <div class="row">
-<h2 class="dashboard_subtitle">Next Hosting</h2>
+<h2 class="dashboard_subtitle">You're hosting</h2>
     <% current_user.host.each do |event| %>
         <div class="col-xs-12 col-sm-4">
           <%= render 'shared/card', e: event, host: true  %>
@@ -99,7 +99,7 @@
     <%= link_to image_tag("manage.png", class: "home_icon") %>
   </div>
   <div class="col-xs-12 col-sm-4 text-center">
-    <h4 class="icon_descr"> JOIN LOTS OF DINNERS </h4>
+    <h4 class="icon_descr"> JOIN A DINNERS </h4>
     <%= link_to image_tag("join.png", class: "home_icon") %>
   </div>
 
