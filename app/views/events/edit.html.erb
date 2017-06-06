@@ -21,19 +21,7 @@
                 <li>
             </ul>
         </div>
-        <div id="wrapper2">
-          <div id="sidebar-wrapper2">
-            <ul class="sidebar-nav">
-              <div class="event_page_menu_choices">
-                <div class="required_items form-control" id="menu_snacks">
-                 <% @event.menu_items.each do |bring_item|  %>
-                  <%= render 'to_bring_form', event: @event, item: bring_item %>
-                <% end %>
-               </div>
-             </div>
-            </ul>
-          </div>
-        </div>
+
         <!-- /#sidebar-wrapper -->
 
         <!-- Page Content -->
@@ -369,6 +357,12 @@
           <%= render 'menu_items/form', event: @event, menu_item: @menu_item %>
         </div>
       </div>
+      <div class="event_page_menu_choices">
+        <div class="required_items" id="menu_snacks">
+         <% @event.missing.each do |bring_item|  %>
+          <%= render 'menu_items/to_bring_form', event: @event, item: bring_item %>
+        <% end %>
+       </div>
       </div>
     </div>
   </div>
@@ -421,12 +415,7 @@
         $("#wrapper").toggleClass("toggled");
     });
     </script>
-    <script>
-    $("#menu-toggle2").click(function(e) {
-        e.preventDefault();
-        $("#wrapper2").toggleClass("toggled");
-    });
-    </script>
+
     <script>
     $("stuff_to_bring").click(function(e) {
         e.preventDefault();

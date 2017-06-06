@@ -48,6 +48,8 @@ class MenuItemsController < ApplicationController
       redirect_to edit_event_path(@menu_item.event)
     end
   end
+
+
   def brings
     authorize @menu_item
     invitation_of_current_user = current_user.invitations.where(event: params["event_id"]).first
