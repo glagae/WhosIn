@@ -68,24 +68,23 @@ class EventsController < ApplicationController
         else
           render 'edit'
         end
-      elsif start == ""
-        final = DateTime.parse(event_params[:end_date])
-        if @event.update(end_date: final, address: event_params[:address], title: event_params[:title])
-          redirect_to edit_event_path(@event)
-        else
-          render 'edit'
-        end
-      elsif final == ""
-        start = DateTime.parse(event_params[:start_date])
-        if @event.update(start_date: start, address: event_params[:address], title: event_params[:title])
-          redirect_to edit_event_path(@event)
-        else
-          render 'edit'
-        end
+      # elsif start == ""
+      #   final = DateTime.parse(event_params[:end_date])
+      #   if @event.update(end_date: final, address: event_params[:address], title: event_params[:title])
+      #     redirect_to edit_event_path(@event)
+      #   else
+      #     render 'edit'
+      #   end
+      # elsif final == ""
+      #   start = DateTime.parse(event_params[:start_date])
+      #   if @event.update(start_date: start, address: event_params[:address], title: event_params[:title])
+      #     redirect_to edit_event_path(@event)
+      #   else
+      #     render 'edit'
+      #   end
       else
         start = DateTime.parse(event_params[:start_date])
-        final = DateTime.parse(event_params[:end_date])
-        if @event.update(start_date: start,end_date: final, address: event_params[:address], title: event_params[:title])
+        if @event.update(start_date: start, address: event_params[:address], title: event_params[:title])
           redirect_to edit_event_path(@event)
         else
           render 'edit'
