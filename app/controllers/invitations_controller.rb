@@ -14,9 +14,9 @@ class InvitationsController < ApplicationController
     params[:friends].each do |friend_id|
       user_invited_id = User.where(id: friend_id).first.id
       @invitation = Invitation.create(user_id: user_invited_id, event_id: @event.id, role: "guest", accepted: nil)
-       InvitationMailer.invited(@invitation, @invitation.event).deliver_now
-      @invitation.sent = true
-      @invitation.save
+      #  InvitationMailer.invited(@invitation, @invitation.event).deliver_now
+      # @invitation.sent = true
+      # @invitation.save
     end
     redirect_to edit_event_path(@event)
 
