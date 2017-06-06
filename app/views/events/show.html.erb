@@ -26,11 +26,7 @@
     <div class="bring-items">
         <div class="choose-item" id="menu_snacks">
           <p>Choose something to bring</p>
-          <% @event.menu_items.each do |item|  %>
-          <% if item.invitation.nil? %>
-          <%= link_to "#{item.name}  x#{item.quantity}", event_brings_item_path(@event, item), class: "btn btn-default btn-danger" %>
-          <% end %>
-          <% end %>
+          <%= render 'events/missing_items', event: @event %>
         </div>
         <div class="chosen-item">
           <p>I bring</p>
