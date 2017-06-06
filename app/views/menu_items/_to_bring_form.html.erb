@@ -1,1 +1,6 @@
-<button type="button"  id="to_bring_formgroup_<%= item.id %>" class="btn btn-danger" data-toggle="modal" data-target=".bs-example-modal-sm"> <%= item.name %> x <%= item.quantity %>     <%= link_to event_menu_item_path(event, item),method: :delete, id: 'delete_' + item.id.to_s, event_id: event.id, class: "inline_display", :remote => true do %> <i class="fa fa-trash" style="color: white"></i> <% end %></button>
+<button type="button"  id="to_bring_formgroup_<%= item.id %>" class="btn btn-danger bring-elements">
+  <%= item.name %> x <%= item.quantity %>
+  <%= link_to event_menu_item_path(event, item),method: :delete, id: 'delete_' + item.id.to_s, event_id: event.id, class: "inline_display", :remote => true do %>
+    <i class="fa fa-trash" style="color: white"></i>
+  <% end %>
+</button>
