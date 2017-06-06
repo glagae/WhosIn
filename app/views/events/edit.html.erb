@@ -1,28 +1,5 @@
 <div id="wrapper">
 
-<!-- test comment -->
-        <!-- Sidebar -->
-        <div id="sidebar-wrapper">
-            <ul class="sidebar-nav">
-                <li class="sidebar-brand">
-                    <a href="#" id="sidebar_title">
-                        <%= @event.title %>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">Dinner Dashboard</a>
-                </li>
-                <li>
-                    <a href="#">Dinner Pictures</a>
-                </li>
-                <li>
-                    <a href="#">Payments</a>
-                </li>
-                <li>
-            </ul>
-        </div>
-
-        <!-- /#sidebar-wrapper -->
 
         <!-- Page Content -->
 <div id="page-content-wrapper">
@@ -38,7 +15,6 @@
         <% end %>
           <div class="banner_edit" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
            url('<%= cl_image_path @event.photo , height: 300, width: 400, crop: :fill %>')">
-              <a href="#menu-toggle" class="btn btn-danger" id="menu-toggle" style="position: relative; top : 10px; left: 10px;"><i class="fa fa-arrow-right" aria-hidden="true"></i></a>
               <div class="upload_image">
                 <%= simple_form_for(@event) do |f| %>
                   <%= f.input :photo, class: "btn btn-default", label: false %>
@@ -52,37 +28,27 @@
 
       </div>
 
-      <div class="venue-informations">
+      <div class="venue-informations_edit">
 
         <form action="/events/<%=@event.id%>" method="post" >
-          <input type="hidden" name="_method" value="patch" class="venue_info_element">
+          <input type="hidden" name="_method" value="patch" class="venue_info_element form-control">
             <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
 
-          <input type="text" name="event[title]" class="venue_info_element" value="<%= @event.title %>" placeholder="Cooles Event EVER">
-          <div class="venue_info_element">
-            <div class="date_picker_format" >
-              <div class='input-group date' id='datetimepicker6'>
-                <input type='text' class="form-control" name="event[start_date]" value="<%= @event.start_date %>" placeholder="<%= @event.start_date %>" />
-                <span class="input-group-addon">
-                  <span class="glyphicon glyphicon-calendar"></span>
-                </span>
-              </div>
+          <div class="form-inline">
+            <input type="text" name="event[title]" class="form-control" value="<%= @event.title %>" placeholder="Cooles Event EVER">
+            <div class='input-group date' id='datetimepicker6'>
+              <input type='text' class="form-control" name="event[start_date]" value="<%= @event.start_date %>" placeholder="<%= @event.start_date %>" />
+              <span class="input-group-addon">
+                <span class="glyphicon glyphicon-calendar"></span>
+              </span>
             </div>
-
-            <div class="date_picker_format hidden">
-              <div class='input-group date' id='datetimepicker7'>
-                <input type='text' class="form-control" name="event[end_date]" value="<%= @event.end_date %>" placeholder = "<%= @event.start_date %>"/>
-                <span class="input-group-addon">
-                  <span class="glyphicon glyphicon-calendar"></span>
-                </span>
-              </div>
-            </div>
+            <input type="text" name="event[address]" class="form-control" value="<%= @event.address %>" placeholder="Your address">
+            <input type="submit" class="btn btn-default" value="Save" class="venue_info_element">
           </div>
 
-          <input type="text" name="event[address]" class="venue_info_element" value="<%= @event.address %>" placeholder="Your address">
-          <div class="choice_buttons flex-between venue_info_element">
+
+          <div class="form-inline choice_buttons">
             <%= link_to "See event", event_path(@event), class: "btn btn-default btn-info" %>
-            <input type="submit" class="btn btn-default" class="venue_info_element">
             <%= link_to "Delete event", event_path(@event), method: :delete, class: "btn btn-default btn-danger" %>
           </div>
         </form>
