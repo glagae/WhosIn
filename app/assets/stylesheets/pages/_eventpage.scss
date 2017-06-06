@@ -366,15 +366,15 @@ border: 1px solid;
 
 .comment {
   border-top: 1px solid $light-blue;
-
-  padding: 15px 30px;
-  margin-bottom: 10px;
+  padding: 15px 30px 5px;
+  margin-bottom: 0px;
 }
 
 #comment-info {
   font-size: 12px;
   margin-left: 5px;
   margin-bottom: 0;
+  display: block;
 }
 
 #comments {
@@ -389,4 +389,8 @@ border: 1px solid;
 
 #additional-info {
   border-right: 1px solid $light-blue;
+}
+
+.map-padding{
+  padding-bottom: 70px;
 }

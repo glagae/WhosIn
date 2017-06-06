@@ -264,6 +264,10 @@
 
     </div>
 
+    <div class="container map-padding">
+      <div id="map" class="row show_page_content margin" style="height: 400px;"></div>
+    </div>
+
   </div>
 </div>
 </div>
@@ -286,7 +290,23 @@
 <script src="js/bootstrap.min.js"></script>
 
 
-<!-- AJAX requests -->
+
+<!--   Google map Geocoder -->
+<%= javascript_tag do %>
+    $(document).ready(function() {
+      var handler = Gmaps.build('Google');
+      handler.buildMap({ internal: { id: 'map' } }, function() {
+        markers = handler.addMarkers(<%= raw @hash_markers.to_json %>);
+        handler.bounds.extendWith(markers);
+        handler.fitMapToBounds();
+        if (markers.length == 0) {
+          handler.getMap().setZoom(2);
+        } else if (markers.length == 1) {
+          handler.getMap().setZoom(14);
+        }
+      });
+    });
+  <% end %>
 
 
 <!-- Menu Toggle Script -->
@@ -316,25 +336,3 @@
 
   <% end %>
 
-<!--   Google map Geocoder -->
-<div class="container">
-<div id="map" class="row padding show_page_content" style="height: 400px;"></div>
-</div>
-
-<% content_for(:after_js) do %>
-  <%= javascript_tag do %>
-    $(document).ready(function() {
-      var handler = Gmaps.build('Google');
-      handler.buildMap({ internal: { id: 'map' } }, function() {
-        markers = handler.addMarkers(<%= raw @hash_markers.to_json %>);
-        handler.bounds.extendWith(markers);
-        handler.fitMapToBounds();
-        if (markers.length == 0) {
-          handler.getMap().setZoom(2);
-        } else if (markers.length == 1) {
-          handler.getMap().setZoom(14);
-        }
-      });
-    });
-  <% end %>
-<% end %>

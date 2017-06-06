@@ -1,5 +1,5 @@
 <%= simple_form_for([ event, comment ], remote: true)  do |f| %>
-  <%= f.input :comment %>
+  <%= f.input :comment, placeholder: "Type something..." %>
   <%= f.hidden_field :event_id, value: event.id  %>
   <button type="submit" class="btn btn-danger">
     <i class="icon-save" style="color: $pink"></i> Post
