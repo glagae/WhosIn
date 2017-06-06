@@ -53,18 +53,7 @@ class MenuItemsController < ApplicationController
     invitation_of_current_user = current_user.invitations.where(event: params["event_id"]).first
     @menu_item.invitation = invitation_of_current_user
     @menu_item.save
-    @comment = Comment.new
-    @comment.event = @menu_item.event
-    @comment.invitation = @menu_item.invitation
-    @comment.comment = "I will bring #{@menu_item.quantity} #{@menu_item.name}"
-    @comment.save
     redirect_to event_path(@menu_item.event)
-
-    # add quantity to invitation to know how much he brings
-    # check if this quantity is smaller than total quantity if so update quantity of what to bring
-    # update quantity of what is brought
-    # menu_item.quantity
-
   end
 
 
