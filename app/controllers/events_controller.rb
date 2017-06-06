@@ -11,11 +11,11 @@ class EventsController < ApplicationController
   end
 
   def create
-    @event = Event.create(start_date: DateTime.new(24/12/2018),
-     end_date: DateTime.new(25/12/2018),
-     address:"Eiffel Tower",
-     title:"My amazing event",
-     remote_photo_url: "http://via.placeholder.com/350x200")
+    @event = Event.new(event_params)
+    authorize @event
+    @event.remote_photo_url = "http://via.placeholder.com/350x200"
+    @event.save
+
 
     @invitation = Invitation.new
     @invitation.event = @event
@@ -23,7 +23,7 @@ class EventsController < ApplicationController
     @invitation.role = "manager"
     @invitation.accepted = true
     @invitation.save
-    authorize @event
+
     redirect_to edit_event_path(@event)
 
   end
