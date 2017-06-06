@@ -45,8 +45,12 @@ class InvitationsController < ApplicationController
       end
     elsif params[:button] == "out" && (@invitation.accepted)
       @invitation.accepted = false
-      @invitation.menu_items.each {|item| item.invitation = nil}
-      @invitation.menu_items = []
+      @invitation.menu_items.each do |item|
+          item.invitation = nil
+          item.save
+       end
+      # @invitation.menu_items = []
+
       @invitation.save
       @event.free_spots += 1
       @event.save

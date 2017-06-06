@@ -36,7 +36,7 @@ class Event < ApplicationRecord
   end
 
   def notresponded
-    invitations_accepted = invitations.where(accepted: nil, role: "guest")
+    invitations_accepted = invitations.where(accepted: nil, role: "guest").or(invitations.where(accepted: false))
     invitations_accepted.map do |invitation|
       invitation.user
     end
