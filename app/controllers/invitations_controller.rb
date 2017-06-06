@@ -37,6 +37,7 @@ class InvitationsController < ApplicationController
         redirect_to event_path(params[:event_id])
       else
         @invitation.accepted = true
+        @invitation.save
         @event.free_spots -= 1
         @event.save
         flash[:notice] = "You are attending! See you soon :) "

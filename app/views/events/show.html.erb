@@ -110,7 +110,7 @@
           <div class="col-xs-12 col-sm-6" id="additional-info">
 
             <div class="venue-informations-free-spots ">
-            <% if @event.free_spots > 3 %>
+            <% if @event.free_spots >= 3 %>
               <p><em><%= @event.free_spots %> free spots left</em></p>
               <div class="confirmed">
                 <% @event.coming.each do |guest| %>
