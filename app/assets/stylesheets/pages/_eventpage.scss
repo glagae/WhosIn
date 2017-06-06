@@ -59,6 +59,18 @@
 #event-title {
   font-size: 26px;
 }
+.venue-informations_edit {
+  width: 1000px;
+  text-align: center;
+  padding: 20px 15px;
+  font-size: 18px;
+  font-weight: lighter;
+  opacity: 1;
+  position: relative;
+  left: calc(50% - 500px);
+  top: -150px;
+}
+
 .venue-informations {
   width: 500px;
   text-align: center;
@@ -148,7 +160,7 @@
 
 .choice_buttons {
   height: 100%;
-  padding: 10px 30px;
+  padding: 30px 30px;
 }
 
 .choice-btn {
