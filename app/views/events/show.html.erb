@@ -96,7 +96,7 @@
                         <%= link_to event_invitation_path(@event, @invitation, { :button => "out" }), :method => :patch, class: "btn-danger choice-btn" do %>
                           <div><i class="fa fa-check" aria-hidden="true"></i> I'm out</div>
                         <% end %>
-                        <% else %>
+                        <% elsif current_user.invitation(@event).accepted == nil %>
                          <%= link_to "I'm in", event_invitation_path(@event, @invitation, { :button => "in" }), method: :patch, class: "btn-danger choice-btn", id: "iaminbutton" %>
                           <%= link_to "I'm out", event_invitation_path(@event, @invitation, { :button => "out" }), :method => :patch, class: "btn-danger choice-btn" %>
                       <% end %>
