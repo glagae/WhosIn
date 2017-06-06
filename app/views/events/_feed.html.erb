@@ -1,0 +1,13 @@
+<div class="col-xs-12 col-sm-12">
+  <div id="new_comment">
+    <%= render 'comments/form', event: event, comment: comment %>
+  </div>
+</div>
+
+ <div class="col-xs-12 col-sm-12">
+   <div id="comments">
+    <% event.comments_ordered.each do |element| %>
+      <%= render 'comments/show', event: event, element: element %>
+    <% end %>
+  </div>
+</div>

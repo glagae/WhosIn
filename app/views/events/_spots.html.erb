@@ -1,0 +1,76 @@
+<div class="venue-informations-free-spots ">
+            <% if event.free_spots >= 3 %>
+              <p><em><%= event.free_spots %> free spots left</em></p>
+              <div class="confirmed">
+                <% event.coming.each do |guest| %>
+                  <%= image_tag guest.facebook_picture_url, class: "avatar-large confirmed-element", "data-toggle" => "tooltip", "data-placement"=>"left", "title" =>"#{guest.first_name}"%>
+                <% end %>
+                <% 3.times do %>
+                  <button class="free-spots avatar-large confirmed-element"><i class="fa fa-user fa-2x free-spot-placeholder" aria-hidden="true"></i></button>
+                <% end %>
+                  <button class="free-spots avatar-large confirmed-element"><i class="fa fa-plus fa-2x free-spot-placeholder" aria-hidden="true"></i></button>
+              </div>
+            <% elsif event.free_spots == 2 %>
+              <p><em><%= event.free_spots %> free spots left</em></p>
+              <div class="confirmed">
+              <% event.coming.each do |guest| %>
+                <%= image_tag guest.facebook_picture_url, class: "avatar-large confirmed-element", "data-toggle" => "tooltip", "data-placement"=>"left", "title" =>"#{guest.first_name}"%>
+              <% end %>
+              <% event.free_spots.times do %>
+                <button class="free-spots avatar-large confirmed-element"><i class="fa fa-user fa-2x free-spot-placeholder" aria-hidden="true"></i></button>
+              <% end %>
+              </div>
+
+            <% elsif event.free_spots == 1 %>
+              <p><em><%= event.free_spots %> free spot left! QUICK!</em></p>
+              <div class="confirmed">
+              <% event.coming.each do |guest| %>
+                <%= image_tag guest.facebook_picture_url, class: "avatar-large confirmed-element", "data-toggle" => "tooltip", "data-placement"=>"left", "title" =>"#{guest.first_name}"%>
+              <% end %>
+              <% event.free_spots.times do %>
+                <button class="free-spots avatar-large confirmed-element"><i class="fa fa-user fa-2x free-spot-placeholder" aria-hidden="true"></i></button>
+              <% end %>
+              </div>
+
+            <% elsif event.free_spots == 0 %>
+            <p><em>They are coming</em></p>
+              <div class="confirmed">
+              <% event.coming.each do |guest| %>
+                <%= image_tag guest.facebook_picture_url, class: "avatar-large confirmed-element", "data-toggle" => "tooltip", "data-placement"=>"left", "title" =>"#{guest.first_name}"%>
+              <% end %>
+              <% event.free_spots.times do %>
+                <button class="free-spots confirmed-element"><i class="fa fa-user fa-2x free-spot-placeholder" aria-hidden="true"></i></button>
+              <% end %>
+              </div>
+            <% end %>
+
+            </div>
+            <% if event.notresponded.count > 0 %>
+            <div class="venue-informations-invited">
+            <p><em>Invited</em></p>
+
+            <% if event.notresponded.count > 3 %>
+                    <div>
+                    <% event.notresponded[0...3].each do |guest| %>
+                      <%= image_tag guest.facebook_picture_url, class: "avatar-large", "data-toggle" => "tooltip", "data-placement"=>"left", "title" =>"#{guest.first_name}"%>
+                    <% end %>
+                    </div>
+                    <div class="dropdown">
+                      <button class="free-spots confirmed-element dropdown-toggle", data-toggle="dropdown" style="cursor: pointer"><i class="fa fa-plus free-spot-placeholder" aria-hidden="true"></i> <i class="fa fa-user free-spot-placeholder" aria-hidden="true"></i></button>
+                      <ul class="dropdown-menu navbar-wagon-dropdown-menu dropdown-content">
+                      <% event.notresponded[3..event.notresponded.size].each do |guest| %>
+                        <li>  <%= image_tag guest.facebook_picture_url, class: "avatar-large", "data-toggle" => "tooltip", "data-placement"=>"left", "title" =>"#{guest.first_name}"%></li>
+                    <% end %>
+                      </ul>
+                    </div>
+
+
+              <% else %>
+                <div class="venue-informations-free-spots">
+                  <% event.notresponded.each do |guest| %>
+                  <%= image_tag guest.facebook_picture_url, class: "avatar-large", "data-toggle" => "tooltip", "data-placement"=>"left", "title" =>"#{guest.first_name}"%>
+                  <% end %>
+                </div>
+            <% end %>
+            </div>
+            <% end %>
