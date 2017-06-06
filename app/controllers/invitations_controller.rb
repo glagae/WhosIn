@@ -37,13 +37,7 @@ class InvitationsController < ApplicationController
         redirect_to event_path(params[:event_id])
       else
         @invitation.accepted = true
-        if @invitation.save
-          respond_to do |format|
-          format.html { redirect_to edit_event_path(@menu_item.event) }
-          format.js
-          end
-        end
-
+        @invitation.save
         @event.free_spots -= 1
         @event.save
         flash[:notice] = "You are attending! See you soon :) "
@@ -54,7 +48,6 @@ class InvitationsController < ApplicationController
       @invitation.menu_items.each {|item| item.invitation = nil}
       @invitation.menu_items = []
       @invitation.save
-
       @event.free_spots += 1
       @event.save
 
