@@ -54,8 +54,15 @@ class MenuItemsController < ApplicationController
     authorize @menu_item
     invitation_of_current_user = current_user.invitations.where(event: params["event_id"]).first
     @menu_item.invitation = invitation_of_current_user
-    @menu_item.save
-    redirect_to event_path(@menu_item.event)
+    if @menu_item.save
+        respond_to do |format|
+        format.html { redirect_to event_path(@menu_item.event) }
+        format.js  # <-- will render `app/views/invitations/brings.js.erb
+        end
+    else @menu_item.destroy
+      redirect_to edit_event_path(@menu_item.event)
+    end
+
   end
 
 
