@@ -72,7 +72,7 @@
                         <span><p id="event-month"><%= @event.start_date.strftime("%b")%> </p>
                        <p id="event-day"> <%= @event.start_date.strftime("%a %d")  %> </p></span>
 
-                      <p id="event-hour"> <%= @event.start_date.strftime("%H:%M") %><span><em id="at_hour"> @</em></span> <%= @event.address %></p>
+                      <p id="event-hour"> <%= @event.start_date.strftime("%H:%M") %><span><em id="at_hour"> @</em></span> <a href="#map"><%= @event.address %></a> </p>
                   </div>
 
                   <div class="choice_buttons flex-around border">
