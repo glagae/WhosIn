@@ -1,0 +1,11 @@
+<%= simple_form_for [event, menu_item], remote: true, wrapper: :inline_form, html: {class: "form-inline"} do |f| %>
+
+<%= f.input :name, {:placeholder => 'name', id: 'to_bring_form' }%>
+<%= f.input :quantity, {:placeholder => 'quantity'} %>
+<%= f.hidden_field :bring, value: true %>
+
+<%= f.hidden_field :event_id, value: event.id  %>
+<button type="submit" class="btn" id="add_item_ingredient_btn" >
+  <i class="fa fa-plus" aria-hidden="true" style="color: white" id="to_bring_btn"></i>
+</button>
+<% end %>

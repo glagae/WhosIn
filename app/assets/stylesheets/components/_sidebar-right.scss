@@ -16,10 +16,12 @@
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
     transition: all 0.5s ease;
+    max-height: 500px;
 }
 
 #wrapper2.toggled {
     padding-left: 250px;
+    max-height: 500px;
 }
 
 #sidebar-wrapper2 {
@@ -41,6 +43,7 @@
 
 #wrapper2.toggled #sidebar-wrapper2 {
     width: 250px;
+    max-height: 500px;
 }
 
 
@@ -48,6 +51,7 @@
 #wrapper2.toggled #page-content-wrapper {
     position: absolute;
     margin-left: -250px;
+    max-height: 500px;
 }
 
 
@@ -60,6 +64,7 @@
     margin: 0;
     padding: 0;
     list-style: none;
+    max-height: 500px;
 }
 
 .sidebar-nav li {

@@ -4,15 +4,14 @@
 <div class="banner_half" style="background-image: linear-gradient(-225deg, rgba(0,0,0,0.6) 0%, rgba(250,250,250,0.1) 70%), url('https://static.pexels.com/photos/326278/pexels-photo-326278.jpeg');">
   <div class="banner-content">
     <h2>WhosIn</h2>
-    <h3>My dashboard</h3>
-    <%= link_to "Create Dinner", events_path, {method: :post, class: "btn btn-danger"} %>
+    <%= link_to "Create Dinner", events_path, {method: :post, class: "btn-lg btn-danger", id: "create-dinner"} %>
   </div>
 </div>
 
 <% if current_user.open_invitation.length != 0%>
 <div class="container home-container-margin">
   <div class="row">
-    <h2 class="dashboard_subtitle">Your are invited</h2>
+    <h2 class="dashboard_subtitle">You are invited</h2>
     <% current_user.open_invitation.each do |event| %>
         <div class="col-xs-12 col-sm-4">
           <%= render 'shared/card', e: event, host: false %>
@@ -24,7 +23,7 @@
 <% if current_user.attending.length != 0 %>
   <div class="container home-container-margin">
     <div class="row">
-      <h2 class="dashboard_subtitle">Your are attending</h2>
+      <h2 class="dashboard_subtitle">You are attending</h2>
       <% current_user.attending.each do |event| %>
           <div class="col-xs-12 col-sm-4">
             <%= render 'shared/card', e: event, host: false %>

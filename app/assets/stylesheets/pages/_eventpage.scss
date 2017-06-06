@@ -41,10 +41,9 @@
 }
 
 .event_page_menu_choices {
-  padding: 8px;
-  margin-left: 5px;
+  margin-left: 287px;
   margin-top: 10px;
-  width: 100%;
+  max-width: 400px;
 }
 
 .event_description {
@@ -164,7 +163,7 @@
 }
 
 .choice-btn {
-  font-size: 30px;
+  font-size: 22px;
   font-weight: bold;
   width: 50%;
   margin-right: 30px;
@@ -176,7 +175,7 @@
 }
 
 .choice-btn-sm {
-  font-size: 30px;
+  font-size: 22px;
   font-weight: bold;
   width: 50%;
   margin-left: 30px;
@@ -213,6 +212,15 @@
 
 .free-spots {
   background-color: $pink;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  border: 0;
+  opacity: 1;
+}
+
+.free-spots-blue {
+  background-color: $dark-blue;
   height: 50px;
   width: 50px;
   border-radius: 50%;
@@ -430,4 +438,8 @@ border: 1px solid;
 border: 1px solid;
     border-color: #e5e6e9 #dfe0e4 #d0d1d5;
     border-radius: 4px;
+}
+
+.bring-elements {
+  margin: 2px;
 }

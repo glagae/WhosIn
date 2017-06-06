@@ -1,5 +1,6 @@
 <div id="wrapper">
 
+
         <!-- Page Content -->
 <div id="page-content-wrapper">
 <div class="container-fluid-right container-fluid-left">
@@ -18,7 +19,9 @@
                 <%= simple_form_for(@event) do |f| %>
                   <%= f.input :photo, class: "btn btn-default", label: false %>
                   <%= f.input :photo_cache, as: :hidden %>
-                  <%= f.submit %>
+                  <button type="submit" class="btn btn-danger">
+                      Save
+                  </button>
               <% end %>
               </div>
           </div>
@@ -30,6 +33,7 @@
         <form action="/events/<%=@event.id%>" method="post" >
           <input type="hidden" name="_method" value="patch" class="venue_info_element form-control">
             <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+
           <div class="form-inline">
             <input type="text" name="event[title]" class="form-control" value="<%= @event.title %>" placeholder="Cooles Event EVER">
             <div class='input-group date' id='datetimepicker6'>
@@ -68,8 +72,8 @@
           <%= render "free_spots", event: @event %>
         </strong></button>
 
-        <button class="free-spots"><%= link_to addfreespot_event_path(@event), method: :post, remote: true do %> <i class="fa fa-plus" style="color: white"></i> <% end %></button>
-        <button class="free-spots"><%= link_to deletefreespot_event_path(@event), method: :post, remote: true do %> <i class="fa fa-minus" style="color: white"></i> <% end %></button>
+        <button class="free-spots-blue"><%= link_to addfreespot_event_path(@event), method: :post, remote: true do %> <i class="fa fa-plus" style="color: white"></i> <% end %></button>
+        <button class="free-spots-blue"><%= link_to deletefreespot_event_path(@event), method: :post, remote: true do %> <i class="fa fa-minus" style="color: white"></i> <% end %></button>
         </div>
       </div>
 
@@ -82,7 +86,6 @@
             <% end %>
           <%= link_to "Send Invitation", event_send_invitation_path(@event), class: "btn btn-info" %>
       </div>
-
 
 
 
@@ -105,6 +108,7 @@
 
                               </li>
                           </ul>
+
                           <!-- Tab panes -->
                           <div class="tab-content">
                               <div role="tabpanel" class="tab-pane active" id="fbfriend">
@@ -191,7 +195,7 @@
 
       <div class="event_description description_padding text-center description-box">
         <%= simple_form_for @event do |f| %>
-          <%= f.input :description %>
+          <%= f.input :description, :input_html => {:style=> 'height: 100px'}%>
           <button type="submit" class="btn btn-default">
               <i class="icon-save" style="color: white"></i> save
           </button>
@@ -315,21 +319,16 @@
         <div class="menu_title">
           <h5>TO BRING</h5>
         </div>
-        <div class=" menu_items_box ">
-          <%= simple_form_for [@event, @menu_item], remote: true, wrapper: :inline_form, html: {class: "form-inline"} do |f| %>
-
-          <%= f.input :name, {:placeholder => 'name', id: 'to_bring_form' }%>
-          <%= f.input :quantity, {:placeholder => 'quantity'} %>
-          <%= f.hidden_field :bring, value: true %>
-
-          <%= f.hidden_field :event_id, value: @event.id  %>
-          <button type="submit" class="btn" id="add_item_ingredient_btn" >
-            <i class="fa fa-plus" aria-hidden="true" style="color: white" id="to_bring_btn"></i>
-          </button>
-          <a href="#menu-toggle2" class="btn btn-default" id="menu-toggle2">see all</a>
-          <% end %>
+        <div class=" menu_items_box " id="to-bring-form">
+          <%= render 'menu_items/form', event: @event, menu_item: @menu_item %>
         </div>
       </div>
+      <div class="event_page_menu_choices">
+        <div class="required_items" id="menu_snacks">
+         <% @event.missing.each do |bring_item|  %>
+          <%= render 'menu_items/to_bring_form', event: @event, item: bring_item %>
+        <% end %>
+       </div>
       </div>
     </div>
   </div>
@@ -382,12 +381,7 @@
         $("#wrapper").toggleClass("toggled");
     });
     </script>
-    <script>
-    $("#menu-toggle2").click(function(e) {
-        e.preventDefault();
-        $("#wrapper2").toggleClass("toggled");
-    });
-    </script>
+
     <script>
     $("stuff_to_bring").click(function(e) {
         e.preventDefault();

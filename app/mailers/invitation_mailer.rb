@@ -9,7 +9,6 @@ class InvitationMailer < ApplicationMailer
   def invited(invitations, event)
     @event = event
     @invitations = invitations.where(role: "guest", event: event, sent: nil)
-    byebug
     @invitations.each do |invitation|
       @user = invitation.user
       mail(to: @user.email, subject: "You've been invited")
