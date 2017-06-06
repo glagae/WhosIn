@@ -78,11 +78,6 @@
                        <p id="event-day"> <%= @event.start_date.strftime("%a %d")  %> </p></span>
 
                       <p id="event-hour"> <%= @event.start_date.strftime("%H:%M") %><span><em id="at_hour"> @</em></span> <%= @event.address %></p>
-                      <% if current_user.invitation(@event).accepted %>
-                          <p> I am coming</p>
-                          <% else %>
-                          <p> I am out</p>
-                          <% end %>
                   </div>
 
                   <div class="choice_buttons flex-around border">
@@ -92,11 +87,15 @@
                       </div>
                     <% else %>
                       <% if current_user.invitation(@event).accepted%>
-                        <%= link_to "I'm in", event_invitation_path(@event, @invitation, { :button => "in" }), method: :patch, class: "btn-danger choice-btn", id: "iaminbutton", style:"text-decoration: 'none'"%>
+                        <%= link_to event_invitation_path(@event, @invitation, { :button => "in" }), method: :patch, class: "btn-danger choice-btn", id: "iaminbutton", style:"text-decoration: 'none'" do %>
+                          <div><i class="fa fa-check" aria-hidden="true"></i> I'm in</div>
+                        <% end %>
                         <%= link_to "I'm out", event_invitation_path(@event, @invitation, { :button => "out" }), :method => :patch, class: "btn-danger choice-btn-sm" %>
                       <% elsif current_user.invitation(@event).accepted == false %>
                         <%= link_to "I'm in", event_invitation_path(@event, @invitation, { :button => "in" }), method: :patch, class: "btn-danger choice-btn-sm", id: "iaminbutton"%>
-                        <%= link_to "I'm out", event_invitation_path(@event, @invitation, { :button => "out" }), :method => :patch, class: "btn-danger choice-btn" %>
+                        <%= link_to event_invitation_path(@event, @invitation, { :button => "out" }), :method => :patch, class: "btn-danger choice-btn" do %>
+                          <div><i class="fa fa-check" aria-hidden="true"></i> I'm out</div>
+                        <% end %>
                         <% else %>
                          <%= link_to "I'm in", event_invitation_path(@event, @invitation, { :button => "in" }), method: :patch, class: "btn-danger choice-btn", id: "iaminbutton" %>
                           <%= link_to "I'm out", event_invitation_path(@event, @invitation, { :button => "out" }), :method => :patch, class: "btn-danger choice-btn" %>
