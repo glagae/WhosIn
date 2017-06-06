@@ -2,7 +2,7 @@ class Invitation < ApplicationRecord
   # Associations
   belongs_to :user
   belongs_to :event
-  has_many :menu_items
+  has_many :menu_items, dependent: :destroy
   has_many :comments, dependent: :destroy
 
   # Validations
