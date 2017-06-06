@@ -30,7 +30,7 @@
         </div>
         <div class="chosen-item">
           <p>I bring</p>
-          <ul>
+          <ul id="item-added">
             <% current_user.bring(@event).each do |element| %>
             <li><%= element.name %> x <%= element.quantity %></li>
             <% end %>
@@ -111,7 +111,6 @@
           <div class="col-xs-12 col-sm-6" id="additional-info">
 
             <div class="venue-informations-free-spots ">
-            <p><em>They are coming</em></p>
             <% if @event.free_spots >= 3 %>
               <p><em><%= @event.free_spots %> free spots left</em></p>
               <div class="confirmed">
@@ -146,6 +145,7 @@
               </div>
 
             <% elsif @event.free_spots == 0 %>
+            <p><em>They are coming</em></p>
               <div class="confirmed">
               <% @event.coming.each do |guest| %>
                 <%= image_tag guest.facebook_picture_url, class: "avatar-large confirmed-element", "data-toggle" => "tooltip", "data-placement"=>"left", "title" =>"#{guest.first_name}"%>
@@ -206,44 +206,53 @@
           <div class="row show_page_content_no_border">
             <div class="col-xs-12 col-sm-12">
                 <div class="menu">
-                <div class="flex-form menu_category">
-                  <div class="menu_title_show">
-                    <h5>APPETIZER</h5>
-                  </div>
-                  <div class="menu-text">
-                    <% @event.menu_items.each do |item|  %>
-                      <% if (item.category == "Appetizer") && !item.invitation.nil? %>
-                      <p><span></span><%= item.name %></p>
-                      <% end %>
-                    <% end %>
-                  </div>
-                </div>
+                <table style="width:100%">
+                  <tr>
 
-                <div class="flex-form menu_category">
-                  <div class="menu_title_show">
-                    <h5>MAIN</h5>
-                  </div>
-                  <div class="menu-text">
-                    <% @event.menu_items.each do |item|  %>
-                      <% if (item.category == "Main") && !item.invitation.nil? %>
-                      <p><span></span><%= item.name %></p>
+                    <th><h5>APPETIZER</h5></th>
+                    <th><h5>MAIN</h5></th>
+                    <th><h5>DESSERT</h5></th>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="menu-text">
+                        <% @event.menu_items.each do |item|  %>
+                          <% if (item.category == "Appetizer") && !item.invitation.nil? %>
+                          <p><span></span><%= item.name %></p>
+                          <% end %>
+                        <% end %>
+                      </div>
+                    </td>
+                    <td>
+                    <div class="menu-text">
+                      <% @event.menu_items.each do |item|  %>
+                        <% if (item.category == "Main") && !item.invitation.nil? %>
+                        <p><span></span><%= item.name %></p>
+                        <% end %>
                       <% end %>
-                    <% end %>
-                  </div>
-                </div>
-
-                <div class="flex-form menu_category ">
-                  <div class="menu_title_show">
-                    <h5>DESSERT</h5>
-                  </div>
-                  <div class="menu-text">
+                    </div>
+                    </td>
+                    <td><div class="menu-text">
                     <% @event.menu_items.each do |item|  %>
                       <% if (item.category == "Dessert") && !item.invitation.nil? %>
                       <p><span></span><%= item.name %></p>
                       <% end %>
                     <% end %>
-                  </div>
-                </div>
+                  </div></td>
+                  </tr>
+
+                </table>
+
+
+
+
+
+
+
+
+
+
+
             </div>
           </div>
         </div>

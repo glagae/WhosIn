@@ -1,0 +1,4 @@
+$('#item-added').append('<li>' + '<%= @menu_item.name%> x <%= @menu_item.quantity%>' + '</li>');
+
+$('#clicked-item_'+ <%= @menu_item.id %>).slideUp();
+
