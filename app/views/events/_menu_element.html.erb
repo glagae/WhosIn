@@ -1,0 +1,4 @@
+  <button type="button" class="btn btn-danger bring-elements">
+    <%= item.name %>
+     <%= link_to event_menu_item_path(event, item),method: :delete, id: item.id, event_id: @event.id, class: "inline_display" do %> <i class="fa fa-trash" style="margin-left: 5px; color: white"></i> <% end %>
+  </button>

@@ -56,6 +56,10 @@ class User < ApplicationRecord
     end
   end
 
+  def is_host?(event)
+    event.managers.include? self
+  end
+
   # returns all the events where the user is a guest
   def guest
     guest = self.invitations.select do |invitation|
