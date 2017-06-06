@@ -84,7 +84,6 @@
             <% @event.notresponded.each do |guest| %>
             <span id="invited-friend"> <%= link_to event_invitation_path(@event, guest.invitation(@event)), method: :delete do %> <%= image_tag guest.facebook_picture_url, class: "avatar-large invited-friend-avatar", "data-toggle" => "tooltip", "data-placement"=>"left", "title" =>"#{guest.first_name}"%><i class="fa fa-trash hidden" id="invited-friend-delete"></i><% end %> </span>
             <% end %>
-          <%= link_to "Send Invitation", event_send_invitation_path(@event), class: "btn btn-info" %>
       </div>
 
 

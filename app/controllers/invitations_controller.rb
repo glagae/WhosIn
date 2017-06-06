@@ -1,5 +1,6 @@
 class InvitationsController < ApplicationController
   before_action :set_invitation, only: [:edit, :update, :destroy]
+  # after_action :send_invitation, only: [:create]
 
   def new
     @invitation = Invitation.new
@@ -13,6 +14,9 @@ class InvitationsController < ApplicationController
     params[:friends].each do |friend_id|
       user_invited_id = User.where(id: friend_id).first.id
       @invitation = Invitation.create(user_id: user_invited_id, event_id: @event.id, role: "guest", accepted: nil)
+       InvitationMailer.invited(@invitation, @invitation.event).deliver_now
+      @invitation.sent = true
+      @invitation.save
     end
     redirect_to edit_event_path(@event)
 
@@ -72,18 +76,12 @@ class InvitationsController < ApplicationController
     redirect_to edit_event_path(@invitation.event)
   end
 
-  def send_invitation
-    @event = Event.find(params["event_id"])
-    @invitations = @event.invitations
-    authorize @invitations
-    InvitationMailer.invited(@event.invitations, @event).deliver_now
-    @invitations.map do |invitation|
+
+  def send_invitation(invitation)
+    InvitationMailer.invited(invitation, invitation.event).deliver_now
       invitation.sent = true
       invitation.save
-    end
-    redirect_to edit_event_path(@event)
   end
-
   private
 
   def invitation_params
