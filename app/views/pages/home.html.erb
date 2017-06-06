@@ -4,7 +4,22 @@
 <div class="banner_half" style="background-image: linear-gradient(-225deg, rgba(0,0,0,0.6) 0%, rgba(250,250,250,0.1) 70%), url('https://static.pexels.com/photos/326278/pexels-photo-326278.jpeg');">
   <div class="banner-content">
     <h2>WhosIn</h2>
-    <%= link_to "Create Dinner", events_path, {method: :post, class: "btn-lg btn-danger", id: "create-dinner"} %>
+
+    <form action="<%= events_path %>" method="POST"">
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+      <div  class="form-inline">
+        <input type="text" name="event[title]" class="form-control" placeholder="Event Title">
+        <div class='input-group date' id='datetimepicker6'>
+          <input type='text' class="form-control" name="event[start_date]" placeholder="Date & Time" />
+          <span class="input-group-addon">
+            <span class="glyphicon glyphicon-calendar"></span>
+          </span>
+        </div>
+          <input type="text" name="event[address]" class="form-control" value="<%= current_user.address %>" placeholder="Diner Address">
+          <input type="submit" class="btn btn-default" value="Create Dinner" class="btn-lg btn-danger" style="background-color: rgba(216, 65, 105, 1); color: white; border: none;">
+      </div>
+    </form>
+
   </div>
 </div>
 

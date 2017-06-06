@@ -31,7 +31,7 @@
       <div class="venue-informations_edit">
 
         <form action="/events/<%=@event.id%>" method="post" >
-          <input type="hidden" name="_method" value="patch" class="venue_info_element form-control">
+          <input type="hidden" name="_method" value="patch" class="form-control">
             <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
 
           <div class="form-inline">
