@@ -21,7 +21,7 @@
       <li>
       </ul>
     </div>
-    <% if @event.coming.include? current_user %>
+    <% if @event.allowed_to_see_items?(current_user) %>
 
     <div class="bring-items">
         <div class="choose-item" id="menu_snacks">
@@ -31,7 +31,7 @@
           <p>I bring</p>
           <ul id="item-added">
             <% current_user.bring(@event).each do |element| %>
-            <li><%= element.name %> x <%= element.quantity %></li>
+            <li><%= element.name %> <%= element.quantity == nil ? "" : "x #{element.quantity}" %></li>
             <% end %>
           </ul>
         </div>
@@ -72,7 +72,7 @@
                         <span><p id="event-month"><%= @event.start_date.strftime("%b")%> </p>
                        <p id="event-day"> <%= @event.start_date.strftime("%a %d")  %> </p></span>
 
-                      <p id="event-hour"> <%= @event.start_date.strftime("%H:%M") %><span><em id="at_hour"> @</em></span> <%= @event.address %></p>
+                      <p id="event-hour"> <%= @event.start_date.strftime("%H:%M") %><span><em id="at_hour"> @</em></span> <a href="#map"><%= @event.address %></a> </p>
                   </div>
 
                   <div class="choice_buttons flex-around border">
@@ -157,10 +157,10 @@
 
             </div>
             <% if @event.notresponded.count > 0 %>
+            <div class="venue-informations-invited">
             <p><em>Invited</em></p>
 
             <% if @event.notresponded.count > 3 %>
-                  <div class="venue-informations-free-spots flex-form">
                     <div>
                     <% @event.notresponded[0...3].each do |guest| %>
                       <%= image_tag guest.facebook_picture_url, class: "avatar-large", "data-toggle" => "tooltip", "data-placement"=>"left", "title" =>"#{guest.first_name}"%>
@@ -175,7 +175,7 @@
                       </ul>
                     </div>
 
-                  </div>
+
               <% else %>
                 <div class="venue-informations-free-spots">
                   <% @event.notresponded.each do |guest| %>
@@ -183,6 +183,7 @@
                   <% end %>
                 </div>
             <% end %>
+            </div>
             <% end %>
           </div>
 
@@ -205,19 +206,18 @@
           <div class="row show_page_content_no_border">
             <div class="col-xs-12 col-sm-12">
                 <div class="menu">
-                <table style="width:100%">
+                <table id="menu-table">
                   <tr>
-
-                    <th><h5>APPETIZER</h5></th>
-                    <th><h5>MAIN</h5></th>
-                    <th><h5>DESSERT</h5></th>
+                    <th><h5 class="menu_title">APPETIZER</h5></th>
+                    <th><h5 class="menu_title">MAIN</h5></th>
+                    <th><h5 class="menu_title">DESSERT</h5></th>
                   </tr>
                   <tr>
                     <td>
                       <div class="menu-text">
                         <% @event.menu_items.each do |item|  %>
                           <% if (item.category == "Appetizer") && !item.invitation.nil? %>
-                          <p><span></span><%= item.name %></p>
+                          <p><%= item.name %></p>
                           <% end %>
                         <% end %>
                       </div>
@@ -226,7 +226,7 @@
                     <div class="menu-text">
                       <% @event.menu_items.each do |item|  %>
                         <% if (item.category == "Main") && !item.invitation.nil? %>
-                        <p><span></span><%= item.name %></p>
+                        <p><%= item.name %></p>
                         <% end %>
                       <% end %>
                     </div>
@@ -234,7 +234,7 @@
                     <td><div class="menu-text">
                     <% @event.menu_items.each do |item|  %>
                       <% if (item.category == "Dessert") && !item.invitation.nil? %>
-                      <p><span></span><%= item.name %></p>
+                      <p><%= item.name %></p>
                       <% end %>
                     <% end %>
                   </div></td>

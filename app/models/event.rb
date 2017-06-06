@@ -57,5 +57,9 @@ class Event < ApplicationRecord
     self.comments.order('comments.created_at DESC')
   end
 
+  def allowed_to_see_items?(user)
+    self.coming.include?(user) || self.managers.include?(user)
+  end
+
 
 end
