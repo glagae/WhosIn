@@ -30,23 +30,20 @@
 
     <div class="bring-items">
       <div class="choose-item" id="menu_snacks">
+        <p>Choose something to bring</p>
         <%= render 'events/missing_items', event:@event %>
       </div>
-      <div class="chosen-item">
+      <div class="chosen-item" id="item-added">
         <p>I bring</p>
-        <ul id="item-added">
           <% current_user.bring(@event).each do |element| %>
-          <div class="row">
-            <div class="col-xs-12">
-               <button type="button"  id="to_bring_formgroup_<%= element.id %>" class="btn btn-danger bring-elements">
-                <%= element.name %> <%= element.quantity == nil ? "" : "x #{element.quantity}" %>
-              </button>
-            </div>
-          </div>
+                <% if element.category.nil? %>
+               <%= render 'events/chosen_item', element:element %>
+            <% end %>
+
           <% end %>
 
 
-        </ul>
+
       </div>
     </div>
 

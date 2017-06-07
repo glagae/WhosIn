@@ -1,6 +1,9 @@
-<button type="button"  id="to_bring_formgroup_<%= item.id %>" class="btn btn-danger bring-elements">
-  <%= item.name %> x <%= item.quantity %>
+<button type="button" id="to_bring_formgroup_<%= item.id %>" class="btn btn-danger bring-elements">
+  <%= item.quantity == nil ? "" : "#{item.quantity}x " %> <%= item.name.capitalize %>
   <%= link_to event_menu_item_path(event, item),method: :delete, id: 'delete_' + item.id.to_s, event_id: event.id, class: "inline_display", :remote => true do %>
-    <i class="fa fa-trash" style="color: white"></i>
+    <i class="fa fa-trash" style="color: white; margin-left: 10px;"></i>
   <% end %>
 </button>
+
+
+

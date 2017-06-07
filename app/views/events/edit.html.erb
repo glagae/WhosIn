@@ -88,105 +88,8 @@
       </div>
 
 
+      <%= render 'events/invite_modal', event:@event, fb_friends: @fb_friends, user: @user, users:@users %>
 
-      <div class="modal fade" id="invite" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-          <div class="modal-dialog">
-              <div class="modal-content">
-                  <div class="modal-header">
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
-                      </button>
-                       <h4 class="modal-title" id="myModalLabel">Invite your friends</h4>
-                  </div>
-                  <div class="modal-body">
-                      <div role="tabpanel">
-                          <!-- Nav tabs -->
-                          <ul class="nav nav-tabs" role="tablist">
-                              <li role="presentation" class="active"><a href="#fbfriend" aria-controls="fbfriend" role="tab" data-toggle="tab">Facebook</a>
-
-                              </li>
-                              <li role="presentation"><a href="#emailfriends" aria-controls="emailfriends" role="tab" data-toggle="tab">Email</a>
-
-                              </li>
-                          </ul>
-
-                          <!-- Tab panes -->
-                          <div class="tab-content">
-                              <div role="tabpanel" class="tab-pane active" id="fbfriend">
-                                <form action="<%= event_invitations_path(@event) %>" method="POST" class="form">
-                                  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-                                  <ul class="list-group">
-                                    <% @fb_friends.each do |friend| %>
-                                      <% if @event.guests.include? friend %>
-                                        <li class="list-group-item">
-                                          <input type="checkbox" disabled checked name="friends[]" value=<%= friend["id"] %> id="friend" />
-                                          <label for="friend">
-                                            <%= image_tag friend.facebook_picture_url, class: "avatar picture"%>
-                                            <%= friend.first_name %> (invited)
-                                          </label>
-                                        </li>
-                                      <% else %>
-                                        <li class="list-group-item">
-                                          <input type="checkbox" name="friends[]" value=<%= friend["id"] %> id="friend" />
-                                          <label for="friend"><%= image_tag friend.facebook_picture_url, class: "avatar picture"%><%= friend.first_name %></label>
-                                        </li>
-                                      <% end %>
-                                    <% end %>
-                                   </ul>
-                                    <div class="modal-footer">
-                                      <input type="submit" value="Invite" class="btn btn-info" >
-                                  </div>
-                                </form>
-                              </div>
-
-                              <div role="tabpanel" class="tab-pane" id="emailfriends">
-                                 <div>
-                                  <%= simple_form_for @user, :url => email_friend_path, wrapper: :inline_form, html: {class: "form-inline"} do |f| %>
-                                    <%= f.input :first_name, {:placeholder => 'Max'} %>
-                                    <%= f.input :last_name, {:placeholder => 'Moritz'} %>
-                                    <%= f.input :email, {:placeholder => 'bob@mgail.com'} %>
-                                    <%= f.hidden_field :event_id, value: @event.id %>
-
-
-                                    <button type="submit" class="btn">
-                                      <i class="fa fa-plus" aria-hidden="true" style="color: white"></i>
-                                    </button>
-
-                                  <% end %>
-                                </div>
-
-                                <form action="<%= event_invitations_path(@event) %>" method="POST" class="form">
-                                  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-                                  <ul class="list-group">
-                                    <% @fb_friends.each do |friend| %>
-                                      <% if @event.guests.include? friend %>
-                                        <li class="list-group-item">
-                                          <input type="checkbox" disabled checked name="friends[]" value=<%= friend["id"] %> id="friend" />
-                                          <label for="friend">
-                                            <%= image_tag friend.facebook_picture_url, class: "avatar picture"%>
-                                            <%= friend.first_name %> (invited)
-                                          </label>
-                                        </li>
-                                      <% else %>
-                                        <li class="list-group-item">
-                                          <input type="checkbox" name="friends[]" value=<%= friend["id"] %> id="friend" />
-                                          <label for="friend"><%= image_tag friend.facebook_picture_url, class: "avatar picture"%><%= friend.first_name %></label>
-                                        </li>
-                                      <% end %>
-                                    <% end %>
-                                   </ul>
-                                    <div class="modal-footer">
-                                      <input type="submit" value="Invite" class="btn btn-danger" >
-                                  </div>
-                                </form>
-                              </div>
-
-                          </div>
-                      </div>
-                  </div>
-
-              </div>
-          </div>
-      </div>
 
     </div>
     </div>
@@ -208,93 +111,91 @@
   <div class="row margin">
     <div class="col-xs-12 col-sm-12 menu-box">
 
-      <div class="flex-form menu_category">
-        <div class="menu_title">
-          <h5>APPETIZER</h5>
-        </div>
-          <div class="menu_items_box">
-            <div id="appetizer-form">
-              <%= render 'menu_items/form_appetizer', event: @event, menu_item: @menu_item %>
-            </div>
-            <div id = "menu_appetizer">
-            <% @event.menu_items.each do |item|  %>
-              <% if (item.category == "Appetizer") && !item.invitation.nil? %>
-                  <%= render 'menu_items/to_bring_form', event: @event, item: item %>
-
-              <% end %>
-            <% end %>
-            </div>
-
-          </div>
-
-      </div>
-
-      <div class="flex-form menu_category">
-        <div class="menu_title">
-          <h5>MAIN</h5>
-        </div>
-        <div>
-          <div class="menu_items_box">
-           <div id="main-form">
-              <%= render 'menu_items/form_main', event: @event, menu_item: @menu_item %>
-            </div>
-             <div id = "menu_main">
-            <% @event.menu_items.each do |item|  %>
-              <% if (item.category == "Main") && !item.invitation.nil? %>
-                  <%= render 'menu_items/to_bring_form', event: @event, item: item %>
-              <% end %>
-            <% end %>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-      <div class="flex-form menu_category ">
-        <div class="menu_title">
-          <h5>DESSERT</h5>
-        </div>
-        <div>
-          <div class="menu_items_box">
-           <div id="dessert-form">
-              <%= render 'menu_items/form_dessert', event: @event, menu_item: @menu_item %>
-            </div>
-             <div id = "menu_dessert">
-            <% @event.menu_items.each do |item|  %>
-              <% if (item.category == "Dessert") && !item.invitation.nil? %>
-                  <%= render 'menu_items/to_bring_form', event: @event, item: item %>
-              <% end %>
-            <% end %>
-            </div>
-          </div>
-          </div>
-          <div>
-
-          </div>
-        </div>
 
 
-      <div class="flex-form menu_category">
-        <div class="menu_title">
-          <h5>TO BRING</h5>
-        </div>
+     <div class="menu">
+                <table class="fixed" id="menu-table">
+                  <tr>
+                    <th><h5 class="menu_title">APPETIZER</h5></th>
+                    <th><h5 class="menu_title">MAIN</h5></th>
+                    <th><h5 class="menu_title">DESSERT</h5></th>
+                  </tr>
+                  <tr>
+                    <td>
+                        <div id="appetizer-form">
+                          <%= render 'menu_items/form_appetizer', event: @event, menu_item: @menu_item %>
+                        </div>
+                    </td>
+                    <td>
+                        <div id="main-form">
+                        <%= render 'menu_items/form_main', event: @event, menu_item: @menu_item %>
+                      </div>
+                    </td>
+                    <td>
+                       <div id="dessert-form">
+                        <%= render 'menu_items/form_dessert', event: @event, menu_item: @menu_item %>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                      <td>
+                        <div id = "menu_appetizer">
+                          <% @event.menu_items.each do |item|  %>
+                            <% if (item.category == "Appetizer") && !item.invitation.nil? %>
+                              <%= render 'menu_items/to_bring_form', event: @event, item: item %>
+                            <% end %>
+                          <% end %>
+                        </div>
+                      </td>
 
-        <div>
-          <div class="menu_items_box">
-           <div id="to-bring-form">
-              <%= render 'menu_items/form', event: @event, menu_item: @menu_item %>
-            </div>
-             <div id = "menu_snacks">
-            <% @event.menu_items.each do |item|  %>
-              <% if (item.category == nil) && !item.invitation.nil? %>
-                  <%= render 'menu_items/to_bring_form', event: @event, item: item %>
-              <% end %>
-            <% end %>
-            </div>
-          </div>
-          </div>
+                      <td>
+                        <div id = "menu_main">
+                          <% @event.menu_items.each do |item|  %>
+                            <% if (item.category == "Main") && !item.invitation.nil? %>
+                              <%= render 'menu_items/to_bring_form', event: @event, item: item %>
+                            <% end %>
+                          <% end %>
+                        </div>
+                      </td>
+
+                      <td>
+                        <div id = "menu_dessert">
+                          <% @event.menu_items.each do |item|  %>
+                            <% if (item.category == "Dessert") && !item.invitation.nil? %>
+                              <%= render 'menu_items/to_bring_form', event: @event, item: item %>
+                            <% end %>
+                          <% end %>
+                        </div>
+                      </td>
+                  </tr>
+
+                </table>
 
     </div>
+
+        <table class="text-center bring fixed">
+          <tr>
+            <th><h5 class="menu_title">I NEED MY FRIENDS TO BRING</h5></th>
+          </tr>
+            <tr>
+              <td>
+               <div id="to-bring-form">
+                <%= render 'menu_items/form', event: @event, menu_item: @menu_item %>
+                </div>
+              </td>
+            </tr>
+             <tr>
+              <td>
+               <div id = "menu_snacks">
+                <% @event.menu_items.each do |item|  %>
+                  <% if (item.category == nil) && !item.invitation.nil? %>
+                      <%= render 'menu_items/to_bring_form', event: @event, item: item %>
+                  <% end %>
+                <% end %>
+              </div>
+              </td>
+            </tr>
+        </table>
      </div>
   </div>
 

@@ -1,4 +1,3 @@
-<% if !host %>
 <%= link_to event_path(e) do %>
     <div class="my_cards card-img" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path e.photo , height: 300, width: 400, crop: :fit %>');">
       <span class="card-date"><p style="margin-bottom: 2px;"><%= e.start_date.strftime("%b")%> </p>
@@ -7,21 +6,7 @@
         <div class="card-description">
           <h2><%= e.title %></h2>
         </div>
-        <%= image_tag e.managers.first.facebook_picture_url, class: "card-user avatar avatar-large"%>
+        <% avatar = e.managers.first.facebook_picture_url.nil? ? "avatar.jpg" : e.managers.first.facebook_picture_url %>
+        <%= image_tag avatar, class: "card-user avatar avatar-large"%>
     </div>
   <% end %>
-
-<% elsif%>
-
-<%= link_to event_path(e) do %>
-    <div class="my_cards card-img" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path e.photo , height: 300, width: 400, crop: :fit %>');">
-    <span class="card-date"><p style="margin-bottom: 2px;"><%= e.start_date.strftime("%b")%> </p>
-        <p style="color: white"> <%= e.start_date.strftime("%A %d")  %> </p></span>
-        <div class="card-description">
-          <h2><%= e.title %></h2>
-        </div>
-        <%= image_tag e.managers.sample.facebook_picture_url, class: "card-user avatar avatar-large"%>
-    </div>
-  <% end %>
-
-<% end %>

@@ -1,6 +1,6 @@
- <%= simple_form_for([event, menu_item], remote: true) do |f| %>
+ <%= simple_form_for [event, menu_item], remote: true, wrapper: :inline_form, html: {class: "form-inline"} do |f| %>
 
-        <%= f.input :name, {:placeholder => 'dish'} %>
+        <%= f.input :name, {:placeholder => 'Dish'} %>
         <%= f.hidden_field :bring, value: false %>
         <%= f.hidden_field :category, value: "Appetizer" %>
 

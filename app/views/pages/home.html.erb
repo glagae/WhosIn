@@ -29,7 +29,7 @@
     <h2 class="dashboard_subtitle">You're invited</h2>
     <% current_user.open_invitation.each do |event| %>
         <div class="col-xs-12 col-sm-4">
-          <%= render 'shared/card', e: event, host: false %>
+          <%= render 'shared/card', e: event%>
         </div>
       <% end %>
   </div>
@@ -41,7 +41,7 @@
       <h2 class="dashboard_subtitle">You're attending</h2>
       <% current_user.attending.each do |event| %>
           <div class="col-xs-12 col-sm-4">
-            <%= render 'shared/card', e: event, host: false %>
+            <%= render 'shared/card', e: event%>
           </div>
         <% end %>
     </div>
@@ -53,7 +53,7 @@
 <h2 class="dashboard_subtitle">You're hosting</h2>
     <% current_user.host.each do |event| %>
         <div class="col-xs-12 col-sm-4">
-          <%= render 'shared/card', e: event, host: true  %>
+          <%= render 'shared/card', e: event%>
         </div>
       <% end %>
   </div>
