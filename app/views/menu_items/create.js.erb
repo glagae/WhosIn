@@ -1,5 +1,25 @@
 var new_item = $("<%= j render 'menu_items/to_bring_form', event: @event, item: @menu_item %>")
-$('#menu_snacks').append(new_item);
-$('#to_bring_formgroup_'+ <%= @menu_item.id %>).hide().slideDown();
-// Reset the form
+
+<% case @menu_item.category %>
+<% when "Appetizer" %>
+  $('#menu_appetizer').append(new_item);
+  $('#to_bring_formgroup_'+ <%= @menu_item.id %>).hide().slideDown();
+  // Reset the form
+$('#appetizer-form').html("<%= j render 'menu_items/form_appetizer', event: @event, menu_item: MenuItem.new %>");
+<% when "Main" %>
+  $('#menu_main').append(new_item);
+  $('#to_bring_formgroup_'+ <%= @menu_item.id %>).hide().slideDown();
+  // Reset the form
+$('#main-form').html("<%= j render 'menu_items/form_main', event: @event, menu_item: MenuItem.new %>");
+<% when "Dessert" %>
+  $('#menu_dessert').append(new_item);
+  $('#to_bring_formgroup_'+ <%= @menu_item.id %>).hide().slideDown();
+  // Reset the form
+$('#dessert-form').html("<%= j render 'menu_items/form_dessert', event: @event, menu_item: MenuItem.new %>");
+<% when nil %>
+  $('#menu_snacks').append(new_item);
+  $('#to_bring_formgroup_'+ <%= @menu_item.id %>).hide().slideDown();
+  // Reset the form
 $('#to-bring-form').html("<%= j render 'menu_items/form', event: @event, menu_item: MenuItem.new %>");
+<% end %>
+

@@ -211,28 +211,21 @@
         <div class="menu_title">
           <h5>APPETIZER</h5>
         </div>
-        <div >
           <div class="menu_items_box">
-            <%= simple_form_for [@event, @menu_item], wrapper: :inline_form, html: {class: "form-inline"} do |f| %>
-
-                <%= f.input :name, {:placeholder => 'dish'} %>
-                <%= f.hidden_field :bring, value: false %>
-                <%= f.hidden_field :category, value: "Appetizer" %>
-
-                <%= f.hidden_field :event_id, value: @event.id  %>
-                <button type="submit" class="btn">
-                  <i class="fa fa-plus" aria-hidden="true" style="color: white"></i>
-                </button>
-            <% end %>
+            <div id="appetizer-form">
+              <%= render 'menu_items/form_appetizer', event: @event, menu_item: @menu_item %>
+            </div>
+            <div id = "menu_appetizer">
             <% @event.menu_items.each do |item|  %>
               <% if (item.category == "Appetizer") && !item.invitation.nil? %>
-                  <%= render 'events/menu_element', event: @event, item: item%>
+                  <%= render 'menu_items/to_bring_form', event: @event, item: item %>
+
               <% end %>
             <% end %>
+            </div>
 
           </div>
 
-        </div>
       </div>
 
       <div class="flex-form menu_category">
@@ -241,24 +234,16 @@
         </div>
         <div>
           <div class="menu_items_box">
-          <%= simple_form_for [@event, @menu_item], wrapper: :inline_form, html: {class: "form-inline"} do |f| %>
-
-                <%= f.input :name, {:placeholder => 'dish'} %>
-                <%= f.hidden_field :bring, value: false %>
-                <%= f.hidden_field :category, value: "Main" %>
-
-                <%= f.hidden_field :event_id, value: @event.id  %>
-
-                <button type="submit" class="btn">
-                  <i class="fa fa-plus" aria-hidden="true" style="color: white"></i>
-                </button>
-
-          <% end %>
+           <div id="appetizer-form">
+              <%= render 'menu_items/form_main', event: @event, menu_item: @menu_item %>
+            </div>
+             <div id = "menu_main">
             <% @event.menu_items.each do |item|  %>
-            <% if (item.category == "Main") && !item.invitation.nil? %>
-                <%= render 'events/menu_element', event: @event, item: item%>
+              <% if (item.category == "Main") && !item.invitation.nil? %>
+                  <%= render 'menu_items/to_bring_form', event: @event, item: item %>
+              <% end %>
             <% end %>
-            <% end %>
+            </div>
           </div>
 
         </div>
@@ -270,50 +255,46 @@
         </div>
         <div>
           <div class="menu_items_box">
-            <%= simple_form_for [@event, @menu_item], wrapper: :inline_form, html: {class: "form-inline"} do |f| %>
-
-            <%= f.input :name, {:placeholder => 'dish'} %>
-            <%= f.hidden_field :bring, value: false %>
-            <%= f.hidden_field :category, value: "Dessert" %>
-
-            <%= f.hidden_field :event_id, value: @event.id  %>
-
-            <button type="submit" class="btn">
-              <i class="fa fa-plus" aria-hidden="true" style="color: white"></i>
-            </button>
-
-            <% end %>
-
+           <div id="dessert-form">
+              <%= render 'menu_items/form_dessert', event: @event, menu_item: @menu_item %>
+            </div>
+             <div id = "menu_dessert">
             <% @event.menu_items.each do |item|  %>
-            <% if (item.category == "Dessert") && !item.invitation.nil? %>
-                <%= render 'events/menu_element', event: @event, item: item%>
+              <% if (item.category == "Dessert") && !item.invitation.nil? %>
+                  <%= render 'menu_items/to_bring_form', event: @event, item: item %>
+              <% end %>
             <% end %>
-            <% end %>
+            </div>
+          </div>
           </div>
           <div>
 
           </div>
         </div>
-      </div>
+
 
       <div class="flex-form menu_category">
         <div class="menu_title">
           <h5>TO BRING</h5>
         </div>
-        <div class=" menu_items_box " id="to-bring-form">
-          <%= render 'menu_items/form', event: @event, menu_item: @menu_item %>
-        </div>
-      </div>
 
-      <div class="event_page_menu_choices">
-        <div class="required_items" id="menu_snacks">
-         <% @event.missing.each do |bring_item|  %>
-          <%= render 'menu_items/to_bring_form', event: @event, item: bring_item %>
-        <% end %>
-       </div>
-      </div>
+        <div>
+          <div class="menu_items_box">
+           <div id="to-bring-form">
+              <%= render 'menu_items/form', event: @event, menu_item: @menu_item %>
+            </div>
+             <div id = "menu_snacks">
+            <% @event.menu_items.each do |item|  %>
+              <% if (item.category == nil) && !item.invitation.nil? %>
+                  <%= render 'menu_items/to_bring_form', event: @event, item: item %>
+              <% end %>
+            <% end %>
+            </div>
+          </div>
+          </div>
 
     </div>
+     </div>
   </div>
 
  </div>
