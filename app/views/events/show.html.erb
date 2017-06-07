@@ -35,7 +35,7 @@
           <div class="row">
             <div class="col-xs-12">
                <button type="button"  id="to_bring_formgroup_<%= element.id %>" class="btn btn-danger bring-elements">
-                <%= element.name %> <%= element.quantity == nil ? "" : "x #{element.quantity}" %>
+                <%= element.quantity == nil ? "" : "#{element.quantity}x " %> <%= element.name.capitalize %>
               </button>
             </div>
           </div>

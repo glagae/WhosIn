@@ -1,6 +1,6 @@
 <p>Choose something to bring</p>
 <% event.menu_items.each do |item|  %>
   <% if item.invitation.nil? %>
-  <span id="clicked-item_<%= item.id %>"><%= link_to "#{item.name}  x#{item.quantity}", event_brings_item_path(event, item), class: "btn btn-default btn-danger", remote: true%> </span>
+  <span id="clicked-item_<%= item.id %>"><%= link_to "#{item.quantity} #{item.name.capitalize} ", event_brings_item_path(event, item), class: "btn btn-default btn-danger", remote: true%> </span>
 <% end %>
 <% end %>
