@@ -51,9 +51,10 @@ class User < ApplicationRecord
       invitation.role == "manager"
     end
 
-    host.map do |invitation|
+    host.map! do |invitation|
       invitation.event
     end
+
   end
 
   def is_host?(event)
@@ -80,6 +81,8 @@ class User < ApplicationRecord
     guest.map do |invitation|
       invitation.event
     end
+
+
   end
 
     # returns all the events where the user is a guest and has not responded
@@ -89,6 +92,7 @@ class User < ApplicationRecord
     a = guest.map do |invitation|
       invitation.event
     end
+
 
   end
 
