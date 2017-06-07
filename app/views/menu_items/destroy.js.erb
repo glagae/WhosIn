@@ -1,3 +1,18 @@
 var destroy_item = $('#to_bring_formgroup_'+ <%= @menu_item.id %>)
 $(destroy_item).slideUp();
 
+
+<% case @menu_item.category %>
+<% when "Appetizer" %>
+  var destroy_item = $('#to_bring_formgroup_'+ <%= @menu_item.id %>)
+  $(destroy_item).slideUp();
+<% when "Main" %>
+  var destroy_item = $('#to_bring_formgroup_'+ <%= @menu_item.id %>)
+  $(destroy_item).slideUp();
+<% when "Dessert" %>
+  var destroy_item = $('#to_bring_formgroup_'+ <%= @menu_item.id %>)
+  $(destroy_item).slideUp();
+<% when nil %>
+  var destroy_item = $('#to_bring_formgroup_'+ <%= @menu_item.id %>)
+  $(destroy_item).slideUp();
+<% end %>

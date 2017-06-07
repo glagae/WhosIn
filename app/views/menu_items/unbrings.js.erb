@@ -1,0 +1,4 @@
+$('#clicked-item_'+ <%= @menu_item.id %>).append('<li>' + '<%= @menu_item.name%> x <%= @menu_item.quantity%>' + '</li>');
+
+$('#to_bring_formgroup_'+ <%= @menu_item.id %>).slideUp();
+

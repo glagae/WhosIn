@@ -1,5 +1,5 @@
 <div class="venue-informations-free-spots ">
-  <% if event.free_spots >= 3 %>
+  <% if event.free_spots > 3 %>
   <p><em><%= event.free_spots %> free spots left</em></p>
   <div class="confirmed">
     <% event.coming.each do |guest| %>
@@ -10,7 +10,7 @@
     <% end %>
     <button class="free-spots avatar-large confirmed-element"><i class="fa fa-plus fa-2x free-spot-placeholder" aria-hidden="true"></i></button>
   </div>
-  <% elsif event.free_spots == 2 %>
+  <% elsif event.free_spots == 2 || event.free_spots == 3 %>
   <p><em><%= event.free_spots %> free spots left</em></p>
   <div class="confirmed">
     <% event.coming.each do |guest| %>

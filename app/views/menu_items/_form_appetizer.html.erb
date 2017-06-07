@@ -1,0 +1,11 @@
+ <%= simple_form_for([event, menu_item], remote: true) do |f| %>
+
+        <%= f.input :name, {:placeholder => 'dish'} %>
+        <%= f.hidden_field :bring, value: false %>
+        <%= f.hidden_field :category, value: "Appetizer" %>
+
+        <%= f.hidden_field :event_id, value: event.id  %>
+        <button type="submit" class="btn">
+          <i class="fa fa-plus" aria-hidden="true" style="color: white"></i>
+        </button>
+    <% end %>
