@@ -1,38 +1,38 @@
-                <div class="menu">
-                <table id="menu-table">
-                  <tr>
-                    <th><h5 class="menu_title">APPETIZER</h5></th>
-                    <th><h5 class="menu_title">MAIN</h5></th>
-                    <th><h5 class="menu_title">DESSERT</h5></th>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="menu-text">
-                        <% event.menu_items.each do |item|  %>
-                          <% if (item.category == "Appetizer") && !item.invitation.nil? %>
-                          <p><%= item.name %></p>
-                          <% end %>
-                        <% end %>
-                      </div>
-                    </td>
-                    <td>
-                    <div class="menu-text">
-                      <% event.menu_items.each do |item|  %>
-                        <% if (item.category == "Main") && !item.invitation.nil? %>
-                        <p><%= item.name %></p>
-                        <% end %>
-                      <% end %>
-                    </div>
-                    </td>
-                    <td><div class="menu-text">
-                    <% event.menu_items.each do |item|  %>
-                      <% if (item.category == "Dessert") && !item.invitation.nil? %>
-                      <p><%= item.name %></p>
-                      <% end %>
-                    <% end %>
-                  </div></td>
-                  </tr>
+<div class="menu">
+<table class="fixed" id="menu-table" >
+  <tr>
+    <th><h5 class="menu_title">APPETIZER</h5></th>
+    <th><h5 class="menu_title">MAIN</h5></th>
+    <th><h5 class="menu_title">DESSERT</h5></th>
+  </tr>
+  <tr>
+    <td>
+      <div class="menu-text">
+        <% event.menu_items.each do |item|  %>
+          <% if (item.category == "Appetizer") && !item.invitation.nil? %>
+          <p><%= item.name.capitalize %></p>
+          <% end %>
+        <% end %>
+      </div>
+    </td>
+    <td>
+    <div class="menu-text">
+      <% event.menu_items.each do |item|  %>
+        <% if (item.category == "Main") && !item.invitation.nil? %>
+        <p><%= item.name.capitalize %></p>
+        <% end %>
+      <% end %>
+    </div>
+    </td>
+    <td><div class="menu-text">
+    <% event.menu_items.each do |item|  %>
+      <% if (item.category == "Dessert") && !item.invitation.nil? %>
+      <p><%= item.name.capitalize %></p>
+      <% end %>
+    <% end %>
+  </div></td>
+  </tr>
 
-                </table>
+</table>
 
-            </div>
+</div>
