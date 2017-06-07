@@ -110,6 +110,12 @@ class User < ApplicationRecord
     self.invitations.where(event: event).first
   end
 
+  def others_bring(event)
+    invitation_to_current_event = invitation(event)
+    all_brought_elements = event.menu_items.where.not(invitation: nil)
+    all_brought_elements.where.not(invitation: invitation_to_current_event)
+  end
+
   protected
 
   def password_required?
