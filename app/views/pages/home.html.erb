@@ -5,6 +5,7 @@
   <div class="banner-content">
     <h2>WhosIn</h2>
 
+<% address = current_user.address.nil? ? "" : current_user.address %>
     <form action="<%= events_path %>" method="POST"">
     <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
       <div  class="form-inline">
@@ -15,7 +16,7 @@
             <span class="glyphicon glyphicon-calendar"></span>
           </span>
         </div>
-          <input type="text" name="event[address]" class="form-control" value="<%= current_user.address %>" placeholder="Dinner Address" required>
+          <input type="text" name="event[address]" class="form-control" value="<%= current_user.address %>" placeholder="Dinner Address" value="address" required>
           <input type="submit" class="btn btn-default" value="Create Dinner" class="btn-lg btn-danger" style="background-color: rgba(216, 65, 105, 1); color: white; border: none;">
       </div>
     </form>
