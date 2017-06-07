@@ -345,6 +345,9 @@ body {
   z-index: 1;
   width: 250px;
   background-color: lightgrey;
+  border: 1px solid $dark-blue;
+  padding: 20px;
+
 }
 
 .dropdown:hover .dropdown-content {
@@ -460,6 +463,10 @@ border: 1px solid;
   box-shadow: 0 0 1px 1px $dark-blue;
   border: 0 solid $dark-blue;
   opacity: 0.9;
+}
+
+#item-added {
+  list-style: none;
 }
 
 

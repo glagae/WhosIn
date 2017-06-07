@@ -29,6 +29,7 @@ Rails.application.routes.draw do
     # CRUD for menu items
     resources :menu_items, except: [:index, :show]
       get "/invitations/:id", to: "menu_items#brings", as: "brings_item"
+      get "/invitations/:id", to: "menu_items#unbrings", as: "unbrings_item"
     # CRUD for comments
     resources :comments, except: [:index, :show]
   end

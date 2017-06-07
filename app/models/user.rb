@@ -84,7 +84,7 @@ class User < ApplicationRecord
 
     # returns all the events where the user is a guest and has not responded
   def open_invitation
-    guest = invitations.where(role: "guest", accepted: nil)
+    guest = invitations.where(role: "guest", accepted: nil).or(invitations.where(role: "guest", accepted: false))
 
     a = guest.map do |invitation|
       invitation.event
