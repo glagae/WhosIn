@@ -33,9 +33,7 @@
         <p>I bring</p>
           <% current_user.bring(@event).each do |element| %>
                 <% if element.category.nil? %>
-               <button type="button"  id="to_bring_formgroup_<%= element.id %>" class="btn btn-primary bring-elements">
-                <%= element.quantity == nil ? "" : "#{element.quantity}x " %> <%= element.name.capitalize %>
-              </button>
+               <%= render 'events/chosen_item', element:element %>
             <% end %>
 
           <% end %>
