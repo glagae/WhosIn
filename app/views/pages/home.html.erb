@@ -23,7 +23,7 @@
   </div>
 </div>
 
-<% if current_user.open_invitation.length != 0%>
+<% if current_user.open_invitation.length != 0 && !current_user.open_invitation.nil? %>
 <div class="container home-container-margin">
   <div class="row">
     <h2 class="dashboard_subtitle">You're invited</h2>
@@ -35,7 +35,7 @@
   </div>
 </div>
 <% end %>
-<% if current_user.attending.length != 0 %>
+<% if current_user.attending.length != 0 && !current_user.open_invitation.nil? %>
   <div class="container home-container-margin">
     <div class="row">
       <h2 class="dashboard_subtitle">You're attending</h2>
@@ -47,7 +47,7 @@
     </div>
   </div>
 <% end %>
-<% if current_user.host.length != 0 %>
+<% if current_user.host.length != 0 && !current_user.open_invitation.nil? %>
 <div class="container last-home-container-margin">
   <div class="row">
 <h2 class="dashboard_subtitle">You're hosting</h2>
