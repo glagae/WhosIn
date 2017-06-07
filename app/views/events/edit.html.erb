@@ -96,13 +96,8 @@
 
     <div class="col-xs-12 col-sm-6" style="padding-right: 0px">
 
-      <div class="event_description description_padding text-center description-box">
-        <%= simple_form_for @event do |f| %>
-          <%= f.input :description, :input_html => {:style=> 'height: 100px'}%>
-          <button type="submit" class="btn btn-default">
-              <i class="icon-save" style="color: white"></i> save
-          </button>
-        <% end %>
+      <div class="event_description description_padding text-center description-box" id="event-desciption-form">
+        <%= render 'events/description_form', event: @event %>
       </div>
 
     </div>

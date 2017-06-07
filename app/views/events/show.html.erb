@@ -30,11 +30,11 @@
 
     <div class="bring-items">
       <div class="choose-item" id="menu_snacks">
-        <p>Choose something to bring</p>
+        <p><strong>Choose from this list what you will bring -</strong></p>
         <%= render 'events/missing_items', event:@event %>
       </div>
       <div class="chosen-item" id="item-added">
-        <p>I bring</p>
+        <p>I will bring</p>
           <% current_user.bring(@event).each do |element| %>
                 <% if element.category.nil? %>
                <%= render 'events/chosen_item', element:element %>
