@@ -7,7 +7,8 @@
         <div class="card-description">
           <h2><%= e.title %></h2>
         </div>
-        <%= image_tag e.managers.first.facebook_picture_url, class: "card-user avatar avatar-large"%>
+        <% avatar = e.managers.first.facebook_picture_url.nil? ? "avatar.png" : e.managers.first.facebook_picture_url.nil?%>
+        <%= image_tag avatar, class: "card-user avatar avatar-large"%>
     </div>
   <% end %>
 
@@ -20,7 +21,8 @@
         <div class="card-description">
           <h2><%= e.title %></h2>
         </div>
-        <%= image_tag e.managers.sample.facebook_picture_url, class: "card-user avatar avatar-large"%>
+        <% avatar = e.managers.first.facebook_picture_url.nil? ? "avatar.png" : e.managers.first.facebook_picture_url.nil?%>
+        <%= image_tag avatar, class: "card-user avatar avatar-large"%>
     </div>
   <% end %>
 
