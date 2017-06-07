@@ -4,7 +4,7 @@
     <h4 id="event-title"> <%= event.title %> </h4>
     <% event.managers.each do |guest| %>
       <% avatar_url = guest.facebook_picture_url || "avatar.jpg" %>
-       <%= image_tag avatar_url, class: "avatar-large"%>
+       <%= image_tag avatar_url, class: "avatar-large", "data-toggle" => "tooltip", "data-placement"=>"left", "title" =>"#{guest.first_name}"%>
     <% end %>
     <span style="margin-left: 5px;"> invited you </span>
 </div>
