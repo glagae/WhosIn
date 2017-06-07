@@ -8,14 +8,14 @@
     <form action="<%= events_path %>" method="POST"">
     <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
       <div  class="form-inline">
-        <input type="text" name="event[title]" class="form-control" placeholder="Event Title">
+        <input type="text" name="event[title]" class="form-control" placeholder="Event Title"  required>
         <div class='input-group date' id='datetimepicker6'>
-          <input type='text' class="form-control" name="event[start_date]" placeholder="Date & Time" />
+          <input type='text' class="form-control" name="event[start_date]" placeholder="Date & Time"  required />
           <span class="input-group-addon">
             <span class="glyphicon glyphicon-calendar"></span>
           </span>
         </div>
-          <input type="text" name="event[address]" class="form-control" value="<%= current_user.address %>" placeholder="Dinner Address">
+          <input type="text" name="event[address]" class="form-control" value="<%= current_user.address %>" placeholder="Dinner Address" required>
           <input type="submit" class="btn btn-default" value="Create Dinner" class="btn-lg btn-danger" style="background-color: rgba(216, 65, 105, 1); color: white; border: none;">
       </div>
     </form>
@@ -23,7 +23,7 @@
   </div>
 </div>
 
-<% if current_user.open_invitation.length != 0 && !current_user.open_invitation.nil? %>
+<% if current_user.open_invitation.length != 0 && current_user.open_invitation.first != nil %>
 <div class="container home-container-margin">
   <div class="row">
     <h2 class="dashboard_subtitle">You're invited</h2>
@@ -35,7 +35,7 @@
   </div>
 </div>
 <% end %>
-<% if current_user.attending.length != 0 && !current_user.open_invitation.nil? %>
+<% if current_user.attending.length != 0 && current_user.attending.first != nil %>
   <div class="container home-container-margin">
     <div class="row">
       <h2 class="dashboard_subtitle">You're attending</h2>
@@ -47,7 +47,7 @@
     </div>
   </div>
 <% end %>
-<% if current_user.host.length != 0 && !current_user.open_invitation.nil? %>
+<% if current_user.host.length != 0 && current_user.host.first != nil %>
 <div class="container last-home-container-margin">
   <div class="row">
 <h2 class="dashboard_subtitle">You're hosting</h2>

@@ -14,17 +14,19 @@ class EventsController < ApplicationController
     @event = Event.new(event_params)
     authorize @event
     @event.remote_photo_url = "http://via.placeholder.com/350x200"
-    @event.save
+    if @event.save
+      @invitation = Invitation.new
+      @invitation.event = @event
+      @invitation.user = current_user
+      @invitation.role = "manager"
+      @invitation.accepted = true
+      @invitation.save
+      redirect_to edit_event_path(@event)
+    else
+      render 'pages/home'
+    end
 
 
-    @invitation = Invitation.new
-    @invitation.event = @event
-    @invitation.user = current_user
-    @invitation.role = "manager"
-    @invitation.accepted = true
-    @invitation.save
-
-    redirect_to edit_event_path(@event)
 
   end
 

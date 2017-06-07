@@ -3,7 +3,8 @@
 <div class="text-center">
     <h4 id="event-title"> <%= event.title %> </h4>
     <% event.managers.each do |guest| %>
-       <%= image_tag guest.facebook_picture_url, class: "avatar-large"%>
+      <% avatar_url = guest.facebook_picture_url || "avatar.jpg" %>
+       <%= image_tag avatar_url, class: "avatar-large"%>
     <% end %>
     <span style="margin-left: 5px;"> invited you </span>
 </div>
