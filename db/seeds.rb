@@ -165,13 +165,13 @@ puts "Invitation Demo Day"
   invitation_demo_day_gauthier = Invitation.create(
     event: demo_day,
     user: gauthier,
-    role: "manager"
+    role: "guest"
     )
 
   invitation_demo_day_benoit = Invitation.create(
     event: demo_day,
     user: benoit,
-    role: "manager"
+    role: "guest"
     )
 
 

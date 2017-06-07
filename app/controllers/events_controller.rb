@@ -87,10 +87,14 @@ class EventsController < ApplicationController
 
     else
       if @event.update(event_params)
-          redirect_to edit_event_path(@event)
-        else
-          render 'edit'
+        respond_to do |format|
+          format.html { redirect_to edit_event_path(@event) }
+          format.js  # <-- will render `app/views/reviews/create.js.erb`
         end
+      else
+        render 'events/edit'
+      end
+
     end
   end
 
