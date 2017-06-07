@@ -39,7 +39,7 @@ class EventsController < ApplicationController
     @user = User.new
 
     @fb_friends = Friend.fb_friend_users(current_user)
-    @users = User.all - @fb_friends
+    @users = @fb_friends
   end
 
 
