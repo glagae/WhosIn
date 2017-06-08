@@ -30,7 +30,7 @@
     <% if @event.allowed_to_see_items?(current_user) %>
 
 
-    <div class="bring-items">
+    <div class="bring-items hidden-xs hidden-sm ">
       <div class="choose-item" id="menu_snacks">
         <p><strong>Choose from this list what you will bring -</strong></p>
         <%= render 'events/missing_items', event:@event %>
@@ -61,7 +61,7 @@
     </div>
 
 
-      <button type="button" class="btn-danger bring-items-mobile" id="bring-stuff-btn" data-toggle="modal" data-target="#invite">Missing items</button>
+      <button type="button" class="btn-danger bring-items-mobile  hidden-lg hidden-md" id="bring-stuff-btn" data-toggle="modal" data-target="#invite">Missing items</button>
 
       <div class="modal fade" id="invite" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
@@ -76,7 +76,7 @@
                             <p><strong>Choose from this list what you will bring -</strong></p>
                             <%= render 'events/missing_items', event:@event %>
                           </div>
-                          <div class="chosen-item" id="item-added">
+                          <div class="chosen-item" id="item-added-mobile">
                             <p>I will bring</p>
                               <% current_user.bring(@event).each do |element| %>
                                     <% if element.category.nil? %>
