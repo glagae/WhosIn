@@ -2,7 +2,7 @@
   text-align: center;
   height: 300px;
   /* if you have a 70px navbar => height: calc(100vh - 70px); */
-  background-size: cover !important;
+  background-size: cover;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -26,7 +26,7 @@
   text-align: center;
   height: calc(100vh - 70px);
   /* if you have a 70px navbar => height: calc(100vh - 70px); */
-  background-size: cover !important;
+  background-size: cover;
   background-color: transparent;
   display: flex;
   align-items: center;
@@ -36,7 +36,7 @@
   text-align: center;
   height: 50vh;
   /* if you have a 70px navbar => height: calc(100vh - 70px); */
-  background-size: cover !important;
+  background-size: cover;
   background-color: transparent;
   display: flex;
   align-items: center;
@@ -46,7 +46,7 @@
 .banner_edit {
   height: 40vh;
   /* if you have a 70px navbar => height: calc(100vh - 70px); */
-  background-size: cover !important;
+  background-size: cover;
   background-color: transparent;
 
 }

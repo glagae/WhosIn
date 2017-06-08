@@ -47,3 +47,20 @@
   padding: 5px 40px;
   font-family: $base-font;
 }
+
+@media (max-width: 768px) {
+#address-mobile{
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+#title-mobile{
+  margin-bottom: 5px;
+}
+.form-control{
+  width: 730px;
+  margin-left: 5px;
+}
+.input-group-addon {
+  margin-top: 10px;
+}
+}
