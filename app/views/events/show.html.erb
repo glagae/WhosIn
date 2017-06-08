@@ -204,7 +204,7 @@
 <%= javascript_tag do %>
     $(document).ready(function() {
       var handler = Gmaps.build('Google');
-      handler.buildMap({ internal: { id: 'map' } }, function() {
+      handler.buildMap({ provider: {scrollwheel: false}, internal: { id: 'map' } }, function() {
         markers = handler.addMarkers(<%= raw @hash_markers.to_json %>);
         handler.bounds.extendWith(markers);
         handler.fitMapToBounds();
@@ -216,7 +216,6 @@
       });
     });
   <% end %>
-
 
 <!-- Menu Toggle Script -->
 <script>
