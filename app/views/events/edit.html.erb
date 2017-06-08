@@ -8,26 +8,23 @@
 <div class="row">
 
 
-    <div banner_form_pack>
-      <div class="event_banner_div">
+
       <!-- show event picture if it already exists -->
         <% if @event.photo.blank?  %>
           <% @event.remote_photo_url = "http://via.placeholder.com/400x300"%>
         <% end %>
           <div class="banner_edit" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
-           url('<%= cl_image_path @event.photo , height: 300, width: 400, crop: :fill %>')">
-              <div class="upload_image">
+           url('<%= cl_image_path @event.photo%>')">
+              <div class="upload_image form-inline">
                 <%= simple_form_for(@event) do |f| %>
                   <%= f.input :photo, class: "btn btn-default", label: false %>
                   <%= f.input :photo_cache, as: :hidden %>
-                  <button type="submit" class="btn btn-danger">
-                      Save
+                  <button type="submit" class="btn btn-danger" style="background-color: white; color: black; border: none;">
+                      Save Pic
                   </button>
               <% end %>
               </div>
           </div>
-
-      </div>
 
       <div class="venue-informations_edit">
 
@@ -42,7 +39,7 @@
                 <div  class="form-inline">
                   <input type="text" name="event[title]" class="form-control" value="<%= @event.title %>" placeholder="Event Title"  required>
                   <div class='input-group date' id='datetimepicker' style="color: black;">
-                    <input type='text' name="event[start_date]" class="form-control" value="<%= @event.start_date %>" placeholder="Dinner Date"   required />
+                    <input type='text' name="event[start_date]" class="form-control" value="12/06/2017 11:10" placeholder="Dinner Date"   required />
                     <span class="input-group-addon">
                       <span class="glyphicon glyphicon-calendar"></span>
                     </span>
@@ -61,7 +58,7 @@
 
 
       </div>
-    </div>
+
 
 <div class="container">
 
@@ -257,21 +254,6 @@
     $(function () {
         $('#datetimepicker').datetimepicker({
             format:'DD/MM/YYYY HH:mm',
-            sideBySide: true,
-            useCurrent: true,
-
-        });
-        $('#datetimepicker7').datetimepicker({
-            format:'DD/MM/YYYY HH:mm',
-            sideBySide: true,
-
-            useCurrent: false, //Important! See issue #1075
-        });
-        $("#datetimepicker").on("dp.change", function (e) {
-            $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
-        });
-        $("#datetimepicker7").on("dp.change", function (e) {
-            $('#datetimepicker').data("DateTimePicker").maxDate(e.date);
         });
         });
     </script>
