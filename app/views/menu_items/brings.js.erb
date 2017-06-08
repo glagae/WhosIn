@@ -1,6 +1,9 @@
 var chosen_item = '<%= j render "events/chosen_item", element: @menu_item %>'
-console.log(chosen_item);
-$('#item-added').append(chosen_item);
 
+$('#item-added').append(chosen_item);
 $('#clicked-item_'+ <%= @menu_item.id %>).slideUp();
+
+$('#item-added-mobile').append(chosen_item);
+$('.modal-body #clicked-item_'+ <%= @menu_item.id %>).slideUp();
+
 
