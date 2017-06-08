@@ -39,7 +39,7 @@
                 <div  class="form-inline">
                   <input type="text" name="event[title]" class="form-control" value="<%= @event.title %>" placeholder="Event Title"  required>
                   <div class='input-group date' id='datetimepicker' style="color: black;">
-                    <input type='text' name="event[start_date]" class="form-control" value="12/06/2017 11:10" placeholder="Dinner Date"   required />
+                    <input type='text' name="event[start_date]" class="form-control" value="<%= @event.start_date.strftime("%d/%m/%Y %H:%M") %>" placeholder="Dinner Date"   required />
                     <span class="input-group-addon">
                       <span class="glyphicon glyphicon-calendar"></span>
                     </span>
