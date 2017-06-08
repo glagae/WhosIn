@@ -44,10 +44,12 @@
 }
 
 .banner_edit {
-  height: 40vh;
+  height: 45vh;
   /* if you have a 70px navbar => height: calc(100vh - 70px); */
   background-size: cover;
   background-color: transparent;
+  margin-right: 46px;
+  margin-left: 46px;
 
 }
 
