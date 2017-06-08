@@ -57,7 +57,7 @@
   </div>
   <div class="dropdown">
     <button class="free-spots confirmed-element dropdown-toggle", data-toggle="dropdown" style="cursor: pointer"><i class="fa fa-plus free-spot-placeholder" aria-hidden="true"></i> <i class="fa fa-user free-spot-placeholder" aria-hidden="true"></i></button>
-    <ul class="dropdown-menu navbar-wagon-dropdown-menu dropdown-content">
+    <ul class="dropdown-menu navbar-wagon-dropdown-menu dropdown-content list-inline" id="dropdown-invited">
       <% event.notresponded[3..event.notresponded.size].each do |guest| %>
       <li>  <%= image_tag guest.facebook_picture_url, class: "avatar-large", "data-toggle" => "tooltip", "data-placement"=>"left", "title" =>"#{guest.first_name}"%></li>
       <% end %>
