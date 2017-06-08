@@ -1,12 +1,28 @@
-<div id="delete-comment-<%= element.id %>" class="comment" >
-  <div id="comment-info">
+<div id="delete-comment-<%= element.id %>" class="comment container" >
+  <div class="row flex-form" id="comment-info">
+
+    <div class="col-xs-2" style="margin-left: 0">
     <%= image_tag element.invitation.user.facebook_picture_url, class: "avatar-large confirmed-element"%>
-    <p><em>Posted on <%= element.created_at.strftime("%d/%m") %> at <%= element.created_at.strftime("%H:%M") %></em></p>
-    <% if current_user == element.invitation.user %>
-      <%= link_to  event_comment_path(event, element), method: :delete, remote: true do %>
-          <i class="fa fa-trash" aria-hidden="true"></i>
-      <% end %>
-     <% end %>
+    </div>
+    <div class="col-xs-8">
+      <div class="row">
+        <div class="col-xs-12" style="padding:0">
+          <p><em>Posted on <%= element.created_at.strftime("%d/%m") %> at <%= element.created_at.strftime("%H:%M") %></em></p>
+        </div>
+        <div class="col xs 12">
+          <% if current_user == element.invitation.user %>
+            <%= link_to  event_comment_path(event, element), method: :delete, remote: true do %>
+                <i class="fa fa-trash icon" aria-hidden="true"></i>
+            <% end %>
+           <% end %>
+
+        </div>
+      </div>
+    </div>
+
+
+
+
   </div>
     <p><%= element.comment %> </p>
 </div>
