@@ -116,23 +116,23 @@
       <div class="row">
 
         <!-- Banner-->
-        <div banner_form_pack>
-          <div class="event_banner_div" id="topofpage">
+
+
             <!-- show event picture if it already exists -->
             <% if @event.photo.blank?  %>
             <% @event.remote_photo_url = "http://via.placeholder.com/400x300"%>
             <% end %>
             <div class="banner_edit" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
-            url('<%= cl_image_path @event.photo , height: 300, width: 400, crop: :fill %>')">
-            <a href="#menu-toggle" class="btn btn-danger" id="menu-toggle" style="position: relative; top : 10px; left: 10px;"><i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+            url('<%= cl_image_path @event.photo %>')">
+<!--             <a href="#menu-toggle" class="btn btn-danger" id="menu-toggle" style="position: relative; top : 10px; left: 10px;"><i class="fa fa-arrow-right" aria-hidden="true"></i></a> -->
             </div>
-          </div>
+
 
           <!-- General Information of the event -->
           <div class="venue-informations">
             <%= render 'events/information', event: @event, invitation: @invitation %>
           </div>
-        </div>
+
 
       <!-- Secondary Information spots, description -->
       <div class="container">
