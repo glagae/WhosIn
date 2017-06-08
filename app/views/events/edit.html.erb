@@ -1,4 +1,4 @@
-<%= render 'shared/title_tag', event: @event %>
+<%= render 'shared/title_tag', event: @event, invitation: @event.invitations.where(role:"manager").first %>
 <div id="wrapper">
 
 
@@ -67,7 +67,7 @@
 
 
   <div class="row margin description_padding" style="margin-top: -150px;">
-    <div class="col-xs-12 col-sm-6" style="padding-left: 0px">
+    <div class="col-xs-12 col-sm-6 spots-mobile" style="padding-left: 0px">
     <div class="spots-box">
 
       <div class="venue-informations-free-spots ">
@@ -99,7 +99,7 @@
     </div>
     </div>
 
-    <div class="col-xs-12 col-sm-6" style="padding-right: 0px">
+    <div class="col-xs-12 col-sm-6 description-mobile" style="padding-right: 0px">
 
       <div class="event_description description_padding text-center description-box" id="event-desciption-form">
         <%= render 'events/description_form', event: @event %>
@@ -255,7 +255,7 @@
     </script>
     <script type="text/javascript">
     $(function () {
-        $('#datetimepicker6').datetimepicker({
+        $('#datetimepicker').datetimepicker({
             format:'DD/MM/YYYY HH:mm',
             sideBySide: true,
             useCurrent: true,
@@ -267,11 +267,11 @@
 
             useCurrent: false, //Important! See issue #1075
         });
-        $("#datetimepicker6").on("dp.change", function (e) {
+        $("#datetimepicker").on("dp.change", function (e) {
             $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
         });
         $("#datetimepicker7").on("dp.change", function (e) {
-            $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
+            $('#datetimepicker').data("DateTimePicker").maxDate(e.date);
         });
         });
     </script>

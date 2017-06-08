@@ -13,7 +13,7 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(event_params)
     authorize @event
-    @event.remote_photo_url = "http://via.placeholder.com/350x200"
+    @event.remote_photo_url = "http://res.cloudinary.com/cehrlicha/image/upload/v1496875722/default_one_hnu6u6.jpg"
     if @event.save
       @invitation = Invitation.new
       @invitation.event = @event

@@ -2,7 +2,8 @@
 <% content_for :meta_description, @event.description %>
 <% content_for :meta_image, cloudinary_url(@event.photo.path) %>
 
-<%= render 'shared/title_tag', event:@event %>
+<%= render 'shared/title_tag', event:@event, invitation: @invitation %>
+
 <div id="wrapper">
   <!-- test comment -->
   <!-- Sidebar -->
@@ -25,6 +26,7 @@
       <li>
       </ul>
     </div>
+
     <% if @event.allowed_to_see_items?(current_user) %>
 
 
@@ -58,7 +60,8 @@
       </div>
     </div>
 
-<!--     <button type="button" class="btn-info bring-items" id="bring-stuff-btn" data-toggle="modal" data-target="#invite">Bring stuff</button>
+
+      <button type="button" class="btn-danger bring-items-mobile" id="bring-stuff-btn" data-toggle="modal" data-target="#invite">Missing items</button>
 
       <div class="modal fade" id="invite" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
@@ -69,14 +72,40 @@
                              <h4 class="modal-title" id="myModalLabel">Items to bring</h4>
                         </div>
                         <div class="modal-body">
+                               <div class="choose-item" id="menu_snacks">
+                            <p><strong>Choose from this list what you will bring -</strong></p>
+                            <%= render 'events/missing_items', event:@event %>
+                          </div>
+                          <div class="chosen-item" id="item-added">
+                            <p>I will bring</p>
+                              <% current_user.bring(@event).each do |element| %>
+                                    <% if element.category.nil? %>
+                                   <%= render 'events/chosen_item', element:element %>
+                                <% end %>
 
+                              <% end %>
+                          </div>
+                          <div class="chosen-item">
+
+                            <p>My friends bring</p>
+                              <% current_user.others_bring(@event).each do |element| %>
+                                <% if element.category.nil? %>
+                                <div>
+                                <%= image_tag element.invitation.user.facebook_picture_url, class: "avatar-large invited-friend-avatar", "data-toggle" => "tooltip", "data-placement"=>"right", "title" =>"#{element.invitation.user.first_name}"%>
+                                  <button type="button"  id="to_bring_formgroup_<%= element.id %>" class="btn btn-primary bring-elements">
+                                    <%= element.quantity == nil ? "" : "#{element.quantity}x " %> <%= element.name.capitalize %>
+                                  </button>
+                                </div>
+                                <% end %>
+                              <% end %>
+                          </div>
 
 
                         </div>
 
                     </div>
                 </div>
-            </div> -->
+      </div>
 
     <% end %>
     <!-- /#sidebar-wrapper -->
@@ -96,14 +125,14 @@
             <div class="banner_edit" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
             url('<%= cl_image_path @event.photo , height: 300, width: 400, crop: :fill %>')">
             <a href="#menu-toggle" class="btn btn-danger" id="menu-toggle" style="position: relative; top : 10px; left: 10px;"><i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+            </div>
+          </div>
+
+          <!-- General Information of the event -->
+          <div class="venue-informations">
+            <%= render 'events/information', event: @event, invitation: @invitation %>
           </div>
         </div>
-
-        <!-- General Information of the event -->
-        <div class="venue-informations">
-          <%= render 'events/information', event: @event, invitation: @invitation %>
-        </div>
-      </div>
 
       <!-- Secondary Information spots, description -->
       <div class="container">
@@ -149,6 +178,7 @@
     </div>
   </div>
   <!-- page content closing -->
+</div>
 </div>
 
 
