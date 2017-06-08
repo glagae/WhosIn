@@ -580,6 +580,10 @@ table.bring td {
   width: 100%;
 }
 
+.edit-form-mobile{
+  width: 100%;
+}
+
 .bring-items-mobile {
   visibility: visible;
   position: fixed;
@@ -645,6 +649,18 @@ venue-informations {
   border: 1px solid $dark-blue;
   background-color: white;
   opacity: 1;
+}
+
+.venue-informations_edit {
+  width: 100%;
+  text-align: center;
+  padding: 155px 15px 15px;
+  //font-size: 18px;
+  //font-weight: lighter;
+  opacity: 1;
+  position: relative;
+  top: -150px;
+  left: 0%
 }
 
 }
