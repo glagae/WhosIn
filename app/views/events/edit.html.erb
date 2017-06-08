@@ -13,14 +13,14 @@
         <% if @event.photo.blank?  %>
           <% @event.remote_photo_url = "http://via.placeholder.com/400x300"%>
         <% end %>
-          <div class="banner_edit" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
+          <div class="container banner_edit" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
            url('<%= cl_image_path @event.photo%>')">
-              <div class="upload_image form-inline">
+              <div class="upload_image">
                 <%= simple_form_for(@event) do |f| %>
                   <%= f.input :photo, class: "btn btn-default", label: false %>
                   <%= f.input :photo_cache, as: :hidden %>
-                  <button type="submit" class="btn btn-danger" style="background-color: white; color: black; border: none;">
-                      Save Pic
+                  <button type="submit" class="btn-sm btn-danger" style=" font-size: 11px;background-color: white; color: black; border: none;">
+                      Upload Image
                   </button>
               <% end %>
               </div>
