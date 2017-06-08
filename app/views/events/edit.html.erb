@@ -37,15 +37,15 @@
               <input type="hidden" name="_method" value="patch">
               <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
                 <div  class="form-inline">
-                  <input type="text" name="event[title]" class="form-control" value="<%= @event.title %>" placeholder="Event Title"  required>
+                  <input type="text" name="event[title]" class="form-control edit-form-mobile" id="title-mobile" value="<%= @event.title %>" placeholder="Event Title"  required>
                   <div class='input-group date' id='datetimepicker' style="color: black;">
-                    <input type='text' name="event[start_date]" class="form-control" value="<%= @event.start_date.strftime("%d/%m/%Y %H:%M") %>" placeholder="Dinner Date"   required />
+                    <input type='text' name="event[start_date]" class="form-control edit-form-mobile" id="address-mobile" value="<%= @event.start_date.strftime("%d/%m/%Y %H:%M") %>" placeholder="Dinner Date"   required />
                     <span class="input-group-addon">
                       <span class="glyphicon glyphicon-calendar"></span>
                     </span>
                   </div>
-                    <input type="text" name="event[address]" class="form-control" value="<%= @event.address %>" placeholder="Dinner Address" value="address" required>
-                    <input type="submit" class="btn btn-default" value="Update" class="btn-lg btn-danger" style="background-color: rgba(216, 65, 105, 1); color: white; border: none;">
+                    <input type="text" name="event[address]" class="form-control edit-form-mobile" id="edit-mobile-title" value="<%= @event.address %>" placeholder="Dinner Address" value="address" required>
+                    <input type="submit" value="Update" class="btn btn-danger" style="background-color: rgba(216, 65, 105, 1); color: white; border: none; margin-top: 10px;">
                 </div>
               </form>
 
