@@ -1,6 +1,6 @@
 <%= simple_form_for [event, menu_item], remote: true, wrapper: :inline_form, html: {class: "form-inline"} do |f| %>
 
-<%= f.input :name, {:placeholder => 'Dish', id: 'to_bring_form'}%>
+<%= f.input :name, {:placeholder => 'To Bring', id: 'to_bring_form'}%>
 <%= f.input :quantity, {:placeholder => 'Quantity'} %>
 <%= f.hidden_field :bring, value: true %>
 
