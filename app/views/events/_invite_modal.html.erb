@@ -21,10 +21,6 @@
                           <!-- Tab panes -->
                           <div class="tab-content">
                               <div role="tabpanel" class="tab-pane active" id="fbfriend">
-                                    <div class="fb-send"
-                                          data-href="http://www.whosin.site/events/<%= event.id %>"
-                                          data-layout="button_count">
-                                        </div>
                                 <form action="<%= event_invitations_path(event) %>" method="POST" class="form">
                                   <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
                                   <ul class="list-group">
@@ -41,6 +37,10 @@
                                         <li class="list-group-item">
                                           <input type="checkbox" name="friends[]" value=<%= friend["id"] %> id="friend" />
                                           <label for="friend"><%= image_tag friend.facebook_picture_url, class: "avatar picture"%><%= friend.first_name %></label>
+                                          <div class="fb-send"
+                                            data-href="http://www.whosin.site/events/<%= event.id %>"
+                                            data-layout="button_count">
+                                        </div>
                                         </li>
                                       <% end %>
                                     <% end %>
