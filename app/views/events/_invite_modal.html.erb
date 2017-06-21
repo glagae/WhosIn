@@ -21,6 +21,10 @@
                           <!-- Tab panes -->
                           <div class="tab-content">
                               <div role="tabpanel" class="tab-pane active" id="fbfriend">
+                                    <div class="fb-send"
+                                          data-href="http://www.whosin.site/events/<%= event.id %>"
+                                          data-layout="button_count">
+                                        </div>
                                 <form action="<%= event_invitations_path(event) %>" method="POST" class="form">
                                   <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
                                   <ul class="list-group">
@@ -43,7 +47,7 @@
                                    </ul>
                                     <div class="modal-footer">
                                       <input type="submit" value="Invite" class="btn btn-info" >
-                                  </div>
+                                     </div>
                                 </form>
                               </div>
 
