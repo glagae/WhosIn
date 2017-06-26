@@ -37,9 +37,9 @@
                                         <li class="list-group-item">
                                           <input type="checkbox" name="friends[]" value=<%= friend["id"] %> id="friend" />
                                           <label for="friend"><%= image_tag friend.facebook_picture_url, class: "avatar picture"%><%= friend.first_name %></label>
-                                          <div class="fb-send"
-                                            data-href="http://www.whosin.site/events/<%= event.id %>"
-                                            data-layout="button_count">
+                                       <!--    <div class="fb-send"
+                                            data-href="http://www.whosin.site/events/<=event.id %>"
+                                            data-layout="button_count"> -->
                                         </div>
                                         </li>
                                       <% end %>
